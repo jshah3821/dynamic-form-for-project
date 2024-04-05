@@ -1,0 +1,160 @@
+[
+  
+  {
+    "selectionType": "template",
+    "id": "SstzzXdWeRV-hC8gXIXt_",
+    "type": "template",
+    "subType": "logInForm",
+    "formId": null,
+    "surveyFormId": null,
+    "json": [
+      {
+        "selectionType": "form",
+        "id": "0cWAHdxjHo6-vLGjKrSm7",
+        "type": "element",
+        "subType": "input",
+        "properties": {
+          "placeholder": "Enter Email",
+          "label": "Email",
+          "type": "email",
+          "name": "email",
+          "option": "Options"
+        },
+        "validation": {
+          "minLength": null,
+          "maxLength": null,
+          "required": false
+        },
+        "style": {
+          "backgroundColor": "",
+          "color": "",
+          "fontSize": "",
+          "height": "",
+          "borderWidth": "",
+          "width": "100%",
+          "padding": "10px"
+        },
+        "isSelectedField": false
+      },
+      {
+        "selectionType": "form",
+        "id": "NxBs7OePtmXMfAIcddQ7p",
+        "type": "element",
+        "subType": "input",
+        "properties": {
+          "placeholder": "Enter Password",
+          "label": "Password",
+          "type": "password",
+          "name": "password",
+          "option": "Options"
+        },
+        "validation": {
+          "minLength": null,
+          "maxLength": null,
+          "required": false
+        },
+        "style": {
+          "backgroundColor": "",
+          "color": "",
+          "fontSize": "",
+          "height": "",
+          "borderWidth": "",
+          "width": "100%",
+          "padding": "10px"
+        },
+        "isSelectedField": false
+      }
+    ],
+    "isSelectedField": true
+  },
+  {
+    "selectionType": "template",
+    "id": "SVhsD87_3GDd8p4w0aTOz",
+    "type": "template",
+    "subType": "signUpForm",
+    "style": { "backgroundColor": "", "color": "", "fontSize": "16px" },
+    "formId": null,
+    "surveyFormId": null,
+    "json": [
+      {
+        "id": "DHO-3DHvgSLeLet2jtZj_",
+        "type": "element",
+        "subType": "input",
+        "properties": {
+          "placeholder": "Enter name",
+          "label": "Name",
+          "type": "Text",
+          "name": "name"
+        },
+        "validation": {
+          "minLength": null,
+          "maxLength": null,
+          "required": false
+        },
+        "style": {
+          "backgroundColor": "",
+          "color": "",
+          "fontSize": "",
+          "height": "",
+          "borderWidth": "",
+          "width": "100%",
+          "padding": "10px"
+        },
+        "isSelectedField": false
+      },
+      {
+        "id": "yoxHmZq1r7OtRX9HXRbq9",
+        "type": "element",
+        "subType": "input",
+        "properties": {
+          "placeholder": "Enter email",
+          "label": "Email",
+          "type": "email",
+          "name": "email"
+        },
+        "validation": {
+          "minLength": null,
+          "maxLength": null,
+          "required": false
+        },
+        "style": {
+          "backgroundColor": "",
+          "color": "",
+          "fontSize": "",
+          "height": "",
+          "borderWidth": "",
+          "width": "100%",
+          "padding": "10px"
+        },
+        "isSelectedField": false
+      },
+      {
+        "id": "36H7_YNMKtsZ94pwPjVOG",
+        "type": "element",
+        "subType": "input",
+        "properties": {
+          "placeholder": "Enter password",
+          "label": "Password",
+          "type": "password",
+          "name": "password"
+        },
+        "validation": {
+          "minLength": null,
+          "maxLength": null,
+          "required": false
+        },
+        "style": {
+          "backgroundColor": "",
+          "color": "",
+          "fontSize": "",
+          "height": "",
+          "borderWidth": "",
+          "width": "100%",
+          "padding": "10px"
+        },
+        "isSelectedField": false
+      }
+    ],
+    "isSelectedField": false
+  }
+]

@@ -1,0 +1,17 @@
+:root {
+  --primary-color: #13293d;
+  --secondary-color: #006494;
+  --ternary-color: #247ba0;
+  --light-color: #e8f1f2;
+  --white-color: #fff;
+  --black-color: #000;
+  --grey-color: #ccc;
+  --background-color: #f6f6f6;
+  --background-color-blue: #1c98e02e;
+  --border-color: #c0c0c094;
+  --grey-shade-background: #c6e3ff87;
+  --delete-red: #ed252c;
+  --grey-color-eee: #eee;
+  --bright-blue-for-checkbox: #004ef5e7;
+  --grey-color-888: #888;
+}
