@@ -87,3 +87,6 @@
   border: 1px solid var(--grey-color);
   /* padding: 10px; */
 }
+.fileUpload {
+  display: block !important;
+}

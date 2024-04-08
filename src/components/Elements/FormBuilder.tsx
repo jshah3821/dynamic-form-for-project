@@ -12,6 +12,9 @@ import SurveyForm from "./SurveyForm/SurveyForm.tsx";
 import { testimonialDefault64 } from "./assets/testimonialDefault64.js";
 import { removeQuotesFromKeys } from "./generalFunctions.ts";
 import { FormBuilder as FormBuilderPackage } from "@shubham-chavda/react-custom-components";
+import { ToastContainer } from "react-toastify";
+import { callApi } from "./api.ts";
+import "react-toastify/dist/ReactToastify.css";
 
 const dataArray = {
   1: [
@@ -449,6 +452,7 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
 
   const [formData, setFormData] = useState({});
   const [errors, setErrors] = useState({});
+  const [isSubmitClicked, setSubmitClicked] = useState(false);
   const [initialFormData, setInitialFormData] = useState({});
   const validSubtypes = [
     "checkbox",
@@ -463,6 +467,7 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
     "survey_image",
     "survey_dropdown",
   ];
+  const invalidSubtypes = ["button", "submit_button"];
 
   //code to create formData initialState from Input elements dynamically
   useEffect(() => {
@@ -474,11 +479,17 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
             case "select":
             case "radio":
             case "textarea":
-            case "checkbox":
               setFormData((prev) => ({ ...prev, [obj?.properties?.name]: "" }));
               setInitialFormData((prev) => ({
                 ...prev,
                 [obj?.properties?.name]: "",
+              }));
+              break;
+            case "checkbox":
+              setFormData((prev) => ({ ...prev, [obj?.properties?.name]: [] }));
+              setInitialFormData((prev) => ({
+                ...prev,
+                [obj?.properties?.name]: [],
               }));
               break;
             default:
@@ -489,15 +500,31 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
             case "shortanswer":
             case "longanswer":
             case "survey_radio":
-            case "survey_checkbox":
-            case "survey_image":
-            case "survey_dropdown":
               setFormData((prev) => ({ ...prev, [obj?.properties?.name]: "" }));
               setInitialFormData((prev) => ({
                 ...prev,
                 [obj?.properties?.name]: "",
               }));
               break;
+            case "survey_checkbox":
+            case "survey_image":
+              setFormData((prev) => ({ ...prev, [obj?.properties?.name]: [] }));
+              setInitialFormData((prev) => ({
+                ...prev,
+                [obj?.properties?.name]: [],
+              }));
+              break;
+            case "survey_dropdown":
+              setFormData((prev) => ({
+                ...prev,
+                [obj?.properties?.name]:
+                  obj?.properties?.optionDetails?.[0]?.value,
+              }));
+              setInitialFormData((prev) => ({
+                ...prev,
+                [obj?.properties?.name]:
+                  obj?.properties?.optionDetails?.[0]?.value,
+              }));
             default:
               return null;
           }
@@ -506,34 +533,42 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
       }
     });
   }, [data]);
+  console.log(formData, "fileList out");
 
   const handleChange = (event, id, checkbox) => {
+    console.log(formData, event.target.files, "fileList in");
     if (checkbox === "file") {
-      const { files } = event?.target;
-      if (files && files.length !== 0) {
-        let tempImageDetails;
-        files.forEach((file) => {
-          const image = file;
-          const reader = new FileReader();
-          reader.onload = (e) => {
-            tempImageDetails.push({
-              name: image.name,
-              dataURL: e?.target?.result || "",
-            });
-          };
-          reader.readAsDataURL(image);
-          setFormData((prevState) => ({
-            ...prevState,
-            [id]: tempImageDetails,
-          }));
-        });
+      const fileList = event.target.files;
+      const updatedFiles: any = [];
+      for (let i = 0; i < fileList.length; i++) {
+        const file = fileList[i];
+        const reader = new FileReader();
+        reader.onload = (e: any) => {
+          const dataURL = e.target.result;
+          updatedFiles.push({ name: file.name, dataURL });
+
+          if (updatedFiles.length === fileList.length) {
+            setFormData((prevState) => ({
+              ...prevState,
+              [id]: updatedFiles,
+            }));
+          }
+        };
+        reader.readAsDataURL(file);
       }
     } else if (checkbox) {
-      const { checked } = event.target;
-      setFormData((prevState) => ({
-        ...prevState,
-        [id]: checked,
-      }));
+      const { checked, value } = event.target;
+      if (checked) {
+        setFormData((prevState) => ({
+          ...prevState,
+          [id]: [...formData[id], value],
+        })); // Add to selected options
+      } else {
+        setFormData((prevState) => ({
+          ...prevState,
+          [id]: formData[id].filter((option) => option !== value),
+        })); // Remove from selected options
+      }
     } else {
       const { value } = event.target;
       setFormData((prevState) => ({
@@ -546,13 +581,63 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
     const newErrors = {};
     Object.keys(formData).forEach((key) => {
       const value = formData[key];
-      newErrors[key] = !value;
+      if (
+        data?.find((obj) => obj?.properties?.name === key)?.properties?.required
+      ) {
+        function checkEmptyValue(value) {
+          if (Array.isArray(value) && value.length === 0) {
+            return false; // Empty array
+          } else if (
+            typeof value === "object" &&
+            value !== null &&
+            Object.keys(value).length === 0
+          ) {
+            return false; // Empty object
+          } else {
+            return value; // Return the input data for other cases
+          }
+        }
+        newErrors[key] = !checkEmptyValue(value);
+      }
     });
     setErrors(newErrors);
+    return newErrors;
+  };
+
+  useEffect(() => {
+    if (isSubmitClicked) {
+      handleValidate();
+    }
+  }, [formData]);
+
+  const handleSubmitFormData = (url?: string) => {
+    setSubmitClicked(true);
+    if (Object?.values(handleValidate()).every((value) => value === false)) {
+      if (url) {
+        callApi(url, formData, setFormData, initialFormData);
+      } else {
+        window.alert(JSON.stringify(formData));
+        setFormData(initialFormData);
+      }
+      setSubmitClicked(false);
+    }
   };
 
   return (
     <div className="mainFormContainer">
+      <ToastContainer
+        position="top-center"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        style={{ fontSize: "12px" }}
+      />
       {data?.map((obj, index) => {
         switch (obj?.type) {
           case "element":
@@ -584,7 +669,9 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
                   <ButtonElement
                     key={index}
                     label={obj?.properties?.label}
-                    onClick={obj?.properties?.onClick || handleValidate}
+                    onClick={() => {
+                      handleSubmitFormData();
+                    }}
                     disabled={obj?.properties?.disabled}
                     style={obj?.style}
                   />
@@ -644,13 +731,17 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
               case "checkbox":
                 return (
                   <CheckboxElement
+                    optionDetails={obj?.properties?.optionDetails}
+                    value={obj?.properties?.label}
                     errors={errors}
                     key={index}
                     id={index}
                     name={obj?.properties?.name}
                     label={obj?.properties?.label}
                     style={obj?.style}
-                    checked={formData[obj?.properties?.name] || false}
+                    checked={formData[obj?.properties?.name]?.includes(
+                      obj?.properties?.label
+                    )}
                     required={obj?.validation?.required}
                     onChange={(e) =>
                       handleChange(e, obj?.properties?.name, true)
@@ -684,6 +775,7 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
           case "surveyform":
             return (
               <SurveyForm
+                handleSubmitFormData={handleSubmitFormData}
                 index={index}
                 handleChange={handleChange}
                 formData={formData}
@@ -700,27 +792,25 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
             return null;
         }
       })}
-      {data?.some((obj) => validSubtypes.includes(obj.subType)) && (
-        <div className="submit_btn_container">
-          <button
-            className="submit_btn"
-            onClick={() => {
-              handleValidate();
-              if (Object.values(errors).every((value) => value === false)) {
-                window.alert(JSON.stringify(formData));
-              }
-            }}
-          >
-            Submit
-          </button>
-          <button
-            onClick={() => setFormData(initialFormData)}
-            className="clear_btn"
-          >
-            Clear
-          </button>
-        </div>
-      )}
+      {data?.some((obj) => validSubtypes.includes(obj.subType)) &&
+        !data?.some((obj) => invalidSubtypes.includes(obj.subType)) && (
+          <div className="submit_btn_container">
+            <button
+              className="submit_btn"
+              onClick={() => {
+                handleSubmitFormData();
+              }}
+            >
+              Submit
+            </button>
+            <button
+              onClick={() => setFormData(initialFormData)}
+              className="clear_btn"
+            >
+              Clear
+            </button>
+          </div>
+        )}
     </div>
   );
 };

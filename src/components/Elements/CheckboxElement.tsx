@@ -3,24 +3,31 @@ import React from "react";
 const CheckboxElement = (props) => {
   return (
     <>
-      <div className="checkbox-parent">
-        <input
-          className="checkbox input_padding"
-          type="checkbox"
-          id={props?.id}
-          name={props?.label}
-          value={props?.label}
-          style={props?.style}
-          checked={props?.checked}
-          onChange={props?.onChange}
-        />
-        <label className="checkbox-label input_label px1" htmlFor={props?.id}>
-          {props?.label}
-        </label>
-        {props?.required && (
-          <span style={{ color: "red", marginLeft: "1px" }}>*</span>
-        )}
-      </div>
+      {props?.optionDetails?.map((option, index) => {
+        return (
+          <div className="checkbox-parent">
+            <input
+              className="checkbox input_padding"
+              style={props?.style}
+              type="checkbox"
+              id={option.value + index}
+              name="option"
+              value={option.value}
+              checked={props?.checked}
+              onChange={props?.onChange}
+            />
+            <label
+              className="checkbox-label input_label px1"
+              htmlFor={props?.id}
+            >
+              {props?.label}
+            </label>
+            {props?.required && (
+              <span style={{ color: "red", marginLeft: "1px" }}>*</span>
+            )}
+          </div>
+        );
+      })}
       {props?.required && (
         <p
           style={{

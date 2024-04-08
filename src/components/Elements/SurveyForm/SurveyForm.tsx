@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useRef } from "react";
 import "./SurveyForm.css";
 import { FaCloudUploadAlt } from "react-icons/fa";
+import { callApi } from "../api";
 
 const SurveyForm = ({
   properties,
@@ -8,8 +9,10 @@ const SurveyForm = ({
   errors,
   formData,
   handleChange,
+  handleSubmitFormData,
   index,
 }) => {
+  const fileRef = useRef<any>(null);
   return (
     <div className="flex justify-around left-align flex-column">
       {properties?.questionDetails?.question_image?.dataURL && (
@@ -95,16 +98,18 @@ const SurveyForm = ({
           )}
           {subType === "survey_checkbox" && (
             <div className="flex flex-row justify-start items-center radio_option_style">
-              {properties?.optionDetails?.map((option) => {
+              {properties?.optionDetails?.map((option, index) => {
                 return (
                   <div className="flex flex-row justify-start items-center">
                     <input
+                      className="option_radio"
                       type="checkbox"
-                      id={option.value}
+                      id={option.value + index}
                       name="option"
                       value={option.value}
-                      className="option_radio"
-                      checked={formData[properties?.name] === option.value}
+                      checked={formData[properties?.name]?.includes(
+                        option.value
+                      )}
                       onChange={(e) => handleChange(e, properties?.name, true)}
                     />
                     <label
@@ -122,7 +127,7 @@ const SurveyForm = ({
           {subType === "survey_image" && (
             <div>
               <div className="flex flex-row justify-start items-center align-center pointer fluid">
-                {properties?.imageDetails?.map((image) => (
+                {formData?.[properties?.name]?.map((image) => (
                   <div className="que_img_div">
                     <img
                       src={image.dataURL}
@@ -132,8 +137,8 @@ const SurveyForm = ({
                   </div>
                 ))}
               </div>
-              <label
-                htmlFor="file-upload"
+              <div
+                onClick={() => fileRef?.current.click()}
                 className="flex flex-row justify-center items-center align-center pointer image_upload"
                 style={properties?.answer_style}
               >
@@ -141,9 +146,11 @@ const SurveyForm = ({
                 <span className="font-12 font-weight-100 ml1 text_wrap_css">
                   Upload File
                 </span>
-              </label>
+              </div>
               <input
+                ref={fileRef}
                 style={{ visibility: "hidden" }}
+                className="fileUpload"
                 id="file-upload"
                 type="file"
                 name={"file" + index}
@@ -156,6 +163,9 @@ const SurveyForm = ({
               <div className="flex flex-row justify-start items-center align-center pointer fluid">
                 <button
                   className={"form_button_css"}
+                  onClick={() => {
+                    handleSubmitFormData(properties?.questionDetails?.call_url);
+                  }}
                   style={properties?.answer_style}
                 >
                   {properties?.questionDetails?.button_label
