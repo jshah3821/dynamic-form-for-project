@@ -8,6 +8,8 @@ import "./FormBuilder.css";
 import { FormBuilder as FormBuilderPackage } from "@shubham-chavda/react-custom-components";
 import BannerElement from "./CustomBanner/BannerElement";
 import { removeQuotesFromKeys } from "./generalFunctions";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface Props {
   id?: number;
@@ -242,6 +244,19 @@ const PageBuilder = ({ id, jsonData }: Props) => {
 
   return (
     <div className="mainPageContainer">
+      <ToastContainer
+        position="top-center"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        style={{ fontSize: "12px" }}
+      />
       {data?.map((obj, index) => {
         switch (obj?.type) {
           case "component":
