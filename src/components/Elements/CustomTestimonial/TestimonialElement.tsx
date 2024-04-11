@@ -16,8 +16,6 @@ const TestimonialElement = ({ testimonial, testimonialCardDetails }) => {
 
   const cardDetails = testimonialCardDetails;
 
-  console.log("test0000", testimonial);
-  console.log("test0000", testimonialCardDetails);
   const [currentSlide, setCurrentSlide] = useState(0);
   const visibleCards = 3;
 

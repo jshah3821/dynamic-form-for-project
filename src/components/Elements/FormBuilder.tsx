@@ -422,9 +422,6 @@ const dataArray = {
       subType: "button",
       properties: {
         label: "Register",
-        onClick: () => {
-          console.log("btn clicked");
-        },
         disabled: false,
       },
       style: {
@@ -468,6 +465,14 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
     "survey_dropdown",
   ];
   const invalidSubtypes = ["button", "submit_button"];
+  const surveyformElements = [
+    "survey_checkbox",
+    "survey_radio",
+    "longanswer",
+    "shortanswer",
+    "survey_image",
+    "survey_dropdown",
+  ];
 
   //code to create formData initialState from Input elements dynamically
   useEffect(() => {
@@ -533,10 +538,8 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
       }
     });
   }, [data]);
-  console.log(formData, "fileList out");
 
   const handleChange = (event, id, checkbox) => {
-    console.log(formData, event.target.files, "fileList in");
     if (checkbox === "file") {
       const fileList = event.target.files;
       const updatedFiles: any = [];
@@ -581,23 +584,40 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
     const newErrors = {};
     Object.keys(formData).forEach((key) => {
       const value = formData[key];
-      if (
-        data?.find((obj) => obj?.properties?.name === key)?.properties?.required
-      ) {
+      const isRequired = surveyformElements.includes(
+        data?.find((obj) => obj?.properties?.name === key)?.subType
+      )
+        ? data?.find((obj) => obj?.properties?.name === key)?.properties
+            ?.validation?.required
+        : data?.find((obj) => obj?.properties?.name === key)?.validation
+            ?.required;
+      const isMinLength = surveyformElements.includes(
+        data?.find((obj) => obj?.properties?.name === key)?.subType
+      )
+        ? data?.find((obj) => obj?.properties?.name === key)?.properties
+            ?.validation?.minLength
+        : data?.find((obj) => obj?.properties?.name === key)?.validation
+            ?.minLength;
+      if (isRequired) {
         function checkEmptyValue(value) {
-          if (Array.isArray(value) && value.length === 0) {
-            return false; // Empty array
-          } else if (
-            typeof value === "object" &&
-            value !== null &&
-            Object.keys(value).length === 0
-          ) {
-            return false; // Empty object
+          if (Array.isArray(value)) {
+            return value.length === 0 ? false : true; // Empty Array
+          } else if (typeof value === "object") {
+            return value !== null && Object.keys(value).length === 0
+              ? false
+              : true; // Empty object
           } else {
             return value; // Return the input data for other cases
           }
         }
         newErrors[key] = !checkEmptyValue(value);
+      }
+      if (isMinLength) {
+        value?.trim()?.length < isMinLength
+          ? newErrors[key]
+            ? true
+            : (newErrors[key] = `minimum ${isMinLength} characters required.`)
+          : false;
       }
     });
     setErrors(newErrors);
@@ -658,9 +678,15 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
                       maxLength={obj?.validation?.maxLength}
                       required={obj?.validation?.required}
                       value={formData[obj?.properties?.name] || ""}
-                      onChange={(e) =>
-                        handleChange(e, obj?.properties?.name, false)
-                      }
+                      onChange={(e) => {
+                        if (
+                          obj?.validation?.maxLength &&
+                          e.target.value?.trim()?.length <=
+                            obj?.validation?.maxLength
+                        ) {
+                          handleChange(e, obj?.properties?.name, false);
+                        }
+                      }}
                     />
                   </>
                 );
@@ -775,6 +801,7 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
           case "surveyform":
             return (
               <SurveyForm
+                key={index}
                 handleSubmitFormData={handleSubmitFormData}
                 index={index}
                 handleChange={handleChange}
@@ -786,7 +813,10 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
             );
           case "template":
             return (
-              <FormBuilderPackage jsonData={removeQuotesFromKeys(obj?.json)} />
+              <FormBuilderPackage
+                key={index}
+                jsonData={removeQuotesFromKeys(obj?.json)}
+              />
             );
           default:
             return null;

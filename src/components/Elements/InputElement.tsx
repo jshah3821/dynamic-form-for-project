@@ -24,7 +24,9 @@ const InputElement = (props) => {
             color: "red",
           }}
         >
-          {props?.label || props?.name} is required.
+          {props?.errors?.[props?.name] === true
+            ? `${props?.label || props?.name} is required.`
+            : props?.errors?.[props?.name]}
         </p>
       )}
     </div>

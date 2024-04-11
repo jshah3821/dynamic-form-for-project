@@ -3,7 +3,9 @@ import React from "react";
 const TextboxElement = (props: any) => {
   return (
     <div className="inputContainer px1">
-      <label style={{ fontSize: "12px" }} htmlFor={props?.id}>{props?.label}</label>
+      <label style={{ fontSize: "12px" }} htmlFor={props?.id}>
+        {props?.label}
+      </label>
       <textarea
         value={props?.value}
         id={props?.id}
@@ -16,11 +18,19 @@ const TextboxElement = (props: any) => {
         name={props?.name}
         onChange={props?.onChange}
       />
-      {props?.required && <p style={{
-        visibility: props?.errors?.[props?.name] ? "visible" : "hidden",
-        fontSize: "10px",
-        color: "red",
-      }}>{props?.label} is required.</p>}
+      {props?.required && (
+        <p
+          style={{
+            visibility: props?.errors?.[props?.name] ? "visible" : "hidden",
+            fontSize: "10px",
+            color: "red",
+          }}
+        >
+          {props?.errors?.[props?.name] === true
+            ? `${props?.label || props?.name} is required.`
+            : props?.errors?.[props?.name]}
+        </p>
+      )}
     </div>
   );
 };
