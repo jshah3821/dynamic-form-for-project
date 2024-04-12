@@ -36,13 +36,13 @@
 .testimonial_textarea::placeholder {
   font-size: 12px;
   font-weight: 100;
-  color: var(--grey-color);
+  color: #888;
 }
 
 .testimonial_inner_div_card {
   height: 16.5rem;
   width: 16.5rem;
-  background-color: var(--white-color);
+  background-color: #fff;
 }
 
 .feedback_text {
@@ -61,12 +61,12 @@
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: var(--grey-color-888);
+    background-color: #888;
     border-radius: 3px;
   }
 
   &::-webkit-scrollbar-track {
-    background-color: var(--grey-color-eee);
+    background-color: #eee;
     border-radius: 3px;
   }
 }
@@ -101,12 +101,12 @@
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: var(--grey-color-888);
+    background-color: #888;
     border-radius: 3px;
   }
 
   &::-webkit-scrollbar-track {
-    background-color: var(--grey-color-eee);
+    background-color: #eee;
     border-radius: 3px;
   }
 }
@@ -181,14 +181,14 @@
   width: auto;
   margin-top: -22px;
   padding: 4px 8px;
-  color: var(--white-color);
+  color: #fff;
   font-weight: bold;
   font-size: 18px;
   transition: 0.6s ease;
   border-radius: 0 3px 3px 0;
   -webkit-user-select: none;
   user-select: none;
-  background: var(--grey-color);
+  background: #888;
   border: none;
 }
 

@@ -612,7 +612,7 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
         }
         newErrors[key] = !checkEmptyValue(value);
       }
-      if (isMinLength) {
+      if (isMinLength && value) {
         value?.trim()?.length < isMinLength
           ? newErrors[key]
             ? true

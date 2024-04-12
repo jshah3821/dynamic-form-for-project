@@ -1,7 +1,6 @@
 import React, { useRef } from "react";
 import "./SurveyForm.css";
 import { FaCloudUploadAlt } from "react-icons/fa";
-import { callApi } from "../api";
 
 const SurveyForm = ({
   properties,
@@ -24,13 +23,13 @@ const SurveyForm = ({
         />
       )}
       {subType && !["submit_button"].includes(subType) && (
-        <input
-          type="text"
-          placeholder={subType === "survey_image" ? "Label" : "Question"}
-          className="que_input_styles"
-          style={properties?.question_style}
-          value={properties?.questionDetails?.question_text}
-        />
+        <p className="que_input_styles" style={properties?.question_style}>
+          {properties?.questionDetails?.question_text ??
+          subType === "survey_image"
+            ? "Label"
+            : "Question"}
+          {required && <span className="required_color">*</span>}
+        </p>
       )}
       <div className="flex flex-column mt-5">
         <div className="relative">
@@ -190,19 +189,20 @@ const SurveyForm = ({
               </div>
             </div>
           )}
-          {required && (
-            <p
-              style={{
-                visibility: errors?.[properties?.name] ? "visible" : "hidden",
-                fontSize: "10px",
-                color: "red",
-              }}
-            >
-              {errors?.[properties?.name] === true
-                ? `${properties?.label || properties?.name} is required.`
-                : errors?.[properties?.name]}
-            </p>
-          )}
+          {required ||
+            (errors?.[properties?.name] && (
+              <p
+                style={{
+                  visibility: errors?.[properties?.name] ? "visible" : "hidden",
+                  fontSize: "10px",
+                  color: "red",
+                }}
+              >
+                {errors?.[properties?.name] === true
+                  ? `${properties?.label || properties?.name} is required.`
+                  : errors?.[properties?.name]}
+              </p>
+            ))}
         </div>
       </div>
     </div>

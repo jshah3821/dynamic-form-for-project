@@ -1,4 +1,6 @@
-* {box-sizing:border-box}
+* {
+  box-sizing: border-box;
+}
 
 /* Slideshow container */
 .slideshow-container {
@@ -22,20 +24,21 @@
 }
 
 /* Next & previous buttons */
-.prev, .next {
+.prev,
+.next {
   cursor: pointer;
   position: absolute;
   top: 45%;
   width: auto;
   margin-top: -22px;
   padding: 24px 16px;
-  color: var(--white-color);
+  color: #fff;
   font-weight: bold;
   font-size: 18px;
   transition: 0.6s ease;
   border-radius: 0 3px 3px 0;
   user-select: none;
-  background: var(--grey-color);
+  background: #888;
 }
 
 .circle {
@@ -47,7 +50,7 @@
   align-items: center;
   margin-right: 20px;
   margin-left: 20px;
-  opacity: .8;
+  opacity: 0.8;
 }
 
 /* Position the "next button" to the right */
@@ -57,11 +60,10 @@
 }
 
 /* On hover, add a black background color with a little bit see-through */
-.prev:hover, .next:hover {
-  background-color: rgba(0,0,0,0.8);
+.prev:hover,
+.next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
 }
-
-
 
 .text {
   color: #f2f2f2;
@@ -88,7 +90,6 @@
   padding: 8px;
   border-radius: 4px;
 }
-
 
 .top-left {
   top: 40px;
@@ -129,8 +130,6 @@
   object-fit: cover;
 }
 
-
-
 /* The dots/bullets/indicators */
 
 .parent-banner {
@@ -157,7 +156,8 @@
   transition: background-color 0.6s ease;
 }
 
-.active, .dot:hover {
+.active,
+.dot:hover {
   background-color: #717171;
 }
 
@@ -168,6 +168,10 @@
 }
 
 @keyframes fade {
-  from {opacity: .4}
-  to {opacity: 1}
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
 }
