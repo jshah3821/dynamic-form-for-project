@@ -13,6 +13,7 @@ const SurveyForm = ({
   index,
 }) => {
   const fileRef = useRef<any>(null);
+  const required = properties?.validation?.required;
   return (
     <div className="flex justify-around left-align flex-column">
       {properties?.questionDetails?.question_image?.dataURL && (
@@ -40,6 +41,8 @@ const SurveyForm = ({
               name={properties?.name || "shortanswer" + index}
               className="flex flex-column items-center justify-center ans_input_style"
               placeholder="Enter your answer here"
+              maxLength={properties?.validation?.maxLength || null}
+              minLength={properties?.validation?.minLength || null}
               style={properties?.answer_style}
               value={formData[properties?.name] || ""}
               onChange={(e) => handleChange(e, properties?.name, false)}
@@ -53,6 +56,8 @@ const SurveyForm = ({
               placeholder="Enter your answer here"
               style={properties?.answer_style}
               value={formData[properties?.name] || ""}
+              maxLength={properties?.validation?.maxLength || null}
+              minLength={properties?.validation?.minLength || null}
               onChange={(e) => handleChange(e, properties?.name, false)}
             />
           )}
@@ -66,7 +71,11 @@ const SurveyForm = ({
                 style={properties?.answer_style}
               >
                 {properties?.optionDetails?.map((option) => {
-                  return <option value={option.value}>{option.label}</option>;
+                  return (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  );
                 })}
               </select>
             </div>
@@ -75,7 +84,10 @@ const SurveyForm = ({
             <div className="flex flex-row justify-start items-center radio_option_style">
               {properties?.optionDetails?.map((option) => {
                 return (
-                  <div className="flex flex-row justify-start items-center">
+                  <div
+                    key={option.value}
+                    className="flex flex-row justify-start items-center"
+                  >
                     <input
                       type="radio"
                       id={option.value}
@@ -100,7 +112,10 @@ const SurveyForm = ({
             <div className="flex flex-row justify-start items-center radio_option_style">
               {properties?.optionDetails?.map((option, index) => {
                 return (
-                  <div className="flex flex-row justify-start items-center">
+                  <div
+                    key={index}
+                    className="flex flex-row justify-start items-center"
+                  >
                     <input
                       className="option_radio"
                       type="checkbox"
@@ -128,7 +143,7 @@ const SurveyForm = ({
             <div>
               <div className="flex flex-row justify-start items-center align-center pointer fluid">
                 {formData?.[properties?.name]?.map((image) => (
-                  <div className="que_img_div">
+                  <div key={image.dataURL} className="que_img_div">
                     <img
                       src={image.dataURL}
                       className="que_img_arr"
@@ -175,7 +190,7 @@ const SurveyForm = ({
               </div>
             </div>
           )}
-          {properties?.required && (
+          {required && (
             <p
               style={{
                 visibility: errors?.[properties?.name] ? "visible" : "hidden",
@@ -183,7 +198,9 @@ const SurveyForm = ({
                 color: "red",
               }}
             >
-              {properties?.label || properties?.name} is required.
+              {errors?.[properties?.name] === true
+                ? `${properties?.label || properties?.name} is required.`
+                : errors?.[properties?.name]}
             </p>
           )}
         </div>
