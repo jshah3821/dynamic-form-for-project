@@ -18,20 +18,19 @@ const TextboxElement = (props: any) => {
         name={props?.name}
         onChange={props?.onChange}
       />
-      {props?.required ||
-        (props?.errors?.[props?.name] && (
-          <p
-            style={{
-              visibility: props?.errors?.[props?.name] ? "visible" : "hidden",
-              fontSize: "10px",
-              color: "red",
-            }}
-          >
-            {props?.errors?.[props?.name] === true
-              ? `${props?.label || props?.name} is required.`
-              : props?.errors?.[props?.name]}
-          </p>
-        ))}
+      {(props?.required || props?.errors?.[props?.name]) && (
+        <p
+          style={{
+            visibility: props?.errors?.[props?.name] ? "visible" : "hidden",
+            fontSize: "10px",
+            color: "red",
+          }}
+        >
+          {props?.errors?.[props?.name] === true
+            ? `${props?.label || props?.name} is required.`
+            : props?.errors?.[props?.name]}
+        </p>
+      )}
     </div>
   );
 };

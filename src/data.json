@@ -20,7 +20,7 @@
         "height": "",
         "width": "100%"
       },
-      "validation": { "minLength": 3, "maxLength": 5, "required": false }
+      "validation": { "minLength": null, "maxLength": null, "required": false }
     },
     "formId": null,
     "surveyFormId": null,
