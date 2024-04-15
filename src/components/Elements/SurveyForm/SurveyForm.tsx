@@ -189,20 +189,19 @@ const SurveyForm = ({
               </div>
             </div>
           )}
-          {required ||
-            (errors?.[properties?.name] && (
-              <p
-                style={{
-                  visibility: errors?.[properties?.name] ? "visible" : "hidden",
-                  fontSize: "10px",
-                  color: "red",
-                }}
-              >
-                {errors?.[properties?.name] === true
-                  ? `${properties?.label || properties?.name} is required.`
-                  : errors?.[properties?.name]}
-              </p>
-            ))}
+          {(required || errors?.[properties?.name]) && (
+            <p
+              style={{
+                visibility: errors?.[properties?.name] ? "visible" : "hidden",
+                fontSize: "10px",
+                color: "red",
+              }}
+            >
+              {errors?.[properties?.name] === true
+                ? `${properties?.label || properties?.name} is required.`
+                : errors?.[properties?.name]}
+            </p>
+          )}
         </div>
       </div>
     </div>
