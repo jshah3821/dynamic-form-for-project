@@ -2,15 +2,20 @@ import React from "react";
 const InputElement = (props) => {
   return (
     <div className="inputContainer px1">
-      <label className="input-label-size-default" htmlFor={props?.id}>
-        {props?.label}
+      <label style={{ fontSize: "12px" }} htmlFor={props?.id}>
+        {props?.label ? props?.label : "Label"}
+        {props?.required && (
+          <span style={{ fontSize: "12px", color: "red", marginLeft: "1px" }}>
+            *
+          </span>
+        )}
       </label>
       <input
         id={props?.id}
         type={props?.type}
         placeholder={props?.placeholder}
-        minLength={props?.minLength}
-        maxLength={props?.maxLength}
+        minLength={props?.minLength || null}
+        maxLength={props?.maxLength || null}
         required={props?.required}
         style={props?.style}
         onChange={props?.onChange}

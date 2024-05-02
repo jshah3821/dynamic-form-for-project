@@ -1179,3 +1179,15 @@ textarea {
     border-radius: 5px;
   }
 }
+.height-button {
+  height: unset !important;
+  min-height: 40px;
+  border-radius: 6px;
+}
+.form_button_css_updated {
+  width: 100%;
+  height: 45px;
+  background-color: #f6f6f6;
+  outline: none;
+  border: 1px solid #000;
+}
