@@ -680,10 +680,13 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
                       value={formData[obj?.properties?.name] || ""}
                       onChange={(e) => {
                         if (
-                          obj?.validation?.maxLength &&
-                          e.target.value?.trim()?.length <=
-                            obj?.validation?.maxLength
+                          obj?.properties?.type === "number" &&
+                          obj?.validation?.maxLength
                         ) {
+                          e.target.value?.trim()?.length <=
+                            obj?.validation?.maxLength &&
+                            handleChange(e, obj?.properties?.name, false);
+                        } else {
                           handleChange(e, obj?.properties?.name, false);
                         }
                       }}
@@ -758,20 +761,14 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
                 return (
                   <CheckboxElement
                     optionDetails={obj?.properties?.optionDetails}
-                    value={obj?.properties?.label}
                     errors={errors}
                     key={index}
                     id={index}
                     name={obj?.properties?.name}
-                    label={obj?.properties?.label}
                     style={obj?.style}
-                    checked={formData[obj?.properties?.name]?.includes(
-                      obj?.properties?.label
-                    )}
+                    formData={formData}
+                    handleChange={handleChange}
                     required={obj?.validation?.required}
-                    onChange={(e) =>
-                      handleChange(e, obj?.properties?.name, true)
-                    }
                   />
                 );
               default:

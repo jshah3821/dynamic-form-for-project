@@ -1,26 +1,111 @@
 [
   {
-    "selectionType": "surveyform",
-    "id": "0q_yIKPrjwTK8ZFgzDfKM",
-    "type": "surveyform",
-    "subType": "shortanswer",
+    "selectionType": "form",
+    "id": "wNVGCfoN8Gi5PDhbFMsPX",
+    "type": "element",
+    "subType": "input",
     "properties": {
-      "name": "shortanswer",
-      "question_style": {
-        "backgroundColor": "#f6f6f6",
-        "fontSize": "16px",
-        "color": "",
-        "height": "",
-        "width": "100%"
-      },
-      "answer_style": {
-        "backgroundColor": "#ffffff",
-        "fontSize": "14px",
-        "color": "",
-        "height": "",
-        "width": "100%"
-      },
-      "validation": { "minLength": null, "maxLength": null, "required": false }
+      "type": "Text",
+      "name": "Name",
+      "label": "Label",
+      "placeholder": "Placeholder"
+    },
+    "validation": { "maxLength": "", "minLength": "", "required": true },
+    "style": {
+      "backgroundColor": "",
+      "color": "",
+      "fontSize": "",
+      "height": "",
+      "borderWidth": "",
+      "width": "100%",
+      "padding": "10px"
+    },
+    "formId": null,
+    "surveyFormId": null,
+    "isSelectedField": false
+  },
+  {
+    "selectionType": "form",
+    "id": "D8lQrYV8yxLrMMyn0ARNg",
+    "type": "element",
+    "subType": "select",
+    "properties": {
+      "label": "Label",
+      "name": "select1",
+      "options": [
+        { "label": "Male", "value": "Male" },
+        { "label": "Female", "value": "Female" }
+      ]
+    },
+    "formId": null,
+    "surveyFormId": null,
+    "isSelectedField": false
+  },
+  {
+    "selectionType": "form",
+    "id": "22Gw5Bgyd29FGWwBsFPKd",
+    "type": "typography",
+    "subType": "text",
+    "properties": { "content": "Please add relevant label" },
+    "formId": null,
+    "surveyFormId": null,
+    "isSelectedField": false
+  },
+  {
+    "selectionType": "form",
+    "id": "r8XjzO1lwblD1Gz3eIbic",
+    "type": "element",
+    "subType": "textarea",
+    "properties": {
+      "rows": 5,
+      "label": "",
+      "name": "textArea",
+      "placeholder": "Placeholder"
+    },
+    "validation": { "minLength": null, "maxLength": null, "required": false },
+    "style": {
+      "fontSize": "",
+      "height": "",
+      "width": "100%",
+      "borderWidth": ""
+    },
+    "formId": null,
+    "surveyFormId": null,
+    "isSelectedField": false
+  },
+  {
+    "selectionType": "form",
+    "id": "TARbokYpwz6ozn0gPTgXy",
+    "type": "element",
+    "subType": "checkbox",
+    "properties": {
+      "name": "",
+      "optionDetails": [
+        { "label": "Checkbox 1", "value": "checkbox1" },
+        { "label": "Checkbox 2", "value": "checkbox2" }
+      ]
+    },
+    "validation": { "required": true },
+    "formId": null,
+    "surveyFormId": null,
+    "isSelectedField": true
+  },
+  {
+    "selectionType": "form",
+    "id": "NE8fH-gT865LKW637QXUJ",
+    "type": "element",
+    "subType": "button",
+    "properties": {
+      "label": "Button",
+      "type": "submit",
+      "callURL": "",
+      "disabled": false
+    },
+    "style": {
+      "height": "",
+      "width": "30%",
+      "backgroundColor": "#f6f6f6",
+      "color": ""
     },
     "formId": null,
     "surveyFormId": null,
