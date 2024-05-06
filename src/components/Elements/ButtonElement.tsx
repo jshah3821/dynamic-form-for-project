@@ -1,10 +1,11 @@
 import React from "react";
 
 const ButtonElement = (props: any) => {
+  console.log(props)
   return (
     <div className="px1">
       <button
-        className={`height-button form_button_css_updated`}
+        // className={`height-button form_button_css_updated`}
         style={props?.style}
         onClick={props?.onClick}
         disabled={props?.disabled}
