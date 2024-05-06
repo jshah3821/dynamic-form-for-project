@@ -21,6 +21,7 @@ const BannerElement = ({
   id,
   captionPosition,
   arrowButtonType,
+  sliderStyle,
   autoPlay = false,
   nextPrvButtonAvailable = false,
   sliderHeight = "200px",
@@ -92,7 +93,7 @@ const BannerElement = ({
 
   return (
     <div className="parent-banner">
-      <div className="slideshow-container" style={{ height: sliderHeight }}>
+      <div className="slideshow-container" style={sliderStyle}>
         {/* Full-width images with number and caption text */}
         {slideDetails.map((element, index) => (
           <div className={`fade hide-slide mySlides${id}`} key={index}>
@@ -100,6 +101,7 @@ const BannerElement = ({
               slideDetails.length
             }`}</div>
             <img
+              style={{ objectFit: sliderStyle?.objectFit }}
               src={element["imageDetails"]["dataURL"]}
               className="banner-img"
               alt={`Slide ${index + 1}`}
@@ -121,7 +123,14 @@ const BannerElement = ({
               }
                                 `}
             >
-              <span>{element["caption"]}</span>
+              <span 
+                style={{
+                  color: sliderStyle?.color,
+                  fontSize: sliderStyle?.fontSize,
+                }}
+              >
+                {element["caption"]}
+              </span>
             </div>
           </div>
           // </div>
