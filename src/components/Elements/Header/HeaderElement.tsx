@@ -10,15 +10,17 @@ const HeaderElement = ({ headerProps }) => {
       window.location.replace(url);
     }
   }
+
+  const styles = headerProps?.properties?.style;
   return (
     <div
       className="header_styles header_container_package flex items-center justify-between p05 width-100"
-      style={headerProps?.properties?.style}
+      style={styles}
     >
       <div
         onClick={() => replaceRoute("/")}
         className="flex items-center pointer"
-        style={headerProps?.properties?.style}
+        style={headerProps?.properties?.logoStyle}
       >
         <img
           src={
@@ -27,6 +29,7 @@ const HeaderElement = ({ headerProps }) => {
           }
           className="icon-30"
           alt="header-logo"
+          style={{ objectFit: styles?.objectFit }}
         />
         <p
           className="camelCase icon-black ml1"
@@ -42,6 +45,7 @@ const HeaderElement = ({ headerProps }) => {
               <li
                 onClick={() => replaceRoute(item?.link)}
                 className="p2 header_link pointer"
+                style={{ fontSize: styles?.fontSize, color: styles?.color }}
                 key={i}
               >
                 {item?.name ?? "Add Menu Item "}

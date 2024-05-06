@@ -283,6 +283,7 @@ const PageBuilder = ({ id, jsonData }: Props) => {
                   <BannerElement
                     id={obj.id}
                     autoPlay={obj?.bannerDetails?.autoPlay}
+                    sliderStyle={obj?.bannerDetails?.style}
                     nextPrvButtonAvailable={
                       obj?.bannerDetails?.nextPrvButtonAvailable
                     }

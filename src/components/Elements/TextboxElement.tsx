@@ -4,7 +4,7 @@ const TextboxElement = (props: any) => {
   return (
     <div className="inputContainer px1">
       <label style={{ fontSize: "12px" }} htmlFor={props?.id}>
-        {props?.label}
+        {props?.label ? props?.label : "Label"}
       </label>
       <textarea
         value={props?.value}
