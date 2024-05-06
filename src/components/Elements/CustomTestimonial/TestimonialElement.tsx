@@ -1,20 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./testimonialStyles.css";
-// import "../../../src/utilities.css";
-// import { useSelector } from "react-redux";
-// import Carousel from "react-multi-carousel";
-// import "react-multi-carousel/lib/styles.css";
+import "react-multi-carousel/lib/styles.css";
 import { testimonialDefault64 } from "../../Elements/assets/testimonialDefault64";
 
 const TestimonialElement = ({ testimonial, testimonialCardDetails }) => {
-  //   const prevNextEnable = useSelector(
-  //     (state) => state.testimonial.nextPrvButtonAvailable
-  //   );
   const prevNextEnable =
     testimonial?.testimonialDetails?.nextPrvButtonAvailable;
   const autoPlay = testimonial?.testimonialDetails?.autoPlay;
-
-  const cardDetails = testimonialCardDetails;
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const visibleCards = 3;
@@ -25,7 +17,7 @@ const TestimonialElement = ({ testimonial, testimonialCardDetails }) => {
 
   const nextSlide = () => {
     setCurrentSlide((prevSlide) =>
-      Math.min(cardDetails.length - visibleCards, prevSlide + 1)
+      Math.min(testimonialCardDetails?.length - visibleCards, prevSlide + 1)
     );
   };
 
@@ -47,7 +39,10 @@ const TestimonialElement = ({ testimonial, testimonialCardDetails }) => {
   }, [autoPlay]);
 
   const handleIndicatorClick = (index) => {
-    const maxCurrentSlide = Math.max(0, cardDetails.length - visibleCards);
+    const maxCurrentSlide = Math.max(
+      0,
+      testimonialCardDetails?.length - visibleCards
+    );
     const newCurrentSlide = Math.min(maxCurrentSlide, index);
     setCurrentSlide(newCurrentSlide);
   };
@@ -60,34 +55,27 @@ const TestimonialElement = ({ testimonial, testimonialCardDetails }) => {
   }, [currentSlide]);
 
   return (
-    <div
-      className="testimonial-container"
-      style={testimonial?.wrapperCardStyle}
-    >
+    <div className="testimonial-container" style={testimonial?.style}>
       <div>
-        <div
-          className="mainTestimonialCard"
-          style={testimonial?.wrapperCardStyle}
-        >
+        <div className="mainTestimonialCard" style={testimonial?.style}>
           {prevNextEnable && (
             <button className="test-prev" onClick={prevSlide}>
               &#10094;
             </button>
           )}
 
-          {cardDetails
+          {testimonialCardDetails
             .slice(currentSlide, currentSlide + visibleCards)
             .map((item, index) => {
               return (
                 <div
-                  className="testimonial card  testimonial_card_styles"
+                  className="testimonial_card_styles"
                   key={currentSlide + index}
+                  style={testimonial?.testimonialCardStyles}
                 >
                   <div
-                    className={`testimonial_inner_div_card ${
-                      index === 0 ? "" : ""
-                    }`}
-                    style={testimonial?.cardStyle}
+                    className={`testimonial_inner_div_card`}
+                    style={testimonial?.testimonialCardStyles}
                   >
                     <div className="testimonial-content">
                       <div className="img-wrapper">
@@ -98,17 +86,18 @@ const TestimonialElement = ({ testimonial, testimonialCardDetails }) => {
                               : testimonialDefault64
                           }
                           alt="profile"
+                          style={testimonial?.cardImageStyles}
                         />
                       </div>
                       <p
                         className="testimonial-author"
-                        style={testimonial?.cardStyle}
+                        style={testimonial?.cardTitleStyles}
                       >
                         {item.name}
                       </p>
                       <p
                         className="feedback_text"
-                        style={testimonial?.cardStyle}
+                        style={testimonial?.cardContentStyles}
                       >
                         {item.feedback}
                       </p>
@@ -125,7 +114,7 @@ const TestimonialElement = ({ testimonial, testimonialCardDetails }) => {
         </div>
 
         <div className="indicators">
-          {cardDetails?.map((item, index) => (
+          {testimonialCardDetails?.map((item, index) => (
             <span
               key={index}
               className={`indicator ${

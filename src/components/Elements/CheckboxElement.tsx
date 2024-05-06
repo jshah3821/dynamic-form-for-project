@@ -20,7 +20,7 @@ const CheckboxElement = (props) => {
                 className="option_radio"
                 style={props?.style}
                 type="checkbox"
-                id={option.value + index}
+                id={option?.value + index}
                 name="option"
                 value={option?.value}
                 checked={props.formData[props?.name]?.includes(option.value)}
