@@ -123,7 +123,7 @@ const BannerElement = ({
               }
                                 `}
             >
-              <span 
+              <span
                 style={{
                   color: sliderStyle?.color,
                   fontSize: sliderStyle?.fontSize,
@@ -160,7 +160,7 @@ const BannerElement = ({
       <div className="dost-parent">
         {slideDetails.map((element, index) => (
           <span
-            className={`dot dot-dynamic${id}`}
+            className={`cbdot dot-dynamic${id}`}
             key={index}
             onClick={() => currentSlide(index + 1)}
           ></span>

@@ -145,7 +145,7 @@
   bottom: 3px;
 }
 
-.dot {
+.cbdot {
   cursor: pointer;
   height: 15px;
   width: 15px;
@@ -157,7 +157,7 @@
 }
 
 .active,
-.dot:hover {
+.cbdot:hover {
   background-color: #717171;
 }
 
