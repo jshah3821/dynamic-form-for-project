@@ -8,6 +8,7 @@ const SurveyForm = ({
   errors,
   formData,
   handleChange,
+  handleRemoveFile,
   handleSubmitFormData,
   index,
 }) => {
@@ -24,7 +25,7 @@ const SurveyForm = ({
       )}
       {subType && !["submit_button"].includes(subType) && (
         <p className="que_input_styles" style={properties?.question_style}>
-          {properties?.questionDetails?.question_text ??
+          {properties?.questionDetails?.question_text ? properties?.questionDetails?.question_text :
           subType === "survey_image"
             ? "Label"
             : "Question"}
@@ -137,12 +138,13 @@ const SurveyForm = ({
               })}
             </div>
           )}
-
+              {console.log(formData)}
           {subType === "survey_image" && (
             <div>
-              <div className="flex flex-row justify-start items-center align-center pointer fluid">
-                {formData?.[properties?.name]?.map((image) => (
-                  <div key={image.dataURL} className="que_img_div">
+              <div className="flex flex-row flex-wrap justify-start items-center align-center pointer fluid">
+                {formData?.[properties?.name]?.map((image, index) => (
+                  <div key={Math.random()} className="que_img_div">
+                    <div className="cancel_icon_styles" onClick={()=> handleRemoveFile(index)} >X</div>
                     <img
                       src={image.dataURL}
                       className="que_img_arr"
@@ -158,7 +160,7 @@ const SurveyForm = ({
               >
                 <FaCloudUploadAlt />
                 <span className="font-12 font-weight-100 ml1 text_wrap_css">
-                  Upload File
+                   {properties?.isMultiAllowed ? 'Upload Files': 'Upload File'}  
                 </span>
               </div>
               <input
@@ -168,7 +170,8 @@ const SurveyForm = ({
                 id="file-upload"
                 type="file"
                 name={"file" + index}
-                onChange={(e) => handleChange(e, properties?.name, "file")}
+                onChange={(e) => handleChange(e, properties?.name, "file", properties?.isMultiAllowed)}
+                multiple={properties?.isMultiAllowed}
               />
             </div>
           )}
