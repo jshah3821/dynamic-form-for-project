@@ -513,7 +513,7 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
               break;
             case "survey_checkbox":
             case "survey_image":
-              setFormData((prev) => ({ ...prev, [obj?.properties?.name]: [] }));
+              // setFormData((prev) => ({ ...prev, [obj?.properties?.name]: [] }));
               setInitialFormData((prev) => ({
                 ...prev,
                 [obj?.properties?.name]: [],
@@ -539,10 +539,28 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
     });
   }, [data]);
 
-  const handleChange = (event, id, checkbox) => {
+  const handleRemoveFile = (fileIndex) => {
+    console.log(formData)
+    const updatedFormData = formData['survey_image']?.filter(
+      (_, idx) => idx !== fileIndex
+    );
+    console.log(updatedFormData)
+    setFormData((prevData) => ({
+      ...prevData,
+      survey_image: updatedFormData,
+    }));
+  };
+
+  const handleChange = (event, id, checkbox, multipleFileUpload?) => {
+    let updatedFiles: any
     if (checkbox === "file") {
       const fileList = event.target.files;
-      const updatedFiles: any = [];
+      if (multipleFileUpload) {
+        const existingFiles = formData[id] || []; // Get existing files from formData
+        updatedFiles = [...existingFiles]; // Copy existing files to updatedFiles
+      } else {
+        updatedFiles = [];
+      }
       for (let i = 0; i < fileList.length; i++) {
         const file = fileList[i];
         const reader = new FileReader();
@@ -550,12 +568,12 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
           const dataURL = e.target.result;
           updatedFiles.push({ name: file.name, dataURL });
 
-          if (updatedFiles.length === fileList.length) {
+          // if (updatedFiles.length === fileList.length) {
             setFormData((prevState) => ({
               ...prevState,
               [id]: updatedFiles,
             }));
-          }
+          // }
         };
         reader.readAsDataURL(file);
       }
@@ -801,6 +819,7 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
                 key={index}
                 handleSubmitFormData={handleSubmitFormData}
                 index={index}
+                handleRemoveFile={handleRemoveFile}
                 handleChange={handleChange}
                 formData={formData}
                 errors={errors}
