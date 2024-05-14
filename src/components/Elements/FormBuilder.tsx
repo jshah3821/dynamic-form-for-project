@@ -513,11 +513,18 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
               break;
             case "survey_checkbox":
             case "survey_image":
-              // setFormData((prev) => ({ ...prev, [obj?.properties?.name]: [] }));
+              setFormData((prev) => ({ ...prev, [obj?.properties?.name]: [] }));
               setInitialFormData((prev) => ({
                 ...prev,
                 [obj?.properties?.name]: [],
               }));
+              break;
+            case "range":
+              setInitialFormData((prev) => ({
+                ...prev,
+                [obj?.properties?.name]: 50,
+              }));
+              setFormData((prev) => ({ ...prev, [obj?.properties?.name]: 50 }));
               break;
             case "survey_dropdown":
               setFormData((prev) => ({
@@ -540,11 +547,11 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
   }, [data]);
 
   const handleRemoveFile = (fileIndex) => {
-    console.log(formData)
-    const updatedFormData = formData['survey_image']?.filter(
+    console.log(formData);
+    const updatedFormData = formData["survey_image"]?.filter(
       (_, idx) => idx !== fileIndex
     );
-    console.log(updatedFormData)
+    console.log(updatedFormData);
     setFormData((prevData) => ({
       ...prevData,
       survey_image: updatedFormData,
@@ -552,7 +559,7 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
   };
 
   const handleChange = (event, id, checkbox, multipleFileUpload?) => {
-    let updatedFiles: any
+    let updatedFiles: any;
     if (checkbox === "file") {
       const fileList = event.target.files;
       if (multipleFileUpload) {
@@ -569,10 +576,10 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
           updatedFiles.push({ name: file.name, dataURL });
 
           // if (updatedFiles.length === fileList.length) {
-            setFormData((prevState) => ({
-              ...prevState,
-              [id]: updatedFiles,
-            }));
+          setFormData((prevState) => ({
+            ...prevState,
+            [id]: updatedFiles,
+          }));
           // }
         };
         reader.readAsDataURL(file);

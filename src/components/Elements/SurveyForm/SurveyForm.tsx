@@ -14,6 +14,33 @@ const SurveyForm = ({
 }) => {
   const fileRef = useRef<any>(null);
   const required = properties?.validation?.required;
+
+  const sliderStyle: any = {
+    position: "relative",
+    width: "100%",
+  };
+
+  const tooltipStyle: any = {
+    fontSize: "12px",
+    visibility: "visible",
+    backgroundColor: "#0075ff",
+    color: "#fff",
+    textAlign: "center",
+    borderRadius: "6px",
+    padding: "0px 5px",
+    position: "absolute",
+    zIndex: "1",
+    bottom: "90%",
+    left: `calc(${(properties?.validation?.range_value / 100) * 100}% - 1.5%)`,
+    marginLeft: "10px",
+    marginTop: "10px",
+    opacity: "1",
+    transition: "opacity 0.3s",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  };
+
   return (
     <div className="flex justify-around left-align flex-column">
       {properties?.questionDetails?.question_image?.dataURL && (
@@ -25,8 +52,9 @@ const SurveyForm = ({
       )}
       {subType && !["submit_button"].includes(subType) && (
         <p className="que_input_styles" style={properties?.question_style}>
-          {properties?.questionDetails?.question_text ? properties?.questionDetails?.question_text :
-          subType === "survey_image"
+          {properties?.questionDetails?.question_text
+            ? properties?.questionDetails?.question_text
+            : subType === "survey_image"
             ? "Label"
             : "Question"}
           {required && <span className="required_color">*</span>}
@@ -138,13 +166,18 @@ const SurveyForm = ({
               })}
             </div>
           )}
-              {console.log(formData)}
+          {console.log(formData)}
           {subType === "survey_image" && (
             <div>
               <div className="flex flex-row flex-wrap justify-start items-center align-center pointer fluid">
                 {formData?.[properties?.name]?.map((image, index) => (
                   <div key={Math.random()} className="que_img_div">
-                    <div className="cancel_icon_styles" onClick={()=> handleRemoveFile(index)} >X</div>
+                    <div
+                      className="cancel_icon_styles"
+                      onClick={() => handleRemoveFile(index)}
+                    >
+                      X
+                    </div>
                     <img
                       src={image.dataURL}
                       className="que_img_arr"
@@ -160,7 +193,7 @@ const SurveyForm = ({
               >
                 <FaCloudUploadAlt />
                 <span className="font-12 font-weight-100 ml1 text_wrap_css">
-                   {properties?.isMultiAllowed ? 'Upload Files': 'Upload File'}  
+                  {properties?.isMultiAllowed ? "Upload Files" : "Upload File"}
                 </span>
               </div>
               <input
@@ -170,11 +203,50 @@ const SurveyForm = ({
                 id="file-upload"
                 type="file"
                 name={"file" + index}
-                onChange={(e) => handleChange(e, properties?.name, "file", properties?.isMultiAllowed)}
+                onChange={(e) =>
+                  handleChange(
+                    e,
+                    properties?.name,
+                    "file",
+                    properties?.isMultiAllowed
+                  )
+                }
                 multiple={properties?.isMultiAllowed}
               />
             </div>
           )}
+          {subType === "range" ? (
+            <div
+              style={properties?.answer_style}
+              className="qa_range_container"
+            >
+              <div style={sliderStyle}>
+                <input
+                  type="range"
+                  min="0"
+                  max="100"
+                  name={properties?.name || "range" + index}
+                  value={formData[properties?.name] || ""}
+                  onChange={(e) => handleChange(e, properties?.name, false)}
+                  className="slider"
+                />
+                {formData[properties?.name] ? (
+                  <span
+                    style={{
+                      ...tooltipStyle,
+                      backgroundColor:
+                        properties?.answer_style.accentColor !== ""
+                          ? properties?.answer_style.accentColor
+                          : "#0075ff",
+                      color: properties?.answer_style.color,
+                    }}
+                  >
+                    {formData[properties?.name]}
+                  </span>
+                ) : null}
+              </div>
+            </div>
+          ) : null}
           {subType === "submit_button" && (
             <div>
               <div className="flex flex-row justify-start items-center align-center pointer fluid">
