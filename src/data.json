@@ -1,52 +1,9 @@
 [
   {
     "selectionType": "surveyform",
-    "id": "Ez8HNnGoxAYmZdou6dWy6",
+    "id": "V-lWr9nBHMgsP4KMJ7ynZ",
     "type": "surveyform",
-    "subType": "range",
-    "properties": {
-      "name": "range",
-      "question_style": {
-        "backgroundColor": "#f6f6f6",
-        "fontSize": "16px",
-        "color": "",
-        "width": "100%",
-        "height": "",
-        "minWidth": "",
-        "minHeight": "",
-        "maxWidth": "",
-        "maxHeight": "",
-        "objectFit": "",
-        "overflow": "",
-        "marginTop": "",
-        "marginLeft": "",
-        "marginRight": "",
-        "marginBottom": "",
-        "paddingTop": "",
-        "paddingLeft": "",
-        "paddingRight": "",
-        "paddingBottom": "",
-        "border": ""
-      },
-      "answer_style": {
-        "backgroundColor": "#ffffff",
-        "fontSize": "14px",
-        "color": "",
-        "accentColor": "",
-        "height": "",
-        "width": "50%",
-        "border": ""
-      }
-    },
-    "formId": null,
-    "surveyFormId": null,
-    "isSelectedField": true
-  },
-  {
-    "selectionType": "surveyform",
-    "id": "bZ-5yHJ6Ssx8__R0NJ-Pl",
-    "type": "surveyform",
-    "subType": "submit_button",
+    "subType": "survey_image",
     "properties": {
       "name": "survey_image",
       "question_style": {
@@ -76,7 +33,7 @@
         "fontSize": "14px",
         "color": "",
         "height": "",
-        "width": "50%",
+        "width": "100%",
         "minWidth": "",
         "minHeight": "",
         "maxWidth": "",
@@ -96,5 +53,60 @@
     "formId": null,
     "surveyFormId": null,
     "isSelectedField": false
+  },
+  {
+    "selectionType": "surveyform",
+    "id": "vzClXqv_UP1TdWwKHzw8E",
+    "type": "surveyform",
+    "subType": "survey_image",
+    "properties": {
+      "name": "survey_image",
+      "question_style": {
+        "backgroundColor": "#f6f6f6",
+        "fontSize": "16px",
+        "color": "",
+        "width": "100%",
+        "height": "",
+        "minWidth": "",
+        "minHeight": "",
+        "maxWidth": "",
+        "maxHeight": "",
+        "objectFit": "",
+        "overflow": "",
+        "marginTop": "",
+        "marginLeft": "",
+        "marginRight": "",
+        "marginBottom": "",
+        "paddingTop": "",
+        "paddingLeft": "",
+        "paddingRight": "",
+        "paddingBottom": "",
+        "border": ""
+      },
+      "answer_style": {
+        "backgroundColor": "#ffffff",
+        "fontSize": "14px",
+        "color": "",
+        "height": "",
+        "width": "100%",
+        "minWidth": "",
+        "minHeight": "",
+        "maxWidth": "",
+        "maxHeight": "",
+        "overflow": "",
+        "marginTop": "",
+        "marginLeft": "",
+        "marginRight": "",
+        "marginBottom": "",
+        "paddingTop": "",
+        "paddingLeft": "",
+        "paddingRight": "",
+        "paddingBottom": "",
+        "border": ""
+      }
+    },
+    "formId": null,
+    "surveyFormId": null,
+    "isSelectedField": true
   }
 ]

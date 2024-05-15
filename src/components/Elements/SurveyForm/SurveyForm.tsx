@@ -40,7 +40,7 @@ const SurveyForm = ({
     alignItems: "center",
     justifyContent: "center",
   };
-
+  const fieldName = properties?.name + index;
   return (
     <div className="flex justify-around left-align flex-column">
       {properties?.questionDetails?.question_image?.dataURL && (
@@ -66,35 +66,35 @@ const SurveyForm = ({
             <input
               id="shortanswer"
               type="text"
-              name={properties?.name || "shortanswer" + index}
+              name={fieldName || "shortanswer" + index}
               className="flex flex-column items-center justify-center ans_input_style"
               placeholder="Enter your answer here"
               maxLength={properties?.validation?.maxLength || null}
               minLength={properties?.validation?.minLength || null}
               style={properties?.answer_style}
-              value={formData[properties?.name] || ""}
-              onChange={(e) => handleChange(e, properties?.name, false)}
+              value={formData[fieldName] || ""}
+              onChange={(e) => handleChange(e, fieldName, false)}
             />
           )}
           {subType === "longanswer" && (
             <textarea
               id="longanswer"
-              name={properties?.name || "longanswer" + index}
               className="flex flex-column items-center justify-center ans_textarea_style"
               placeholder="Enter your answer here"
               style={properties?.answer_style}
-              value={formData[properties?.name] || ""}
+              name={fieldName || "longanswer" + index}
+              value={formData[fieldName] || ""}
+              onChange={(e) => handleChange(e, fieldName, false)}
               maxLength={properties?.validation?.maxLength || null}
               minLength={properties?.validation?.minLength || null}
-              onChange={(e) => handleChange(e, properties?.name, false)}
             />
           )}
           {subType === "survey_dropdown" && (
             <div>
               <select
-                name={properties?.name || "survey_dropdown" + index}
-                value={formData[properties?.name] || ""}
-                onChange={(e) => handleChange(e, properties?.name, false)}
+                name={fieldName || "survey_dropdown" + index}
+                value={formData[fieldName] || ""}
+                onChange={(e) => handleChange(e, fieldName, false)}
                 className="fluid"
                 style={properties?.answer_style}
               >
@@ -122,8 +122,8 @@ const SurveyForm = ({
                       name="option"
                       value={option.value}
                       className="option_radio"
-                      checked={formData[properties?.name] === option.value}
-                      onChange={(e) => handleChange(e, properties?.name, false)}
+                      checked={formData[fieldName] === option.value}
+                      onChange={(e) => handleChange(e, fieldName, false)}
                     />
                     <label
                       htmlFor={option.value}
@@ -150,10 +150,8 @@ const SurveyForm = ({
                       id={option.value + index}
                       name="option"
                       value={option.value}
-                      checked={formData[properties?.name]?.includes(
-                        option.value
-                      )}
-                      onChange={(e) => handleChange(e, properties?.name, true)}
+                      checked={formData[fieldName]?.includes(option.value)}
+                      onChange={(e) => handleChange(e, fieldName, true)}
                     />
                     <label
                       htmlFor={option.value}
@@ -170,7 +168,7 @@ const SurveyForm = ({
           {subType === "survey_image" && (
             <div>
               <div className="flex flex-row flex-wrap justify-start items-center align-center pointer fluid">
-                {formData?.[properties?.name]?.map((image, index) => (
+                {formData?.[fieldName]?.map((image, index) => (
                   <div key={Math.random()} className="que_img_div">
                     <div
                       className="cancel_icon_styles"
@@ -204,12 +202,7 @@ const SurveyForm = ({
                 type="file"
                 name={"file" + index}
                 onChange={(e) =>
-                  handleChange(
-                    e,
-                    properties?.name,
-                    "file",
-                    properties?.isMultiAllowed
-                  )
+                  handleChange(e, fieldName, "file", properties?.isMultiAllowed)
                 }
                 multiple={properties?.isMultiAllowed}
               />
@@ -220,30 +213,30 @@ const SurveyForm = ({
               style={properties?.answer_style}
               className="qa_range_container"
             >
-              <div style={sliderStyle}>
-                <input
-                  type="range"
-                  min="0"
-                  max="100"
-                  name={properties?.name || "range" + index}
-                  value={formData[properties?.name] || ""}
-                  onChange={(e) => handleChange(e, properties?.name, false)}
-                  className="slider"
-                />
-                {formData[properties?.name] ? (
-                  <span
-                    style={{
-                      ...tooltipStyle,
-                      backgroundColor:
-                        properties?.answer_style.accentColor !== ""
-                          ? properties?.answer_style.accentColor
-                          : "#0075ff",
-                      color: properties?.answer_style.color,
-                    }}
-                  >
-                    {formData[properties?.name]}
+              <div className="slider-container">
+                <div className="slider-wrapper">
+                  <input
+                    type="range"
+                    name={fieldName || "range" + index}
+                    value={formData[fieldName] || ""}
+                    onChange={(e) => handleChange(e, fieldName, false)}
+                    className="slider"
+                  />
+                </div>
+                <div className="slider-labels">
+                  <span className="min-value">
+                    {properties?.validation?.minRange
+                      ? properties?.validation?.minRange
+                      : 0}
+                    {properties?.validation?.unit}
                   </span>
-                ) : null}
+                  <span className="max-value">
+                    {properties?.validation?.maxRange
+                      ? properties?.validation?.maxRange
+                      : 100}
+                    {properties?.validation?.unit}
+                  </span>
+                </div>
               </div>
             </div>
           ) : null}
@@ -264,17 +257,17 @@ const SurveyForm = ({
               </div>
             </div>
           )}
-          {(required || errors?.[properties?.name]) && (
+          {(required || errors?.[fieldName]) && (
             <p
               style={{
-                visibility: errors?.[properties?.name] ? "visible" : "hidden",
+                visibility: errors?.[fieldName] ? "visible" : "hidden",
                 fontSize: "10px",
                 color: "red",
               }}
             >
-              {errors?.[properties?.name] === true
-                ? `${properties?.label || properties?.name} is required.`
-                : errors?.[properties?.name]}
+              {errors?.[fieldName] === true
+                ? `${properties?.label || fieldName} is required.`
+                : errors?.[fieldName]}
             </p>
           )}
         </div>
