@@ -8,7 +8,7 @@
   margin: 20px auto;
 }
 
-.que_input_styles {
+.sf_que_input {
   border: 0px !important;
   border-bottom: 1px solid rgb(51, 51, 51) !important;
   border-radius: 0px !important;
@@ -95,7 +95,7 @@
   color: #ed252c;
 }
 
-.cancel_icon_styles {
+.sf_cancel_icon {
   margin: 0px;
   display: flex;
   align-items: center;
@@ -117,7 +117,7 @@
   justify-content: center;
   font-weight: bold;
 }
-.cancel_icon_styles:hover {
+.sf_cancel_icon:hover {
   color: var(--white-color);
   border: 1px solid #ff333a8f;
   background: red;
@@ -131,20 +131,17 @@ input[type="range"] {
   padding: 0;
   width: 100%;
 }
-.slider-container {
+.sf_range_container {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
 }
-.slider-wrapper {
-  width: 100%;
-  height: 32px;
-}
+
 .slider {
   width: 100%;
 }
-.slider-labels {
+.sf_range_label {
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -161,18 +158,20 @@ input[type="range"] {
   gap: 5px;
 }
 
-.slider-wrapper {
+.sf_range_subcontainer {
   position: relative;
   width: 100%; /* Adjust width as needed */
+  height: 32px;
 }
 
-.slider {
+.sf_range_input {
   width: 100%;
+  cursor: pointer !important;
 }
 
 .range_tooltip {
   position: absolute;
-  bottom: -20px; /* Adjust top position as needed */
+  bottom: -30px; /* Adjust top position as needed */
   left: 0;
   display: none;
   color: #fff;

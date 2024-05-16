@@ -463,6 +463,7 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
     "shortanswer",
     "survey_image",
     "survey_dropdown",
+    "range",
   ];
   const invalidSubtypes = ["button", "submit_button"];
   const surveyformElements = [
