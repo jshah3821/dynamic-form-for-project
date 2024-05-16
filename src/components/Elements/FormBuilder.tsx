@@ -563,14 +563,14 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
       : null;
   }, [data]);
 
-  const handleRemoveFile = (fileIndex) => {
+  const handleRemoveFile = (fieldName, fileIndex) => {
     console.log(formData);
-    const updatedFormData = formData["survey_image"]?.filter(
+    const updatedFormData = formData[fieldName]?.filter(
       (_, idx) => idx !== fileIndex
     );
     setFormData((prevData) => ({
       ...prevData,
-      survey_image: updatedFormData,
+      [fieldName]: updatedFormData,
     }));
   };
 
