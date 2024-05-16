@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import "./SurveyForm.css";
 import { FaCloudUploadAlt } from "react-icons/fa";
 
@@ -13,33 +13,35 @@ const SurveyForm = ({
   index,
 }) => {
   const fileRef = useRef<any>(null);
+  const [tooltipStyle, setTooltipStyle] = useState<any>({
+    display: "none",
+    left: 0,
+  });
+
+  const handleRangeTooltip = (e) => {
+    const newValue = e.target.value;
+    const rangeWidth = e.target.offsetWidth;
+    const tooltipWidth = 40; // Adjust based on your tooltip's width
+
+    const x = properties?.validation?.minRange;
+    const y = properties?.validation?.maxRange;
+    const z = newValue; // Value to calculate percentage for
+
+    let percentage;
+
+    if (z == x) {
+      percentage = 0;
+    } else if (z == y) {
+      percentage = 1;
+    } else {
+      percentage = (z - x) / (y - x);
+    }
+    const leftOffset = (rangeWidth - tooltipWidth) * percentage;
+
+    setTooltipStyle({ display: "block", left: `${leftOffset}px` });
+  };
   const required = properties?.validation?.required;
 
-  const sliderStyle: any = {
-    position: "relative",
-    width: "100%",
-  };
-
-  const tooltipStyle: any = {
-    fontSize: "12px",
-    visibility: "visible",
-    backgroundColor: "#0075ff",
-    color: "#fff",
-    textAlign: "center",
-    borderRadius: "6px",
-    padding: "0px 5px",
-    position: "absolute",
-    zIndex: "1",
-    bottom: "90%",
-    left: `calc(${(properties?.validation?.range_value / 100) * 100}% - 1.5%)`,
-    marginLeft: "10px",
-    marginTop: "10px",
-    opacity: "1",
-    transition: "opacity 0.3s",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  };
   const fieldName = properties?.name + index;
   return (
     <div className="flex justify-around left-align flex-column">
@@ -164,7 +166,6 @@ const SurveyForm = ({
               })}
             </div>
           )}
-          {console.log(formData)}
           {subType === "survey_image" && (
             <div>
               <div className="flex flex-row flex-wrap justify-start items-center align-center pointer fluid">
@@ -217,11 +218,28 @@ const SurveyForm = ({
                 <div className="slider-wrapper">
                   <input
                     type="range"
+                    min={properties?.validation?.minRange}
+                    max={properties?.validation?.maxRange}
                     name={fieldName || "range" + index}
-                    value={formData[fieldName] || ""}
-                    onChange={(e) => handleChange(e, fieldName, false)}
+                    value={formData[fieldName] || 0}
+                    onChange={(e) => {
+                      handleChange(e, fieldName, false);
+                      handleRangeTooltip(e);
+                    }}
                     className="slider"
                   />
+                  <span
+                    className="range_tooltip"
+                    style={{
+                      ...tooltipStyle,
+                      backgroundColor: properties?.answer_style?.accentColor,
+                      color: properties?.answer_style?.color,
+                    }}
+                  >
+                    {(formData[fieldName] || 0) +
+                      " " +
+                      properties?.validation?.unit}
+                  </span>
                 </div>
                 <div className="slider-labels">
                   <span className="min-value">
