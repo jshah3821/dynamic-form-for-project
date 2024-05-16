@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import "./SurveyForm.css";
 import { FaCloudUploadAlt } from "react-icons/fa";
 
@@ -13,7 +13,36 @@ const SurveyForm = ({
   index,
 }) => {
   const fileRef = useRef<any>(null);
+  const [tooltipStyle, setTooltipStyle] = useState<any>({
+    display: "none",
+    left: 0,
+  });
+
+  const handleRangeTooltip = (e) => {
+    const newValue = e.target.value;
+    const rangeWidth = e.target.offsetWidth;
+    const tooltipWidth = 40; // Adjust based on your tooltip's width
+
+    const x = properties?.validation?.minRange;
+    const y = properties?.validation?.maxRange;
+    const z = newValue; // Value to calculate percentage for
+
+    let percentage;
+
+    if (z == x) {
+      percentage = 0;
+    } else if (z == y) {
+      percentage = 1;
+    } else {
+      percentage = (z - x) / (y - x);
+    }
+    const leftOffset = (rangeWidth - tooltipWidth) * percentage;
+
+    setTooltipStyle({ display: "block", left: `${leftOffset}px` });
+  };
   const required = properties?.validation?.required;
+
+  const fieldName = properties?.name + index;
   return (
     <div className="flex justify-around left-align flex-column">
       {properties?.questionDetails?.question_image?.dataURL && (
@@ -24,9 +53,10 @@ const SurveyForm = ({
         />
       )}
       {subType && !["submit_button"].includes(subType) && (
-        <p className="que_input_styles" style={properties?.question_style}>
-          {properties?.questionDetails?.question_text ? properties?.questionDetails?.question_text :
-          subType === "survey_image"
+        <p className="sf_que_input" style={properties?.question_style}>
+          {properties?.questionDetails?.question_text
+            ? properties?.questionDetails?.question_text
+            : subType === "survey_image"
             ? "Label"
             : "Question"}
           {required && <span className="required_color">*</span>}
@@ -38,35 +68,35 @@ const SurveyForm = ({
             <input
               id="shortanswer"
               type="text"
-              name={properties?.name || "shortanswer" + index}
+              name={fieldName || "shortanswer" + index}
               className="flex flex-column items-center justify-center ans_input_style"
               placeholder="Enter your answer here"
               maxLength={properties?.validation?.maxLength || null}
               minLength={properties?.validation?.minLength || null}
               style={properties?.answer_style}
-              value={formData[properties?.name] || ""}
-              onChange={(e) => handleChange(e, properties?.name, false)}
+              value={formData[fieldName] || ""}
+              onChange={(e) => handleChange(e, fieldName, false)}
             />
           )}
           {subType === "longanswer" && (
             <textarea
               id="longanswer"
-              name={properties?.name || "longanswer" + index}
               className="flex flex-column items-center justify-center ans_textarea_style"
               placeholder="Enter your answer here"
               style={properties?.answer_style}
-              value={formData[properties?.name] || ""}
+              name={fieldName || "longanswer" + index}
+              value={formData[fieldName] || ""}
+              onChange={(e) => handleChange(e, fieldName, false)}
               maxLength={properties?.validation?.maxLength || null}
               minLength={properties?.validation?.minLength || null}
-              onChange={(e) => handleChange(e, properties?.name, false)}
             />
           )}
           {subType === "survey_dropdown" && (
             <div>
               <select
-                name={properties?.name || "survey_dropdown" + index}
-                value={formData[properties?.name] || ""}
-                onChange={(e) => handleChange(e, properties?.name, false)}
+                name={fieldName || "survey_dropdown" + index}
+                value={formData[fieldName] || ""}
+                onChange={(e) => handleChange(e, fieldName, false)}
                 className="fluid"
                 style={properties?.answer_style}
               >
@@ -94,8 +124,8 @@ const SurveyForm = ({
                       name="option"
                       value={option.value}
                       className="option_radio"
-                      checked={formData[properties?.name] === option.value}
-                      onChange={(e) => handleChange(e, properties?.name, false)}
+                      checked={formData[fieldName] === option.value}
+                      onChange={(e) => handleChange(e, fieldName, false)}
                     />
                     <label
                       htmlFor={option.value}
@@ -122,10 +152,8 @@ const SurveyForm = ({
                       id={option.value + index}
                       name="option"
                       value={option.value}
-                      checked={formData[properties?.name]?.includes(
-                        option.value
-                      )}
-                      onChange={(e) => handleChange(e, properties?.name, true)}
+                      checked={formData[fieldName]?.includes(option.value)}
+                      onChange={(e) => handleChange(e, fieldName, true)}
                     />
                     <label
                       htmlFor={option.value}
@@ -138,13 +166,17 @@ const SurveyForm = ({
               })}
             </div>
           )}
-              {console.log(formData)}
           {subType === "survey_image" && (
             <div>
               <div className="flex flex-row flex-wrap justify-start items-center align-center pointer fluid">
-                {formData?.[properties?.name]?.map((image, index) => (
+                {formData?.[fieldName]?.map((image, index) => (
                   <div key={Math.random()} className="que_img_div">
-                    <div className="cancel_icon_styles" onClick={()=> handleRemoveFile(index)} >X</div>
+                    <div
+                      className="sf_cancel_icon"
+                      onClick={() => handleRemoveFile(index)}
+                    >
+                      X
+                    </div>
                     <img
                       src={image.dataURL}
                       className="que_img_arr"
@@ -160,7 +192,7 @@ const SurveyForm = ({
               >
                 <FaCloudUploadAlt />
                 <span className="font-12 font-weight-100 ml1 text_wrap_css">
-                   {properties?.isMultiAllowed ? 'Upload Files': 'Upload File'}  
+                  {properties?.isMultiAllowed ? "Upload Files" : "Upload File"}
                 </span>
               </div>
               <input
@@ -170,11 +202,62 @@ const SurveyForm = ({
                 id="file-upload"
                 type="file"
                 name={"file" + index}
-                onChange={(e) => handleChange(e, properties?.name, "file", properties?.isMultiAllowed)}
+                onChange={(e) =>
+                  handleChange(e, fieldName, "file", properties?.isMultiAllowed)
+                }
                 multiple={properties?.isMultiAllowed}
               />
             </div>
           )}
+          {subType === "range" ? (
+            <div
+              style={properties?.answer_style}
+              className="qa_range_container"
+            >
+              <div className="sf_range_container">
+                <div className="sf_range_subcontainer">
+                  <input
+                    type="range"
+                    min={properties?.validation?.minRange}
+                    max={properties?.validation?.maxRange}
+                    name={fieldName || "range" + index}
+                    value={formData[fieldName] || 0}
+                    onChange={(e) => {
+                      handleChange(e, fieldName, false);
+                      handleRangeTooltip(e);
+                    }}
+                    className="sf_range_input"
+                  />
+                  <span
+                    className="range_tooltip"
+                    style={{
+                      ...tooltipStyle,
+                      backgroundColor: properties?.answer_style?.accentColor,
+                      color: properties?.answer_style?.color,
+                    }}
+                  >
+                    {`${formData[fieldName] || 0} ${
+                      properties?.validation?.unit || ""
+                    }`}
+                  </span>
+                </div>
+                <div className="sf_range_label">
+                  <span className="min-value">
+                    {properties?.validation?.minRange
+                      ? properties?.validation?.minRange
+                      : 0}
+                    {properties?.validation?.unit}
+                  </span>
+                  <span className="max-value">
+                    {properties?.validation?.maxRange
+                      ? properties?.validation?.maxRange
+                      : 100}
+                    {properties?.validation?.unit}
+                  </span>
+                </div>
+              </div>
+            </div>
+          ) : null}
           {subType === "submit_button" && (
             <div>
               <div className="flex flex-row justify-start items-center align-center pointer fluid">
@@ -192,17 +275,17 @@ const SurveyForm = ({
               </div>
             </div>
           )}
-          {(required || errors?.[properties?.name]) && (
+          {(required || errors?.[fieldName]) && (
             <p
               style={{
-                visibility: errors?.[properties?.name] ? "visible" : "hidden",
+                visibility: errors?.[fieldName] ? "visible" : "hidden",
                 fontSize: "10px",
                 color: "red",
               }}
             >
-              {errors?.[properties?.name] === true
-                ? `${properties?.label || properties?.name} is required.`
-                : errors?.[properties?.name]}
+              {errors?.[fieldName] === true
+                ? `${properties?.label || fieldName} is required.`
+                : errors?.[fieldName]}
             </p>
           )}
         </div>

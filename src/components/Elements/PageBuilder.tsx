@@ -242,7 +242,7 @@ const dataArray = {
 const PageBuilder = ({ id, jsonData }: Props) => {
   const data = id ? dataArray?.[id] : jsonData;
 
-  return (
+  return data?.length > 0 ? (
     <div className="mainPageContainer">
       <ToastContainer
         position="top-center"
@@ -347,6 +347,8 @@ const PageBuilder = ({ id, jsonData }: Props) => {
         }
       })}
     </div>
+  ) : (
+    <p style={{ textAlign: "center" }}>No preview Page data available</p>
   );
 };
 

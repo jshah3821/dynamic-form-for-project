@@ -463,6 +463,7 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
     "shortanswer",
     "survey_image",
     "survey_dropdown",
+    "range",
   ];
   const invalidSubtypes = ["button", "submit_button"];
   const surveyformElements = [
@@ -476,75 +477,98 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
 
   //code to create formData initialState from Input elements dynamically
   useEffect(() => {
-    data?.map((obj, i) => {
-      switch (obj?.type) {
-        case "element":
-          switch (obj?.subType) {
-            case "input":
-            case "select":
-            case "radio":
-            case "textarea":
-              setFormData((prev) => ({ ...prev, [obj?.properties?.name]: "" }));
-              setInitialFormData((prev) => ({
-                ...prev,
-                [obj?.properties?.name]: "",
-              }));
-              break;
-            case "checkbox":
-              setFormData((prev) => ({ ...prev, [obj?.properties?.name]: [] }));
-              setInitialFormData((prev) => ({
-                ...prev,
-                [obj?.properties?.name]: [],
-              }));
-              break;
+    data?.length > 0
+      ? data?.map((obj, i) => {
+          switch (obj?.type) {
+            case "element":
+              switch (obj?.subType) {
+                case "input":
+                case "select":
+                case "radio":
+                case "textarea":
+                  setFormData((prev) => ({
+                    ...prev,
+                    [obj?.properties?.name]: "",
+                  }));
+                  setInitialFormData((prev) => ({
+                    ...prev,
+                    [obj?.properties?.name]: "",
+                  }));
+                  break;
+                case "checkbox":
+                  setFormData((prev) => ({
+                    ...prev,
+                    [obj?.properties?.name]: [],
+                  }));
+                  setInitialFormData((prev) => ({
+                    ...prev,
+                    [obj?.properties?.name]: [],
+                  }));
+                  break;
+                default:
+                  return null;
+              }
+            case "surveyform":
+              switch (obj?.subType) {
+                case "shortanswer":
+                case "longanswer":
+                case "survey_radio":
+                  setFormData((prev) => ({
+                    ...prev,
+                    [obj?.properties?.name]: "",
+                  }));
+                  setInitialFormData((prev) => ({
+                    ...prev,
+                    [obj?.properties?.name]: "",
+                  }));
+                  break;
+                case "survey_checkbox":
+                case "survey_image":
+                  setFormData((prev) => ({
+                    ...prev,
+                    [obj?.properties?.name]: [],
+                  }));
+                  setInitialFormData((prev) => ({
+                    ...prev,
+                    [obj?.properties?.name]: [],
+                  }));
+                  break;
+                case "range":
+                  setInitialFormData((prev) => ({
+                    ...prev,
+                    [obj?.properties?.name]: 50,
+                  }));
+                  setFormData((prev) => ({
+                    ...prev,
+                    [obj?.properties?.name]: 50,
+                  }));
+                  break;
+                case "survey_dropdown":
+                  setFormData((prev) => ({
+                    ...prev,
+                    [obj?.properties?.name]:
+                      obj?.properties?.optionDetails?.[0]?.value,
+                  }));
+                  setInitialFormData((prev) => ({
+                    ...prev,
+                    [obj?.properties?.name]:
+                      obj?.properties?.optionDetails?.[0]?.value,
+                  }));
+                default:
+                  return null;
+              }
             default:
               return null;
           }
-        case "surveyform":
-          switch (obj?.subType) {
-            case "shortanswer":
-            case "longanswer":
-            case "survey_radio":
-              setFormData((prev) => ({ ...prev, [obj?.properties?.name]: "" }));
-              setInitialFormData((prev) => ({
-                ...prev,
-                [obj?.properties?.name]: "",
-              }));
-              break;
-            case "survey_checkbox":
-            case "survey_image":
-              // setFormData((prev) => ({ ...prev, [obj?.properties?.name]: [] }));
-              setInitialFormData((prev) => ({
-                ...prev,
-                [obj?.properties?.name]: [],
-              }));
-              break;
-            case "survey_dropdown":
-              setFormData((prev) => ({
-                ...prev,
-                [obj?.properties?.name]:
-                  obj?.properties?.optionDetails?.[0]?.value,
-              }));
-              setInitialFormData((prev) => ({
-                ...prev,
-                [obj?.properties?.name]:
-                  obj?.properties?.optionDetails?.[0]?.value,
-              }));
-            default:
-              return null;
-          }
-        default:
-          return null;
-      }
-    });
+        })
+      : null;
   }, [data]);
 
   const handleRemoveFile = (fileIndex) => {
-    console.log(formData)
-    const updatedFormData = formData['survey_image']?.filter(
+    console.log(formData);
+    const updatedFormData = formData["survey_image"]?.filter(
       (_, idx) => idx !== fileIndex
     );
-    console.log(updatedFormData)
     setFormData((prevData) => ({
       ...prevData,
       survey_image: updatedFormData,
@@ -552,7 +576,7 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
   };
 
   const handleChange = (event, id, checkbox, multipleFileUpload?) => {
-    let updatedFiles: any
+    let updatedFiles: any;
     if (checkbox === "file") {
       const fileList = event.target.files;
       if (multipleFileUpload) {
@@ -569,10 +593,10 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
           updatedFiles.push({ name: file.name, dataURL });
 
           // if (updatedFiles.length === fileList.length) {
-            setFormData((prevState) => ({
-              ...prevState,
-              [id]: updatedFiles,
-            }));
+          setFormData((prevState) => ({
+            ...prevState,
+            [id]: updatedFiles,
+          }));
           // }
         };
         reader.readAsDataURL(file);
@@ -661,7 +685,7 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
     }
   };
 
-  return (
+  return data?.length > 0 ? (
     <div className="mainFormContainer">
       <ToastContainer
         position="top-center"
@@ -858,6 +882,8 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
           </div>
         )}
     </div>
+  ) : (
+    <p style={{ textAlign: "center" }}>No preview form data available</p>
   );
 };
 
