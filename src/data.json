@@ -32,12 +32,12 @@
         "backgroundColor": "#ffffff",
         "fontSize": "14px",
         "color": "",
-        "accentColor": "red",
+        "accentColor": "blue",
         "height": "",
         "width": "100%",
         "border": ""
       },
-      "validation": { "minRange": "5", "maxRange": "20", "unit": "₹" }
+      "validation": { "minRange": "5", "maxRange": "20", "unit": "%" }
     },
     "formId": null,
     "surveyFormId": null,
