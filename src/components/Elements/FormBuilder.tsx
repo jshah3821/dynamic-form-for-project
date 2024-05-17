@@ -565,7 +565,6 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
   }, [data]);
 
   const handleRemoveFile = (fileIndex) => {
-    console.log(formData);
     const updatedFormData = formData["survey_image"]?.filter(
       (_, idx) => idx !== fileIndex
     );
@@ -604,10 +603,18 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
     } else if (checkbox) {
       const { checked, value } = event.target;
       if (checked) {
-        setFormData((prevState) => ({
-          ...prevState,
-          [id]: [...formData[id], value],
-        })); // Add to selected options
+        if (formData[id]) {
+          setFormData((prevState) => ({
+            ...prevState,
+            [id]: [...formData[id], value],
+          }));
+        } else {
+          setFormData((prevState) => ({
+            ...prevState,
+            [id]: [value],
+          }));
+        }
+        // Add to selected options
       } else {
         setFormData((prevState) => ({
           ...prevState,
