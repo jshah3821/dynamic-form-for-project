@@ -173,7 +173,7 @@ const SurveyForm = ({
                   <div key={Math.random()} className="que_img_div">
                     <div
                       className="sf_cancel_icon"
-                      onClick={() => handleRemoveFile(index)}
+                      onClick={() => handleRemoveFile(fieldName, index)}
                     >
                       X
                     </div>
