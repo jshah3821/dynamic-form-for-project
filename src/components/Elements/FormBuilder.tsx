@@ -463,6 +463,7 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
     "shortanswer",
     "survey_image",
     "survey_dropdown",
+    "range",
   ];
   const invalidSubtypes = ["button", "submit_button"];
   const surveyformElements = [
@@ -603,10 +604,18 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
     } else if (checkbox) {
       const { checked, value } = event.target;
       if (checked) {
-        setFormData((prevState) => ({
-          ...prevState,
-          [id]: [...formData[id], value],
-        })); // Add to selected options
+        if (formData[id]) {
+          setFormData((prevState) => ({
+            ...prevState,
+            [id]: [...formData[id], value],
+          }));
+        } else {
+          setFormData((prevState) => ({
+            ...prevState,
+            [id]: [value],
+          }));
+        }
+        // Add to selected options
       } else {
         setFormData((prevState) => ({
           ...prevState,

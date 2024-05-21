@@ -53,7 +53,7 @@ const SurveyForm = ({
         />
       )}
       {subType && !["submit_button"].includes(subType) && (
-        <p className="que_input_styles" style={properties?.question_style}>
+        <p className="sf_que_input" style={properties?.question_style}>
           {properties?.questionDetails?.question_text
             ? properties?.questionDetails?.question_text
             : subType === "survey_image"
@@ -172,8 +172,8 @@ const SurveyForm = ({
                 {formData?.[fieldName]?.map((image, index) => (
                   <div key={Math.random()} className="que_img_div">
                     <div
-                      className="cancel_icon_styles"
-                      onClick={() => handleRemoveFile(fieldName, index)}
+                      className="sf_cancel_icon"
+                      onClick={() => handleRemoveFile(index)}
                     >
                       X
                     </div>
@@ -214,8 +214,8 @@ const SurveyForm = ({
               style={properties?.answer_style}
               className="qa_range_container"
             >
-              <div className="slider-container">
-                <div className="slider-wrapper">
+              <div className="sf_range_container">
+                <div className="sf_range_subcontainer">
                   <input
                     type="range"
                     min={properties?.validation?.minRange}
@@ -226,7 +226,7 @@ const SurveyForm = ({
                       handleChange(e, fieldName, false);
                       handleRangeTooltip(e);
                     }}
-                    className="slider"
+                    className="sf_range_input"
                   />
                   <span
                     className="range_tooltip"
@@ -236,12 +236,12 @@ const SurveyForm = ({
                       color: properties?.answer_style?.color,
                     }}
                   >
-                    {(formData[fieldName] || 0) +
-                      " " +
-                      properties?.validation?.unit}
+                    {`${formData[fieldName] || 0} ${
+                      properties?.validation?.unit || ""
+                    }`}
                   </span>
                 </div>
-                <div className="slider-labels">
+                <div className="sf_range_label">
                   <span className="min-value">
                     {properties?.validation?.minRange
                       ? properties?.validation?.minRange
