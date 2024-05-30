@@ -1,7 +1,6 @@
 import React from "react";
 
 const ButtonElement = (props: any) => {
-  console.log(props)
   return (
     <div className="px1">
       <button

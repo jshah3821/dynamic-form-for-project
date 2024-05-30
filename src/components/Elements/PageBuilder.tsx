@@ -8,6 +8,7 @@ import "./FormBuilder.css";
 import { FormBuilder as FormBuilderPackage } from "@shubham-chavda/react-custom-components";
 import BannerElement from "./CustomBanner/BannerElement";
 import { removeQuotesFromKeys } from "./generalFunctions";
+import TableElement from "./Table/TableElement";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -335,6 +336,9 @@ const PageBuilder = ({ id, jsonData }: Props) => {
                     style={obj?.style}
                   />
                 );
+              case "table":
+                return <TableElement tableProps={obj} />;
+
               default:
                 return null;
             }

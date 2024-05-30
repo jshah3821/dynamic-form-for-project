@@ -14,6 +14,7 @@ import { removeQuotesFromKeys } from "./generalFunctions.ts";
 import { FormBuilder as FormBuilderPackage } from "@shubham-chavda/react-custom-components";
 import { ToastContainer } from "react-toastify";
 import { callApi } from "./api.ts";
+import ListElement from "./ListElement/ListElement";
 import "react-toastify/dist/ReactToastify.css";
 
 const dataArray = {
@@ -464,6 +465,7 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
     "survey_image",
     "survey_dropdown",
     "range",
+    "list",
   ];
   const invalidSubtypes = ["button", "submit_button"];
   const surveyformElements = [
@@ -564,14 +566,13 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
       : null;
   }, [data]);
 
-  const handleRemoveFile = (fileIndex) => {
-    console.log(formData);
-    const updatedFormData = formData["survey_image"]?.filter(
+  const handleRemoveFile = (fieldName, fileIndex) => {
+    const updatedFormData = formData[fieldName]?.filter(
       (_, idx) => idx !== fileIndex
     );
     setFormData((prevData) => ({
       ...prevData,
-      survey_image: updatedFormData,
+      [fieldName]: updatedFormData,
     }));
   };
 
@@ -604,10 +605,18 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
     } else if (checkbox) {
       const { checked, value } = event.target;
       if (checked) {
-        setFormData((prevState) => ({
-          ...prevState,
-          [id]: [...formData[id], value],
-        })); // Add to selected options
+        if (formData[id]) {
+          setFormData((prevState) => ({
+            ...prevState,
+            [id]: [...formData[id], value],
+          }));
+        } else {
+          setFormData((prevState) => ({
+            ...prevState,
+            [id]: [value],
+          }));
+        }
+        // Add to selected options
       } else {
         setFormData((prevState) => ({
           ...prevState,
@@ -813,6 +822,8 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
                     required={obj?.validation?.required}
                   />
                 );
+              case "list":
+                return <ListElement key={index} listData={obj} />;
               default:
                 return null;
             }
@@ -858,6 +869,7 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
                 jsonData={removeQuotesFromKeys(obj?.json)}
               />
             );
+
           default:
             return null;
         }
