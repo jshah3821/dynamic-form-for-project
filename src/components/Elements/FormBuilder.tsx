@@ -14,6 +14,7 @@ import { removeQuotesFromKeys } from "./generalFunctions.ts";
 import { FormBuilder as FormBuilderPackage } from "@shubham-chavda/react-custom-components";
 import { ToastContainer } from "react-toastify";
 import { callApi } from "./api.ts";
+import ListElement from "./ListElement/ListElement";
 import "react-toastify/dist/ReactToastify.css";
 
 const dataArray = {
@@ -464,6 +465,7 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
     "survey_image",
     "survey_dropdown",
     "range",
+    "list",
   ];
   const invalidSubtypes = ["button", "submit_button"];
   const surveyformElements = [
@@ -565,7 +567,6 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
   }, [data]);
 
   const handleRemoveFile = (fieldName, fileIndex) => {
-    console.log(formData);
     const updatedFormData = formData[fieldName]?.filter(
       (_, idx) => idx !== fileIndex
     );
@@ -821,6 +822,8 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
                     required={obj?.validation?.required}
                   />
                 );
+              case "list":
+                return <ListElement key={index} listData={obj} />;
               default:
                 return null;
             }
@@ -866,6 +869,7 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
                 jsonData={removeQuotesFromKeys(obj?.json)}
               />
             );
+
           default:
             return null;
         }

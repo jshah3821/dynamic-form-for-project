@@ -4,7 +4,6 @@ import "./TableStyles.css";
 const TableElement = ({ tableProps }) => {
   const tableHeadStyles = tableProps?.tableHeadingDetails?.headingStyle;
   const tableCellStyles = tableProps?.tableStyle;
-  console.log("Abdeali", tableCellStyles);
   return (
     <div className="te_container">
       <p className="te_heading_text" style={tableHeadStyles}>
