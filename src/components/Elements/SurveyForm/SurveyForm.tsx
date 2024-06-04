@@ -1,6 +1,7 @@
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import "./SurveyForm.css";
 import { FaCloudUploadAlt } from "react-icons/fa";
+import { removeKeyInObject } from "../utils/removeKeyInObject";
 
 const SurveyForm = ({
   properties,
@@ -43,8 +44,29 @@ const SurveyForm = ({
   const required = properties?.validation?.required;
 
   const fieldName = properties?.name + index;
+
+  const { question_style } = properties;
+
+  const QuestionContainerStyle = {
+    backgroundColor: question_style.backgroundColor,
+  };
+
+  const QuestionHeaderStyle = {
+    marginBottom: question_style.marginBottom,
+    marginLeft: question_style?.marginLeft,
+    marginRight: question_style?.marginRight,
+    marginTop: question_style?.marginTop,
+    paddingBottom: question_style?.paddingBottom,
+    paddingLeft: question_style?.paddingLeft,
+    paddingRight: question_style?.paddingRight,
+    paddingTop: question_style?.paddingTop,
+  };
+
   return (
-    <div className="flex justify-around left-align flex-column">
+    <div
+      style={removeKeyInObject(question_style, QuestionContainerStyle)}
+      className="flex justify-around left-align flex-column"
+    >
       {properties?.questionDetails?.question_image?.dataURL && (
         <img
           src={properties.questionDetails.question_image.dataURL}
@@ -53,7 +75,10 @@ const SurveyForm = ({
         />
       )}
       {subType && !["submit_button"].includes(subType) && (
-        <p className="sf_que_input" style={properties?.question_style}>
+        <p
+          className="sf_que_input"
+          style={removeKeyInObject(question_style, QuestionHeaderStyle)}
+        >
           {properties?.questionDetails?.question_text
             ? properties?.questionDetails?.question_text
             : subType === "survey_image"

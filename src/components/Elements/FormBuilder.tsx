@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import React from "react";
 import "./FormBuilder.css";
 import InputElement from "./InputElement";
 import ButtonElement from "./ButtonElement";
@@ -447,7 +446,6 @@ interface Props {
 }
 export const FormBuilder = ({ id, jsonData }: Props) => {
   const data = id ? dataArray?.[id] : jsonData;
-
   const [formData, setFormData] = useState({});
   const [errors, setErrors] = useState({});
   const [isSubmitClicked, setSubmitClicked] = useState(false);
