@@ -2,7 +2,7 @@ import React from "react";
 import "./TableStyles.css";
 
 const TableElement = ({ tableProps }) => {
-  const tableHeadStyles = tableProps?.tableHeadingDetails?.headingStyle;
+  const tableHeadStyles = tableProps?.headingStyle;
   const tableCellStyles = tableProps?.tableStyle;
   return (
     <div className="te_container">

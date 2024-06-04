@@ -123,14 +123,7 @@ const BannerElement = ({
               }
                                 `}
             >
-              <span
-                style={{
-                  color: sliderStyle?.color,
-                  fontSize: sliderStyle?.fontSize,
-                }}
-              >
-                {element["caption"]}
-              </span>
+              <span style={sliderStyle}>{element["caption"]}</span>
             </div>
           </div>
           // </div>
