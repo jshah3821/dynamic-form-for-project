@@ -1,9 +1,20 @@
 import React from "react";
 
 const CheckboxElement = (props) => {
+  const inputTextStyle = {
+    color: props?.style?.color,
+    fontSize: props?.style?.fontSize,
+    fontStyle: props?.style?.fontStyle,
+    fontFamily: props?.style?.fontFamily,
+    fontWeight: props?.style?.fontWeight,
+    textAlign: props?.style?.textAlign,
+    textDecoration: props?.style?.textDecoration,
+    textTransform: props?.style?.textTransform,
+  };
+
   return (
-    <div className="px1">
-      <label className="input_label">
+    <div className="px1" style={props?.style}>
+      <label className="input_label" style={inputTextStyle}>
         {props?.name ? props?.name : "Label"}
       </label>
       {props?.required && (
@@ -18,7 +29,7 @@ const CheckboxElement = (props) => {
             >
               <input
                 className="option_radio"
-                style={props?.style}
+                style={inputTextStyle}
                 type="checkbox"
                 id={option?.value + index}
                 name="option"
@@ -28,6 +39,7 @@ const CheckboxElement = (props) => {
               />
               <label
                 className="option_label_style"
+                style={inputTextStyle}
                 htmlFor={option.value + index}
               >
                 {option?.label}
