@@ -1,8 +1,27 @@
 import React from "react";
+import { removeKeyInObject } from "./utils/removeKeyInObject";
+
 const InputElement = (props) => {
+  const inputTextStyle = {
+    color: props?.style?.color,
+    fontSize: props?.style?.fontSize,
+    fontStyle: props?.style?.fontStyle,
+    fontFamily: props?.style?.fontFamily,
+    fontWeight: props?.style?.fontWeight,
+    textAlign: props?.style?.textAlign,
+    textDecoration: props?.style?.textDecoration,
+    textTransform: props?.style?.textTransform,
+  };
+
+  const inputContainerStyle = {
+    marginTop: props?.style?.marginTop,
+    marginLeft: props?.style?.marginLeft,
+    marginRight: props?.style?.marginRight,
+    marginBottom: props?.style?.marginBottom,
+  };
   return (
-    <div className="inputContainer px1">
-      <label style={{ fontSize: "12px" }} htmlFor={props?.id}>
+    <div className="inputContainer px1" style={inputContainerStyle}>
+      <label style={inputTextStyle} htmlFor={props?.id}>
         {props?.label ? props?.label : "Label"}
         {props?.required && (
           <span style={{ fontSize: "12px", color: "red", marginLeft: "1px" }}>
@@ -17,7 +36,10 @@ const InputElement = (props) => {
         minLength={props?.minLength || null}
         maxLength={props?.maxLength || null}
         required={props?.required}
-        style={props?.style}
+        style={removeKeyInObject(props?.style, {
+          ...inputTextStyle,
+          ...inputContainerStyle,
+        })}
         onChange={props?.onChange}
         value={props?.value}
       />

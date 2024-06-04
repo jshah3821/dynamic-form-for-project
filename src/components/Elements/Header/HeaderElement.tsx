@@ -25,6 +25,17 @@ const HeaderElement = ({ headerProps }) => {
     textTransform: styles?.textTransform,
   };
 
+  const menuTitleTextStyle = {
+    color: headerProps?.properties?.headerDetails?.logoStyle?.color,
+    fontSize: headerProps?.properties?.headerDetails?.logoStyle?.fontSize,
+    fontStyle: styles?.fontStyle,
+    fontFamily: styles?.fontFamily,
+    fontWeight: styles?.fontWeight,
+    textAlign: styles?.textAlign,
+    textDecoration: styles?.textDecoration,
+    textTransform: styles?.textTransform,
+  };
+
   return (
     <div
       className="header_styles header_container_package flex items-center justify-between"
@@ -43,10 +54,7 @@ const HeaderElement = ({ headerProps }) => {
           alt="header-logo"
           style={{ objectFit: styles?.objectFit }}
         />
-        <p
-          className="camelCase icon-black ml1"
-          style={headerProps?.properties?.headerDetails?.logoStyle}
-        >
+        <p className="camelCase icon-black ml1" style={menuTitleTextStyle}>
           {headerProps.properties.headerDetails.headerLabel || "text"}
         </p>
       </div>
