@@ -47,11 +47,7 @@ const SurveyForm = ({
 
   const { question_style } = properties;
 
-  const QuestionContainerStyle = {
-    backgroundColor: question_style.backgroundColor,
-  };
-
-  const QuestionHeaderStyle = {
+  const queContStyle = {
     marginBottom: question_style.marginBottom,
     marginLeft: question_style?.marginLeft,
     marginRight: question_style?.marginRight,
@@ -64,7 +60,7 @@ const SurveyForm = ({
 
   return (
     <div
-      style={removeKeyInObject(question_style, QuestionContainerStyle)}
+      style={queContStyle}
       className="flex justify-around left-align flex-column"
     >
       {properties?.questionDetails?.question_image?.dataURL && (
@@ -77,7 +73,7 @@ const SurveyForm = ({
       {subType && !["submit_button"].includes(subType) && (
         <p
           className="sf_que_input"
-          style={removeKeyInObject(question_style, QuestionHeaderStyle)}
+          style={removeKeyInObject(question_style, queContStyle)}
         >
           {properties?.questionDetails?.question_text
             ? properties?.questionDetails?.question_text

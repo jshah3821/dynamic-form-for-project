@@ -1,13 +1,13 @@
 [
   {
     "selectionType": "surveyform",
-    "id": "HP_TwAms1_dKmzJjo8KAJ",
+    "id": "n9NuCmdgDGgL4ApdYUZgw",
     "type": "surveyform",
-    "subType": "survey_radio",
+    "subType": "shortanswer",
     "properties": {
-      "name": "survey_radio",
+      "name": "shortanswer",
       "question_style": {
-        "backgroundColor": "#ea7575",
+        "backgroundColor": "#ae6565",
         "fontSize": "16px",
         "fontStyle": "",
         "fontFamily": "",
@@ -19,7 +19,6 @@
         "width": "",
         "height": "",
         "minWidth": "",
-        "maxHeight": "",
         "minHeight": "",
         "maxWidth": "",
         "maxHeight": "",
@@ -56,7 +55,7 @@
         "borderBottomRightRadius": "0px"
       },
       "answer_style": {
-        "backgroundColor": "#451ed2",
+        "backgroundColor": "#d75656",
         "fontSize": "14px",
         "fontStyle": "",
         "fontFamily": "",
@@ -64,7 +63,7 @@
         "textAlign": "",
         "textDecoration": "",
         "textTransform": "",
-        "color": "#df3030",
+        "color": "",
         "height": "",
         "width": "",
         "minWidth": "",
@@ -101,11 +100,7 @@
         "borderTopRightRadius": "0px",
         "borderBottomLeftRadius": "0px",
         "borderBottomRightRadius": "0px"
-      },
-      "optionDetails": [
-        { "label": "Option 1", "value": "Option 1" },
-        { "label": "Option 2", "value": "Option 2" }
-      ]
+      }
     },
     "formId": null,
     "surveyFormId": null,
