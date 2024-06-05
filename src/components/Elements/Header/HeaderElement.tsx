@@ -1,6 +1,7 @@
 import React from "react";
-import "./headerStyles.css";
 import { bvLogo } from "../assets/bvLogo64";
+import { removeKeyInObject } from "../utils/removeKeyInObject";
+import "./headerStyles.css";
 
 const HeaderElement = ({ headerProps }) => {
   function replaceRoute(url) {
@@ -12,15 +13,37 @@ const HeaderElement = ({ headerProps }) => {
   }
 
   const styles = headerProps?.properties?.style;
+
+  const menuItemTextStyle = {
+    color: styles?.color,
+    fontSize: styles?.fontSize,
+    fontStyle: styles?.fontStyle,
+    fontFamily: styles?.fontFamily,
+    fontWeight: styles?.fontWeight,
+    textAlign: styles?.textAlign,
+    textDecoration: styles?.textDecoration,
+    textTransform: styles?.textTransform,
+  };
+
+  const menuTitleTextStyle = {
+    color: headerProps?.properties?.headerDetails?.logoStyle?.color,
+    fontSize: headerProps?.properties?.headerDetails?.logoStyle?.fontSize,
+    fontStyle: styles?.fontStyle,
+    fontFamily: styles?.fontFamily,
+    fontWeight: styles?.fontWeight,
+    textAlign: styles?.textAlign,
+    textDecoration: styles?.textDecoration,
+    textTransform: styles?.textTransform,
+  };
+
   return (
     <div
-      className="header_styles header_container_package flex items-center justify-between p05 width-100"
-      style={styles}
+      className="header_styles header_container_package flex items-center justify-between"
+      style={removeKeyInObject(styles, menuItemTextStyle)}
     >
       <div
         onClick={() => replaceRoute("/")}
         className="flex items-center pointer"
-        style={headerProps?.properties?.logoStyle}
       >
         <img
           src={
@@ -31,11 +54,8 @@ const HeaderElement = ({ headerProps }) => {
           alt="header-logo"
           style={{ objectFit: styles?.objectFit }}
         />
-        <p
-          className="camelCase icon-black ml1"
-          style={headerProps?.properties?.headerDetails?.logoStyleProp}
-        >
-          {headerProps.properties.headerDetails.text || "text"}
+        <p className="camelCase icon-black ml1" style={menuTitleTextStyle}>
+          {headerProps.properties.headerDetails.headerLabel || "text"}
         </p>
       </div>
       <div className="flex items-center">
@@ -45,7 +65,7 @@ const HeaderElement = ({ headerProps }) => {
               <li
                 onClick={() => replaceRoute(item?.link)}
                 className="p2 header_link pointer"
-                style={{ fontSize: styles?.fontSize, color: styles?.color }}
+                style={menuItemTextStyle}
                 key={i}
               >
                 {item?.name ?? "Add Menu Item "}

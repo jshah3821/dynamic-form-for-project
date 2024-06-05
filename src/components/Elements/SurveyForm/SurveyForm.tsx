@@ -1,7 +1,8 @@
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import "./SurveyForm.css";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import { removeKeyInObject } from "../utils/removeKeyInObject";
+
 const SurveyForm = ({
   properties,
   subType,
@@ -44,25 +45,24 @@ const SurveyForm = ({
 
   const fieldName = properties?.name + index;
 
-  const CheckBoxRadioStyle = {
-    borderStyle: "properties?.answer_style?.borderStyle",
-    borderColor: "properties?.answer_style?.borderColor",
-    borderTopWidth: "properties?.answer_style?.borderTopWidth",
-    borderTopStyle: "properties?.answer_style?.borderTopStyle",
-    borderTopColor: "properties?.answer_style?.borderTopColor",
-    borderRightWidth: "properties?.answer_style?.borderRightWidth",
-    borderRightStyle: "properties?.answer_style?.borderRightStyle",
-    borderRightColor: "properties?.answer_style?.borderRightColor",
-    borderBottomWidth: "properties?.answer_style?.borderBottomWidth",
-    borderBottomStyle: "properties?.answer_style?.borderBottomStyle",
-    borderBottomColor: "properties?.answer_style?.borderBottomColor",
-    borderLeftWidth: "properties?.answer_style?.borderLeftWidth",
-    borderLeftStyle: "properties?.answer_style?.borderLeftStyle",
-    borderLeftColor: "properties?.answer_style?.borderLeftColor",
+  const { question_style } = properties;
+
+  const queContStyle = {
+    marginBottom: question_style.marginBottom,
+    marginLeft: question_style?.marginLeft,
+    marginRight: question_style?.marginRight,
+    marginTop: question_style?.marginTop,
+    paddingBottom: question_style?.paddingBottom,
+    paddingLeft: question_style?.paddingLeft,
+    paddingRight: question_style?.paddingRight,
+    paddingTop: question_style?.paddingTop,
   };
 
   return (
-    <div className="flex justify-around left-align flex-column">
+    <div
+      style={queContStyle}
+      className="flex justify-around left-align flex-column"
+    >
       {properties?.questionDetails?.question_image?.dataURL && (
         <img
           src={properties.questionDetails.question_image.dataURL}
@@ -71,7 +71,10 @@ const SurveyForm = ({
         />
       )}
       {subType && !["submit_button"].includes(subType) && (
-        <p className="sf_que_input" style={properties?.question_style}>
+        <p
+          className="sf_que_input"
+          style={removeKeyInObject(question_style, queContStyle)}
+        >
           {properties?.questionDetails?.question_text
             ? properties?.questionDetails?.question_text
             : subType === "survey_image"
