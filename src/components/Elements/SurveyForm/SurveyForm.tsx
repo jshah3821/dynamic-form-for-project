@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import "./SurveyForm.css";
 import { FaCloudUploadAlt } from "react-icons/fa";
-
+import { removeKeyInObject } from "../utils/removeKeyInObject";
 const SurveyForm = ({
   properties,
   subType,
@@ -43,6 +43,24 @@ const SurveyForm = ({
   const required = properties?.validation?.required;
 
   const fieldName = properties?.name + index;
+
+  const CheckBoxRadioStyle = {
+    borderStyle: "properties?.answer_style?.borderStyle",
+    borderColor: "properties?.answer_style?.borderColor",
+    borderTopWidth: "properties?.answer_style?.borderTopWidth",
+    borderTopStyle: "properties?.answer_style?.borderTopStyle",
+    borderTopColor: "properties?.answer_style?.borderTopColor",
+    borderRightWidth: "properties?.answer_style?.borderRightWidth",
+    borderRightStyle: "properties?.answer_style?.borderRightStyle",
+    borderRightColor: "properties?.answer_style?.borderRightColor",
+    borderBottomWidth: "properties?.answer_style?.borderBottomWidth",
+    borderBottomStyle: "properties?.answer_style?.borderBottomStyle",
+    borderBottomColor: "properties?.answer_style?.borderBottomColor",
+    borderLeftWidth: "properties?.answer_style?.borderLeftWidth",
+    borderLeftStyle: "properties?.answer_style?.borderLeftStyle",
+    borderLeftColor: "properties?.answer_style?.borderLeftColor",
+  };
+
   return (
     <div className="flex justify-around left-align flex-column">
       {properties?.questionDetails?.question_image?.dataURL && (
@@ -102,7 +120,14 @@ const SurveyForm = ({
               >
                 {properties?.optionDetails?.map((option) => {
                   return (
-                    <option key={option.value} value={option.value}>
+                    <option
+                      key={option.value}
+                      value={option.value}
+                      style={removeKeyInObject(
+                        CheckBoxRadioStyle,
+                        properties?.answer_style
+                      )}
+                    >
                       {option.label}
                     </option>
                   );
@@ -126,6 +151,10 @@ const SurveyForm = ({
                       className="option_radio"
                       checked={formData[fieldName] === option.value}
                       onChange={(e) => handleChange(e, fieldName, false)}
+                      style={removeKeyInObject(
+                        CheckBoxRadioStyle,
+                        properties?.answer_style
+                      )}
                     />
                     <label
                       htmlFor={option.value}
@@ -158,6 +187,10 @@ const SurveyForm = ({
                     <label
                       htmlFor={option.value}
                       className="option_label_style"
+                      style={removeKeyInObject(
+                        CheckBoxRadioStyle,
+                        properties?.answer_style
+                      )}
                     >
                       {option.label}
                     </label>
