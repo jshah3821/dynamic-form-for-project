@@ -2,7 +2,6 @@ import { useRef, useState } from "react";
 import "./SurveyForm.css";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import { removeKeyInObject } from "../utils/removeKeyInObject";
-
 const SurveyForm = ({
   properties,
   subType,
@@ -46,6 +45,7 @@ const SurveyForm = ({
   const fieldName = properties?.name + index;
 
   const { question_style } = properties;
+  const { answer_style } = properties;
 
   const queContStyle = {
     marginBottom: question_style.marginBottom,
@@ -56,6 +56,10 @@ const SurveyForm = ({
     paddingLeft: question_style?.paddingLeft,
     paddingRight: question_style?.paddingRight,
     paddingTop: question_style?.paddingTop,
+  };
+
+  const ansContentStyle = {
+    color: answer_style?.color,
   };
 
   return (
@@ -126,10 +130,7 @@ const SurveyForm = ({
                     <option
                       key={option.value}
                       value={option.value}
-                      style={removeKeyInObject(
-                        CheckBoxRadioStyle,
-                        properties?.answer_style
-                      )}
+                      style={properties?.answer_style?.color}
                     >
                       {option.label}
                     </option>
@@ -154,14 +155,11 @@ const SurveyForm = ({
                       className="option_radio"
                       checked={formData[fieldName] === option.value}
                       onChange={(e) => handleChange(e, fieldName, false)}
-                      style={removeKeyInObject(
-                        CheckBoxRadioStyle,
-                        properties?.answer_style
-                      )}
                     />
                     <label
                       htmlFor={option.value}
                       className="option_label_style"
+                      style={ansContentStyle}
                     >
                       {option.label}
                     </label>
@@ -190,10 +188,7 @@ const SurveyForm = ({
                     <label
                       htmlFor={option.value}
                       className="option_label_style"
-                      style={removeKeyInObject(
-                        CheckBoxRadioStyle,
-                        properties?.answer_style
-                      )}
+                      style={ansContentStyle}
                     >
                       {option.label}
                     </label>
