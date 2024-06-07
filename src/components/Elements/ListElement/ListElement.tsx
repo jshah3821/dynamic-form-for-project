@@ -1,7 +1,6 @@
-import React from "react";
 import { removeKeyInObject } from "../utils/removeKeyInObject";
 import "./ListElementStyle.css";
-
+import React from "react";
 const ListElement = ({ listData, key }) => {
   const { label, listItemDetails, style, listStyle } = listData?.properties;
 
@@ -35,7 +34,7 @@ const ListElement = ({ listData, key }) => {
       <p style={listElementTitleStyle}>{label}</p>
       <ul
         style={removeKeyInObject(listStyle, listItemTextStyle)}
-        className="le_ul_container"
+        className="le_ul_style_container"
       >
         {listItemDetails?.length > 0
           ? listItemDetails?.map((item, i) => {
