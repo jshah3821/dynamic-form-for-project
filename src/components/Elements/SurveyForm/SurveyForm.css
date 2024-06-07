@@ -9,9 +9,9 @@
 }
 
 .sf_que_input {
-  border: 0px !important;
-  border-bottom: 1px solid rgb(51, 51, 51) !important;
-  border-radius: 0px !important;
+  border: 0px;
+  border-bottom: 1px solid rgb(51, 51, 51);
+  border-radius: 0px;
   font-size: 16px;
   background-color: #c0c0c094;
   color: rgb(51, 51, 51);
@@ -19,7 +19,7 @@
   margin-bottom: 20px;
   margin-top: 10px;
   font-family: "Poppins", sans-serif;
-  border-radius: 3px !important;
+  border-radius: 3px;
 }
 
 .que_input_styles::placeholder {
@@ -27,17 +27,17 @@
   font-family: "Poppins", sans-serif;
 }
 
-.ans_input_style {
-  border: 0px !important;
-  border-bottom: 1px solid #c0c0c094 !important;
-  border-radius: 0px !important;
+.ans_input {
+  border: 0px;
+  border-bottom: 1px solid #c0c0c094;
+  border-radius: 0px;
   font-size: 14px;
   color: rgb(51, 51, 51);
   font-family: "Poppins", sans-serif;
 }
 
-.ans_textarea_style {
-  border: 1px solid #c0c0c094 !important;
+.ans_textarea {
+  border: 1px solid #c0c0c094;
   font-size: 14px;
   color: rgb(51, 51, 51);
   font-family: "Poppins", sans-serif;

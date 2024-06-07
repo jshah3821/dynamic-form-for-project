@@ -58,8 +58,15 @@ const SurveyForm = ({
     paddingTop: question_style?.paddingTop,
   };
 
-  const ansContentStyle = {
+  const ansContentTextStyle = {
     color: answer_style?.color,
+    fontSize: answer_style?.fontSize,
+    fontStyle: answer_style?.fontStyle,
+    fontFamily: answer_style?.fontFamily,
+    fontWeight: answer_style?.fontWeight,
+    textAlign: answer_style?.textAlign,
+    textDecoration: answer_style?.textDecoration,
+    textTransform: answer_style?.textTransform,
   };
 
   return (
@@ -94,7 +101,7 @@ const SurveyForm = ({
               id="shortanswer"
               type="text"
               name={fieldName || "shortanswer" + index}
-              className="flex flex-column items-center justify-center ans_input_style"
+              className="flex flex-column items-center justify-center ans_input"
               placeholder="Enter your answer here"
               maxLength={properties?.validation?.maxLength || null}
               minLength={properties?.validation?.minLength || null}
@@ -106,7 +113,7 @@ const SurveyForm = ({
           {subType === "longanswer" && (
             <textarea
               id="longanswer"
-              className="flex flex-column items-center justify-center ans_textarea_style"
+              className="flex flex-column items-center justify-center ans_textarea"
               placeholder="Enter your answer here"
               style={properties?.answer_style}
               name={fieldName || "longanswer" + index}
@@ -127,11 +134,7 @@ const SurveyForm = ({
               >
                 {properties?.optionDetails?.map((option) => {
                   return (
-                    <option
-                      key={option.value}
-                      value={option.value}
-                      style={properties?.answer_style?.color}
-                    >
+                    <option key={option.value} value={option.value}>
                       {option.label}
                     </option>
                   );
@@ -140,7 +143,10 @@ const SurveyForm = ({
             </div>
           )}
           {subType === "survey_radio" && (
-            <div className="flex flex-row justify-start items-center radio_option_style">
+            <div
+              className="flex flex-row justify-start items-center radio_option_style"
+              style={properties?.answer_style}
+            >
               {properties?.optionDetails?.map((option) => {
                 return (
                   <div
@@ -159,7 +165,7 @@ const SurveyForm = ({
                     <label
                       htmlFor={option.value}
                       className="option_label_style"
-                      style={ansContentStyle}
+                      style={ansContentTextStyle}
                     >
                       {option.label}
                     </label>
@@ -169,7 +175,10 @@ const SurveyForm = ({
             </div>
           )}
           {subType === "survey_checkbox" && (
-            <div className="flex flex-row justify-start items-center radio_option_style">
+            <div
+              className="flex flex-row justify-start items-center radio_option_style"
+              style={properties?.answer_style}
+            >
               {properties?.optionDetails?.map((option, index) => {
                 return (
                   <div
@@ -188,7 +197,7 @@ const SurveyForm = ({
                     <label
                       htmlFor={option.value}
                       className="option_label_style"
-                      style={ansContentStyle}
+                      style={ansContentTextStyle}
                     >
                       {option.label}
                     </label>
@@ -199,7 +208,7 @@ const SurveyForm = ({
           )}
           {subType === "survey_image" && (
             <div>
-              <div className="flex flex-row flex-wrap justify-start items-center align-center pointer fluid">
+              <div className="flex flex-row flex-wrap justify-start items-center align-center pointer">
                 {formData?.[fieldName]?.map((image, index) => (
                   <div key={Math.random()} className="que_img_div">
                     <div
@@ -273,13 +282,13 @@ const SurveyForm = ({
                   </span>
                 </div>
                 <div className="sf_range_label">
-                  <span className="min-value">
+                  <span className="min-value" style={ansContentTextStyle}>
                     {properties?.validation?.minRange
                       ? properties?.validation?.minRange
                       : 0}
                     {properties?.validation?.unit}
                   </span>
-                  <span className="max-value">
+                  <span className="max-value" style={ansContentTextStyle}>
                     {properties?.validation?.maxRange
                       ? properties?.validation?.maxRange
                       : 100}
