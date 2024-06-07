@@ -21,7 +21,6 @@ const ListElement = ({ listData, key }) => {
     fontStyle: listStyle?.fontStyle,
     fontFamily: listStyle?.fontFamily,
     fontWeight: listStyle?.fontWeight,
-    textAlign: listStyle?.textAlign,
     textDecoration: listStyle?.textDecoration,
     textTransform: listStyle?.textTransform,
   };
@@ -33,7 +32,10 @@ const ListElement = ({ listData, key }) => {
       key={key}
     >
       <p style={listElementTitleStyle}>{label}</p>
-      <ul style={removeKeyInObject(listStyle, listItemTextStyle)}>
+      <ul
+        style={removeKeyInObject(listStyle, listItemTextStyle)}
+        className="le_ul_container"
+      >
         {listItemDetails?.length > 0
           ? listItemDetails?.map((item, i) => {
               return (

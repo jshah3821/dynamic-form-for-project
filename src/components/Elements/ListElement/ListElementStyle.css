@@ -5,3 +5,7 @@
   margin-bottom: 10px;
   padding: 0px 0.5rem;
 }
+
+.le_ul_container {
+  list-style-position: inside;
+}
