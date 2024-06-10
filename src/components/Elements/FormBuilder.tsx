@@ -1,20 +1,20 @@
 import { useEffect, useState } from "react";
-import "./FormBuilder.css";
+import { toast, ToastContainer } from "react-toastify";
+import { callApi } from "./api.ts";
 import InputElement from "./InputElement";
 import ButtonElement from "./ButtonElement";
 import SelectElement from "./SelectElement";
 import RadioElement from "./RadioElement";
 import TextboxElement from "./TextboxElement";
 import CheckboxElement from "./CheckboxElement";
-import "react-multi-carousel/lib/styles.css";
 import SurveyForm from "./SurveyForm/SurveyForm.tsx";
-import { testimonialDefault64 } from "./assets/testimonialDefault64.js";
 import { removeQuotesFromKeys } from "./generalFunctions.ts";
+import { testimonialDefault64 } from "./assets/testimonialDefault64.js";
 import { FormBuilder as FormBuilderPackage } from "@shubham-chavda/react-custom-components";
-import { ToastContainer } from "react-toastify";
-import { callApi } from "./api.ts";
 import ListElement from "./ListElement/ListElement";
 import "react-toastify/dist/ReactToastify.css";
+import "react-multi-carousel/lib/styles.css";
+import "./FormBuilder.css";
 
 const dataArray = {
   1: [
@@ -466,14 +466,6 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
     "list",
   ];
   const invalidSubtypes = ["button", "submit_button"];
-  const surveyformElements = [
-    "survey_checkbox",
-    "survey_radio",
-    "longanswer",
-    "shortanswer",
-    "survey_image",
-    "survey_dropdown",
-  ];
 
   //code to create formData initialState from Input elements dynamically
   useEffect(() => {
@@ -515,44 +507,42 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
                 case "survey_radio":
                   setFormData((prev) => ({
                     ...prev,
-                    [obj?.properties?.name]: "",
+                    [obj?.id]: "",
                   }));
                   setInitialFormData((prev) => ({
                     ...prev,
-                    [obj?.properties?.name]: "",
+                    [obj?.id]: "",
                   }));
                   break;
                 case "survey_checkbox":
                 case "survey_image":
                   setFormData((prev) => ({
                     ...prev,
-                    [obj?.properties?.name]: [],
+                    [obj?.id]: [],
                   }));
                   setInitialFormData((prev) => ({
                     ...prev,
-                    [obj?.properties?.name]: [],
+                    [obj?.id]: [],
                   }));
                   break;
                 case "range":
                   setInitialFormData((prev) => ({
                     ...prev,
-                    [obj?.properties?.name]: 50,
+                    [obj?.id]: "",
                   }));
                   setFormData((prev) => ({
                     ...prev,
-                    [obj?.properties?.name]: 50,
+                    [obj?.id]: "",
                   }));
                   break;
                 case "survey_dropdown":
                   setFormData((prev) => ({
                     ...prev,
-                    [obj?.properties?.name]:
-                      obj?.properties?.optionDetails?.[0]?.value,
+                    [obj?.id]: "",
                   }));
                   setInitialFormData((prev) => ({
                     ...prev,
-                    [obj?.properties?.name]:
-                      obj?.properties?.optionDetails?.[0]?.value,
+                    [obj?.id]: "",
                   }));
                 default:
                   return null;
@@ -629,24 +619,51 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
       }));
     }
   };
+
+  const formDataHandleChange = (event, id, multipleFileUpload?) => {
+    const { name, value } = event?.target;
+    let updatedFiles: any;
+    if (name === "survey_image") {
+      const fileList = event.target.files;
+      if (multipleFileUpload) {
+        const existingFiles = formData[id] || []; // Get existing files from formData
+        updatedFiles = [...existingFiles]; // Copy existing files to updatedFiles
+      } else {
+        updatedFiles = [];
+      }
+      for (let i = 0; i < fileList.length; i++) {
+        const file = fileList[i];
+        const reader = new FileReader();
+        reader.onload = (e: any) => {
+          const dataURL = e.target.result;
+          updatedFiles.push({ name: file.name, dataURL });
+
+          // if (updatedFiles.length === fileList.length) {
+          setFormData((prevState) => ({
+            ...prevState,
+            [id]: updatedFiles,
+          }));
+          // }
+        };
+        reader.readAsDataURL(file);
+      }
+    } else {
+      setFormData((prevState) => ({
+        ...prevState,
+        [id]: value,
+      }));
+    }
+  };
+
   const handleValidate = () => {
     const newErrors = {};
     Object.keys(formData).forEach((key) => {
       const value = formData[key];
-      const isRequired = surveyformElements.includes(
-        data?.find((obj) => obj?.properties?.name === key)?.subType
-      )
-        ? data?.find((obj) => obj?.properties?.name === key)?.properties
-            ?.validation?.required
-        : data?.find((obj) => obj?.properties?.name === key)?.validation
-            ?.required;
-      const isMinLength = surveyformElements.includes(
-        data?.find((obj) => obj?.properties?.name === key)?.subType
-      )
-        ? data?.find((obj) => obj?.properties?.name === key)?.properties
-            ?.validation?.minLength
-        : data?.find((obj) => obj?.properties?.name === key)?.validation
-            ?.minLength;
+      const isRequired = data?.find((obj) => obj?.id === key)?.properties
+        ?.validation?.required;
+      const isMinLength = data?.find((obj) => obj?.id === key)?.properties
+        ?.validation?.minLength;
+
       if (isRequired) {
         function checkEmptyValue(value) {
           if (Array.isArray(value)) {
@@ -685,7 +702,7 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
       if (url) {
         callApi(url, formData, setFormData, initialFormData);
       } else {
-        window.alert(JSON.stringify(formData));
+        toast.success("Data saved successfully");
         setFormData(initialFormData);
       }
       setSubmitClicked(false);
@@ -848,17 +865,20 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
             ) : null;
           case "surveyform":
             return (
-              <SurveyForm
-                key={index}
-                handleSubmitFormData={handleSubmitFormData}
-                index={index}
-                handleRemoveFile={handleRemoveFile}
-                handleChange={handleChange}
-                formData={formData}
-                errors={errors}
-                subType={obj?.subType}
-                properties={obj?.properties}
-              />
+              <>
+                <SurveyForm
+                  key={index}
+                  index={index}
+                  queData={obj}
+                  handleSubmitFormData={handleSubmitFormData}
+                  handleRemoveFile={handleRemoveFile}
+                  handleChange={formDataHandleChange}
+                  formData={formData}
+                  errors={errors}
+                  subType={obj?.subType}
+                  properties={obj?.properties}
+                />
+              </>
             );
           case "template":
             return (
