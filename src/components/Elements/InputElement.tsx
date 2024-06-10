@@ -1,5 +1,4 @@
 import React from "react";
-import { removeKeyInObject } from "./utils/removeKeyInObject";
 
 const InputElement = (props) => {
   const inputTextStyle = {
@@ -36,10 +35,7 @@ const InputElement = (props) => {
         minLength={props?.minLength || null}
         maxLength={props?.maxLength || null}
         required={props?.required}
-        style={removeKeyInObject(props?.style, {
-          ...inputTextStyle,
-          ...inputContainerStyle,
-        })}
+        style={props?.style}
         onChange={props?.onChange}
         value={props?.value}
       />
