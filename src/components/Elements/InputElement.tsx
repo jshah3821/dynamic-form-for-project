@@ -1,4 +1,3 @@
-import React from "react";
 import { removeKeyInObject } from "./utils/removeKeyInObject";
 
 const InputElement = (props) => {
@@ -11,13 +10,14 @@ const InputElement = (props) => {
     textAlign: props?.style?.textAlign,
     textDecoration: props?.style?.textDecoration,
     textTransform: props?.style?.textTransform,
+    width: "100%",
   };
 
   const inputContainerStyle = {
-    marginTop: props?.style?.marginTop,
-    marginLeft: props?.style?.marginLeft,
-    marginRight: props?.style?.marginRight,
-    marginBottom: props?.style?.marginBottom,
+    // marginTop: props?.style?.marginTop,
+    // marginLeft: props?.style?.marginLeft,
+    // marginRight: props?.style?.marginRight,
+    // marginBottom: props?.style?.marginBottom,
   };
   return (
     <div className="inputContainer px1" style={inputContainerStyle}>

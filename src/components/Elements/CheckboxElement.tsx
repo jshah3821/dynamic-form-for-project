@@ -1,5 +1,3 @@
-import React from "react";
-
 const CheckboxElement = (props) => {
   const inputTextStyle = {
     color: props?.style?.color,
@@ -10,20 +8,64 @@ const CheckboxElement = (props) => {
     textAlign: props?.style?.textAlign,
     textDecoration: props?.style?.textDecoration,
     textTransform: props?.style?.textTransform,
+    display: "block",
+  };
+
+  console.log(" props?.style?.textAlign", props?.style?.textAlign);
+
+  //REMOVE BACKGROUND FROM THE CONTAINER
+
+  const conatinerStyle = {
+    backgroundColor: props?.style?.backgroundColor,
+    width: props?.style?.backgroundColor,
+  };
+
+  // add border to the checkbox =
+
+  let borderstyle = {
+    border: props?.style?.border,
+
+    borderWidth: props?.style?.borderWidth,
+    borderStyle: props?.style?.borderStyle,
+    borderColor: props?.style?.borderColor,
+    borderTopWidth: props?.style?.borderTopWidth,
+    borderTopStyle: props?.style?.borderTopStyle,
+    borderTopColor: props?.style?.borderTopColor,
+    borderRightWidth: props?.style?.borderRightWidth,
+    borderRightStyle: props?.style?.borderRightStyle,
+    borderRightColor: props?.style?.borderRightColor,
+    borderBottomWidth: props?.style?.borderBottomWidth,
+    borderBottomStyle: props?.style?.borderBottomStyle,
+    borderBottomColor: props?.style?.borderBottomColor,
+    borderLeftWidth: props?.style?.borderLeftWidth,
+    borderLeftStyle: props?.style?.borderLeftStyle,
+    borderLeftColor: props?.style?.borderLeftColor,
+    borderRadius: props?.style?.borderRadius,
+    borderTopLeftRadius: props?.style?.borderTopLeftRadius,
+    borderTopRightRadius: props?.style?.borderTopRightRadius,
+    borderBottomLeftRadius: props?.style?.borderBottomLeftRadius,
+    borderBottomRightRadius: props?.style?.borderBottomRightRadius,
   };
 
   return (
-    <div className="px1" style={props?.style}>
+    <div
+      className="px1"
+      // style={removeKeyInObject(props?.style, conatinerStyle)}
+    >
       <label className="input_label" style={inputTextStyle}>
         {props?.name ? props?.name : "Label"}
       </label>
       {props?.required && (
         <span style={{ color: "red", marginLeft: "1px" }}>*</span>
       )}
-      <div className="flex flex-row justify-start items-center radio_option_style">
+      <div
+        style={props?.style}
+        className="flex flex-row justify-start items-center radio_option_style"
+      >
         {props?.optionDetails?.map((option, index) => {
           return (
             <div
+              // style={removeKeyInObject(props?.style, borderstyle)}
               key={index}
               className="flex flex-row justify-start items-center"
             >
@@ -39,7 +81,7 @@ const CheckboxElement = (props) => {
               />
               <label
                 className="option_label_style"
-                style={inputTextStyle}
+                // style={inputTextStyle}
                 htmlFor={option.value + index}
               >
                 {option?.label}

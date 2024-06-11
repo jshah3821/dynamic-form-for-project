@@ -578,6 +578,11 @@ textarea {
   padding-left: 0.5rem !important;
   padding-right: 0.5rem !important;
 }
+
+.text-input {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
 .p2 {
   padding: 1rem !important;
 }
@@ -1152,6 +1157,7 @@ textarea {
 }
 .input_label {
   font-size: 12px;
+  font-synthesis: style;
 }
 .input_padding {
   margin-top: 4px;
@@ -1190,4 +1196,14 @@ textarea {
   background-color: #f6f6f6;
   outline: none;
   border: 1px solid #000;
+}
+
+.button-Border {
+  border: 1px solid #000;
+
+}
+
+.check-box-container {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 }
