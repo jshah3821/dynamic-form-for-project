@@ -109,9 +109,9 @@ const BannerElement = ({
         {/* Full-width images with number and caption text */}
         {slideDetails.map((element, index) => (
           <div className={`fade hide-slide mySlides${id}`} key={index}>
-            <div className="numbertext" style={BannerTextStyle}>{`${
-              index + 1
-            } / ${slideDetails.length}`}</div>
+            <div className="numbertext">{`${index + 1} / ${
+              slideDetails.length
+            }`}</div>
             <img
               style={{ objectFit: sliderStyle?.objectFit }}
               src={element["imageDetails"]["dataURL"]}
