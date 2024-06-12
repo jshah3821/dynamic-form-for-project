@@ -52,7 +52,7 @@ const FooterElement = ({ footerDetails, socialDetails, style }) => {
       <div className="flex justify-around left-align">
         {footerDetails?.map((section, sectionIndex) => (
           <div key={sectionIndex}>
-            <h3>{section?.title}</h3>
+            <h3 style={footersItemTextStyle}>{section?.title}</h3>
             <ul className="p0">
               {section?.links?.map((link, linkIndex) => (
                 <li
