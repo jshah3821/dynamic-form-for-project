@@ -33,7 +33,10 @@ const ListElement = ({ listData, key }) => {
       key={key}
     >
       <p style={listElementTitleStyle}>{label}</p>
-      <ul style={removeKeyInObject(listStyle, listItemTextStyle)}>
+      <ul
+        className="le_list_container"
+        style={removeKeyInObject(listStyle, listItemTextStyle)}
+      >
         {listItemDetails?.length > 0
           ? listItemDetails?.map((item, i) => {
               return (
