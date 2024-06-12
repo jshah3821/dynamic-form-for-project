@@ -91,15 +91,27 @@ const BannerElement = ({
     dots[slideIndex - 1].className += " active";
   }
 
+  const BannerTextStyle = {
+    backgroundColor: sliderStyle?.backgroundColor,
+    color: sliderStyle?.color,
+    fontSize: sliderStyle?.fontSize,
+    fontStyle: sliderStyle?.fontStyle,
+    fontFamily: sliderStyle?.fontFamily,
+    fontWeight: sliderStyle?.fontWeight,
+    textAlign: sliderStyle?.textAlign,
+    textDecoration: sliderStyle?.textDecoration,
+    textTransform: sliderStyle?.textTransform,
+  };
+
   return (
     <div className="parent-banner">
       <div className="slideshow-container" style={sliderStyle}>
         {/* Full-width images with number and caption text */}
         {slideDetails.map((element, index) => (
           <div className={`fade hide-slide mySlides${id}`} key={index}>
-            <div className="numbertext">{`${index + 1} / ${
-              slideDetails.length
-            }`}</div>
+            <div className="numbertext" style={BannerTextStyle}>{`${
+              index + 1
+            } / ${slideDetails.length}`}</div>
             <img
               style={{ objectFit: sliderStyle?.objectFit }}
               src={element["imageDetails"]["dataURL"]}
@@ -123,7 +135,7 @@ const BannerElement = ({
               }
                                 `}
             >
-              <span style={sliderStyle}>{element["caption"]}</span>
+              <span style={BannerTextStyle}>{element["caption"]}</span>
             </div>
           </div>
           // </div>
