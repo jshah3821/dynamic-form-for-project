@@ -1,8 +1,6 @@
 import { removeKeyInObject } from "./utils/removeKeyInObject";
 
 const TextboxElement = (props: any) => {
-  console.log("props?.style?.textAlign", props?.style?.textAlign);
-
   const inputTextStyle = {
     color: props?.style?.color,
     fontSize: props?.style?.fontSize,
