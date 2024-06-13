@@ -17,10 +17,14 @@ const TextboxElement = (props: any) => {
   };
 
   const inputContainerStyle = {
-    // marginTop: props?.style?.marginTop,
-    // marginLeft: props?.style?.marginLeft,
-    // marginRight: props?.style?.marginRight,
-    // marginBottom: props?.style?.marginBottom,
+    marginTop: props?.style?.marginTop,
+    marginLeft: props?.style?.marginLeft,
+    marginRight: props?.style?.marginRight,
+    marginBottom: props?.style?.marginBottom,
+    paddingTop: props?.style?.paddingTop,
+    paddingLeft: props?.style?.paddingLeft,
+    paddingRight: props?.style?.paddingRight,
+    paddingBottom: props?.style?.paddingBottom,
   };
   return (
     <div className="inputContainer px1" style={inputContainerStyle}>

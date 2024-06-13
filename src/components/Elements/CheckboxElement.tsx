@@ -1,3 +1,5 @@
+import { removeKeyInObject } from "./utils/removeKeyInObject";
+
 const CheckboxElement = (props) => {
   const inputTextStyle = {
     color: props?.style?.color,
@@ -24,7 +26,7 @@ const CheckboxElement = (props) => {
 
   let borderstyle = {
     border: props?.style?.border,
-
+    // borderRadius: props?.style?.borderRadius,
     borderWidth: props?.style?.borderWidth,
     borderStyle: props?.style?.borderStyle,
     borderColor: props?.style?.borderColor,
@@ -40,17 +42,39 @@ const CheckboxElement = (props) => {
     borderLeftWidth: props?.style?.borderLeftWidth,
     borderLeftStyle: props?.style?.borderLeftStyle,
     borderLeftColor: props?.style?.borderLeftColor,
-    borderRadius: props?.style?.borderRadius,
+
     borderTopLeftRadius: props?.style?.borderTopLeftRadius,
     borderTopRightRadius: props?.style?.borderTopRightRadius,
     borderBottomLeftRadius: props?.style?.borderBottomLeftRadius,
     borderBottomRightRadius: props?.style?.borderBottomRightRadius,
+    marginTop: props?.style?.marginTop,
+    marginLeft: props?.style?.marginLeft,
+    marginRight: props?.style?.marginRight,
+    marginBottom: props?.style?.marginBottom,
+    paddingTop: props?.style?.paddingTop,
+    paddingLeft: props?.style?.paddingLeft,
+    paddingRight: props?.style?.paddingRight,
+    paddingBottom: props?.style?.paddingBottom,
+  };
+
+  const spacingStyle = {
+    marginTop: props?.style?.marginTop,
+    marginLeft: props?.style?.marginLeft,
+    marginRight: props?.style?.marginRight,
+    marginBottom: props?.style?.marginBottom,
+    paddingTop: props?.style?.paddingTop,
+    paddingLeft: props?.style?.paddingLeft,
+    paddingRight: props?.style?.paddingRight,
+    paddingBottom: props?.style?.paddingBottom,
+
+    // width: props?.style?.backgroundColor,
   };
 
   return (
     <div
-      className="px1"
-      // style={removeKeyInObject(props?.style, conatinerStyle)}
+      // className="px1"
+
+      style={spacingStyle}
     >
       <label className="input_label" style={inputTextStyle}>
         {props?.name ? props?.name : "Label"}
@@ -59,15 +83,17 @@ const CheckboxElement = (props) => {
         <span style={{ color: "red", marginLeft: "1px" }}>*</span>
       )}
       <div
-        style={props?.style}
+        // style={props?.style}
+
+        style={removeKeyInObject(props?.style, spacingStyle)}
         className="flex flex-row justify-start items-center radio_option_style"
       >
         {props?.optionDetails?.map((option, index) => {
           return (
             <div
-              // style={removeKeyInObject(props?.style, borderstyle)}
+              style={removeKeyInObject(props?.style, borderstyle)}
               key={index}
-              className="flex flex-row justify-start items-center"
+              className=" flex flex-row justify-start items-center"
             >
               <input
                 className="option_radio"
@@ -81,7 +107,7 @@ const CheckboxElement = (props) => {
               />
               <label
                 className="option_label_style"
-                // style={inputTextStyle}
+                style={inputTextStyle}
                 htmlFor={option.value + index}
               >
                 {option?.label}

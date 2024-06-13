@@ -12,13 +12,33 @@ const SelectElement = (props) => {
     fontWeight: props?.style?.fontWeight,
     textDecoration: props?.style?.textDecoration,
     textTransform: props?.style?.textTransform,
+    direction: props?.style?.direction,
   };
 
   let selectstyle = {
     textAlign: props?.style?.textAlign,
+    marginTop: props?.style?.marginTop,
+    marginLeft: props?.style?.marginLeft,
+    marginRight: props?.style?.marginRight,
+    marginBottom: props?.style?.marginBottom,
+    paddingTop: props?.style?.paddingTop,
+    paddingLeft: props?.style?.paddingLeft,
+    paddingRight: props?.style?.paddingRight,
+    paddingBottom: props?.style?.paddingBottom,
+  };
+
+  const spacingStyle = {
+    marginTop: props?.style?.marginTop,
+    marginLeft: props?.style?.marginLeft,
+    marginRight: props?.style?.marginRight,
+    marginBottom: props?.style?.marginBottom,
+    paddingTop: props?.style?.paddingTop,
+    paddingLeft: props?.style?.paddingLeft,
+    paddingRight: props?.style?.paddingRight,
+    paddingBottom: props?.style?.paddingBottom,
   };
   return (
-    <div className="selectBoxContainer px1">
+    <div style={spacingStyle} className="selectBoxContainer">
       <label style={labelStyle}>{props?.label}</label>
       <select
         value={props?.value}

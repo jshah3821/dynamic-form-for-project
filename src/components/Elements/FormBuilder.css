@@ -59,8 +59,6 @@ p {
   font-size: 12px;
 }
 
-/* / end / */
-
 .inputContainer {
   display: flex;
   flex-direction: column;
@@ -579,6 +577,14 @@ textarea {
   padding-right: 0.5rem !important;
 }
 
+.checkbox-margin {
+  margin-left: 20px;
+}
+
+.text-area-container {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
 .text-input {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
@@ -1200,10 +1206,14 @@ textarea {
 
 .button-Border {
   border: 1px solid #000;
-
 }
 
 .check-box-container {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
+}
+
+.list-conatiner {
+  width: 100%;
+  list-style-position: inside;
 }
