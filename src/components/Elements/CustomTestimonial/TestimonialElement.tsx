@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import "./testimonialStyles.css";
 import "react-multi-carousel/lib/styles.css";
 import { testimonialDefault64 } from "../../Elements/assets/testimonialDefault64";
-
 const TestimonialElement = ({ testimonial, testimonialCardDetails }) => {
   const prevNextEnable =
     testimonial?.testimonialDetails?.nextPrvButtonAvailable;
@@ -53,7 +52,6 @@ const TestimonialElement = ({ testimonial, testimonialCardDetails }) => {
       startAutoplay();
     }
   }, [currentSlide]);
-
   return (
     <div className="testimonial-container" style={testimonial?.style}>
       <div>
@@ -73,10 +71,7 @@ const TestimonialElement = ({ testimonial, testimonialCardDetails }) => {
                   key={currentSlide + index}
                   style={testimonial?.testimonialCardStyles}
                 >
-                  <div
-                    className={`testimonial_inner_div_card`}
-                    style={testimonial?.testimonialCardStyles}
-                  >
+                  <div className={`testimonial_inner_div_card`}>
                     <div className="testimonial-content">
                       <div className="img-wrapper">
                         <img
