@@ -17,7 +17,7 @@ const CheckboxElement = (props) => {
 
   const conatinerStyle = {
     backgroundColor: props?.style?.backgroundColor,
-    width: props?.style?.backgroundColor,
+    width: props?.style?.width,
   };
 
   // add border to the checkbox =
@@ -53,6 +53,13 @@ const CheckboxElement = (props) => {
     paddingLeft: props?.style?.paddingLeft,
     paddingRight: props?.style?.paddingRight,
     paddingBottom: props?.style?.paddingBottom,
+
+    width: props?.style?.width,
+    height: props?.style?.width,
+    minWidth: props?.style?.minWidth,
+    minHeight: props?.style?.minHeight,
+    maxWidth: props?.style?.maxWidth,
+    maxHeight: props?.style?.maxHeight,
   };
 
   const spacingStyle = {
