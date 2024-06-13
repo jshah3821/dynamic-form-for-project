@@ -1,4 +1,4 @@
-import React from "react";
+import { removeKeyInObject } from "./utils/removeKeyInObject";
 
 const CheckboxElement = (props) => {
   const inputTextStyle = {
@@ -10,22 +10,92 @@ const CheckboxElement = (props) => {
     textAlign: props?.style?.textAlign,
     textDecoration: props?.style?.textDecoration,
     textTransform: props?.style?.textTransform,
+    display: "block",
+  };
+
+  //REMOVE BACKGROUND FROM THE CONTAINER
+
+  const conatinerStyle = {
+    backgroundColor: props?.style?.backgroundColor,
+    width: props?.style?.width,
+  };
+
+  // add border to the checkbox =
+
+  let borderstyle = {
+    border: props?.style?.border,
+    // borderRadius: props?.style?.borderRadius,
+    borderWidth: props?.style?.borderWidth,
+    borderStyle: props?.style?.borderStyle,
+    borderColor: props?.style?.borderColor,
+    borderTopWidth: props?.style?.borderTopWidth,
+    borderTopStyle: props?.style?.borderTopStyle,
+    borderTopColor: props?.style?.borderTopColor,
+    borderRightWidth: props?.style?.borderRightWidth,
+    borderRightStyle: props?.style?.borderRightStyle,
+    borderRightColor: props?.style?.borderRightColor,
+    borderBottomWidth: props?.style?.borderBottomWidth,
+    borderBottomStyle: props?.style?.borderBottomStyle,
+    borderBottomColor: props?.style?.borderBottomColor,
+    borderLeftWidth: props?.style?.borderLeftWidth,
+    borderLeftStyle: props?.style?.borderLeftStyle,
+    borderLeftColor: props?.style?.borderLeftColor,
+
+    borderTopLeftRadius: props?.style?.borderTopLeftRadius,
+    borderTopRightRadius: props?.style?.borderTopRightRadius,
+    borderBottomLeftRadius: props?.style?.borderBottomLeftRadius,
+    borderBottomRightRadius: props?.style?.borderBottomRightRadius,
+    marginTop: props?.style?.marginTop,
+    marginLeft: props?.style?.marginLeft,
+    marginRight: props?.style?.marginRight,
+    marginBottom: props?.style?.marginBottom,
+    paddingTop: props?.style?.paddingTop,
+    paddingLeft: props?.style?.paddingLeft,
+    paddingRight: props?.style?.paddingRight,
+    paddingBottom: props?.style?.paddingBottom,
+
+    width: props?.style?.width,
+    height: props?.style?.width,
+    minWidth: props?.style?.minWidth,
+    minHeight: props?.style?.minHeight,
+    maxWidth: props?.style?.maxWidth,
+    maxHeight: props?.style?.maxHeight,
+  };
+
+  const spacingStyle = {
+    marginTop: props?.style?.marginTop,
+    marginLeft: props?.style?.marginLeft,
+    marginRight: props?.style?.marginRight,
+    marginBottom: props?.style?.marginBottom,
+    paddingTop: props?.style?.paddingTop,
+    paddingLeft: props?.style?.paddingLeft,
+    paddingRight: props?.style?.paddingRight,
+    paddingBottom: props?.style?.paddingBottom,
+    direction: props?.style?.direction,
   };
 
   return (
-    <div className="px1" style={props?.style}>
+    <div
+      // className="px1"
+
+      style={spacingStyle}
+    >
       <label className="input_label" style={inputTextStyle}>
         {props?.name ? props?.name : "Label"}
       </label>
       {props?.required && (
         <span style={{ color: "red", marginLeft: "1px" }}>*</span>
       )}
-      <div className="flex flex-row justify-start items-center radio_option_style">
+      <div
+        style={removeKeyInObject(props?.style, spacingStyle)}
+        className="flex flex-row justify-start items-center radio_option_style"
+      >
         {props?.optionDetails?.map((option, index) => {
           return (
             <div
+              style={removeKeyInObject(props?.style, borderstyle)}
               key={index}
-              className="flex flex-row justify-start items-center"
+              className=" flex flex-row justify-start items-center"
             >
               <input
                 className="option_radio"
