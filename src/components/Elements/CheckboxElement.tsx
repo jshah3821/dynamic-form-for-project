@@ -66,6 +66,7 @@ const CheckboxElement = (props) => {
     paddingLeft: props?.style?.paddingLeft,
     paddingRight: props?.style?.paddingRight,
     paddingBottom: props?.style?.paddingBottom,
+    direction: props?.style?.direction,
 
     // width: props?.style?.backgroundColor,
   };

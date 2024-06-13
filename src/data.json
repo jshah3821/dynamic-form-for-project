@@ -1,24 +1,23 @@
 [
   {
     "selectionType": "form",
-    "id": "kNo7U_aCsLp-ghkBdFMd4",
+    "id": "IwtgR1lQCpOo_jAGR8Yhg",
     "type": "element",
-    "subType": "input",
+    "subType": "button",
     "properties": {
       "placeholder": "Placeholder",
-      "label": "Label",
-      "type": "Text",
+      "label": "Button",
+      "type": "submit",
       "callURL": "",
-      "name": "Name",
+      "name": "",
       "option": []
     },
-    "validation": { "minLength": null, "maxLength": null, "required": false },
     "style": {
       "backgroundColor": "",
       "fontSize": "",
       "color": "",
       "height": "200%",
-      "width": "",
+      "width": "200px",
       "borderWidth": "",
       "borderRadius": "",
       "borderColor": "",
@@ -27,8 +26,7 @@
       "fontStyle": "",
       "fontFamily": "",
       "fontWeight": "",
-      "textAlign": "left",
-      "lineHeight": "",
+      "textAlign": "center",
       "textDecoration": "",
       "textTransform": "",
       "ratio": "",
@@ -55,7 +53,7 @@
       "borderTopRightRadius": "",
       "borderBottomLeftRadius": "",
       "borderBottomRightRadius": "",
-      "direction": "rtl"
+      "direction": "ltr"
     },
     "formId": null,
     "surveyFormId": null,

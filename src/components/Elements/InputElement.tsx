@@ -34,6 +34,7 @@ const InputElement = (props) => {
     paddingLeft: props?.style?.paddingLeft,
     paddingRight: props?.style?.paddingRight,
     paddingBottom: props?.style?.paddingBottom,
+    direction: props?.style?.direction,
   };
   return (
     <div className="inputContainer " style={spacingStyle}>
