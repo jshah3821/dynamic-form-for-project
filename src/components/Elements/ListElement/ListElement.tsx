@@ -35,7 +35,7 @@ const ListElement = ({ listData, key }) => {
     >
       <p style={listElementTitleStyle}>{label}</p>
       <ul
-        className="le_list_container"
+        className="list-conatiner"
         style={removeKeyInObject(listStyle, listItemTextStyle)}
       >
         {listItemDetails?.length > 0
