@@ -10,9 +10,10 @@ const ListElement = ({ listData, key }) => {
     fontStyle: style?.fontStyle,
     fontFamily: style?.fontFamily,
     fontWeight: style?.fontWeight,
-    textAlign: style?.textAlign,
+    // textAlign: style?.textAlign,
     textDecoration: style?.textDecoration,
     textTransform: style?.textTransform,
+    width: "100%",
   };
 
   const listItemTextStyle = {
@@ -21,7 +22,7 @@ const ListElement = ({ listData, key }) => {
     fontStyle: listStyle?.fontStyle,
     fontFamily: listStyle?.fontFamily,
     fontWeight: listStyle?.fontWeight,
-    textAlign: listStyle?.textAlign,
+    // textAlign: listStyle?.textAlign,
     textDecoration: listStyle?.textDecoration,
     textTransform: listStyle?.textTransform,
   };
