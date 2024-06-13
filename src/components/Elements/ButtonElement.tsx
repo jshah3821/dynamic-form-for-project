@@ -1,10 +1,13 @@
-import React from "react";
-
 const ButtonElement = (props: any) => {
+  const directionStyle = {
+    direction: props?.style?.direction,
+  };
   return (
-    <div className="px1">
+    <div style={directionStyle} className="px1">
       <button
-        // className={`height-button form_button_css_updated`}
+        // className={"button-Border"}
+        className={`height-button form_button_css_updated`}
+        //* keep it for reference
         style={props?.style}
         onClick={props?.onClick}
         disabled={props?.disabled}

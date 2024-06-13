@@ -1,4 +1,3 @@
-import React from "react";
 import { removeKeyInObject } from "./utils/removeKeyInObject";
 
 const InputElement = (props) => {
@@ -9,8 +8,10 @@ const InputElement = (props) => {
     fontFamily: props?.style?.fontFamily,
     fontWeight: props?.style?.fontWeight,
     textAlign: props?.style?.textAlign,
+    direction: props?.style?.direction,
     textDecoration: props?.style?.textDecoration,
     textTransform: props?.style?.textTransform,
+    width: "100%",
   };
 
   const inputContainerStyle = {
@@ -18,9 +19,25 @@ const InputElement = (props) => {
     marginLeft: props?.style?.marginLeft,
     marginRight: props?.style?.marginRight,
     marginBottom: props?.style?.marginBottom,
+    paddingTop: props?.style?.paddingTop,
+    paddingLeft: props?.style?.paddingLeft,
+    paddingRight: props?.style?.paddingRight,
+    paddingBottom: props?.style?.paddingBottom,
+  };
+
+  const spacingStyle = {
+    marginTop: props?.style?.marginTop,
+    marginLeft: props?.style?.marginLeft,
+    marginRight: props?.style?.marginRight,
+    marginBottom: props?.style?.marginBottom,
+    paddingTop: props?.style?.paddingTop,
+    paddingLeft: props?.style?.paddingLeft,
+    paddingRight: props?.style?.paddingRight,
+    paddingBottom: props?.style?.paddingBottom,
+    direction: props?.style?.direction,
   };
   return (
-    <div className="inputContainer px1" style={inputContainerStyle}>
+    <div className="inputContainer " style={spacingStyle}>
       <label style={inputTextStyle} htmlFor={props?.id}>
         {props?.label ? props?.label : "Label"}
         {props?.required && (
