@@ -13,8 +13,6 @@ const CheckboxElement = (props) => {
     display: "block",
   };
 
-  console.log(" props?.style?.textAlign", props?.style?.textAlign);
-
   //REMOVE BACKGROUND FROM THE CONTAINER
 
   const conatinerStyle = {
@@ -67,8 +65,6 @@ const CheckboxElement = (props) => {
     paddingRight: props?.style?.paddingRight,
     paddingBottom: props?.style?.paddingBottom,
     direction: props?.style?.direction,
-
-    // width: props?.style?.backgroundColor,
   };
 
   return (
@@ -84,8 +80,6 @@ const CheckboxElement = (props) => {
         <span style={{ color: "red", marginLeft: "1px" }}>*</span>
       )}
       <div
-        // style={props?.style}
-
         style={removeKeyInObject(props?.style, spacingStyle)}
         className="flex flex-row justify-start items-center radio_option_style"
       >
