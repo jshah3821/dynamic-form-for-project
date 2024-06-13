@@ -29,6 +29,9 @@ const TextboxElement = (props: any) => {
     <div className="inputContainer px1" style={inputContainerStyle}>
       <label style={inputTextStyle} htmlFor={props?.id}>
         {props?.label ? props?.label : "Label"}
+        {props?.required && (
+          <span style={{ color: "red", marginLeft: "1px" }}>*</span>
+        )}
       </label>
 
       <textarea

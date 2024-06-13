@@ -779,7 +779,7 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
                     required={obj?.validation?.required}
                     key={index}
                     label={obj?.properties?.label}
-                    options={obj?.properties?.options}
+                    options={obj?.properties?.optionDetails}
                     style={obj?.style}
                     value={formData[obj?.properties?.name] || ""}
                     onChange={(e) =>
@@ -830,7 +830,7 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
                     errors={errors}
                     key={index}
                     id={index}
-                    name={obj?.properties?.name}
+                    name={obj?.properties?.label}
                     style={obj?.style}
                     formData={formData}
                     handleChange={handleChange}
@@ -853,7 +853,7 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
               case "text":
                 return (
                   <p key={index} style={obj?.style}>
-                    {obj?.text || "Please add relevant label"}
+                    {obj?.properties?.text || "Please add relevant label"}
                   </p>
                 );
               default:

@@ -66,7 +66,6 @@ const CheckboxElement = (props) => {
     paddingBottom: props?.style?.paddingBottom,
     direction: props?.style?.direction,
   };
-
   return (
     <div
       // className="px1"
@@ -75,10 +74,10 @@ const CheckboxElement = (props) => {
     >
       <label className="input_label" style={inputTextStyle}>
         {props?.name ? props?.name : "Label"}
+        {props?.required && (
+          <span style={{ color: "red", marginLeft: "1px" }}>*</span>
+        )}
       </label>
-      {props?.required && (
-        <span style={{ color: "red", marginLeft: "1px" }}>*</span>
-      )}
       <div
         style={removeKeyInObject(props?.style, spacingStyle)}
         className="flex flex-row justify-start items-center radio_option_style"

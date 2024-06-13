@@ -1,8 +1,6 @@
 import { removeKeyInObject } from "./utils/removeKeyInObject";
 
 const SelectElement = (props) => {
- 
-
   let labelStyle = {
     textAlign: props?.style?.textAlign,
     fontSize: props?.style?.fontSize,
@@ -39,7 +37,12 @@ const SelectElement = (props) => {
   };
   return (
     <div style={spacingStyle} className="selectBoxContainer">
-      <label style={labelStyle}>{props?.label}</label>
+      <label className="input_label" style={labelStyle}>
+        {props?.label ? props?.label : "Label"}
+        {props?.required && (
+          <span style={{ color: "red", marginLeft: "1px" }}>*</span>
+        )}
+      </label>
       <select
         value={props?.value}
         onChange={props?.onChange}
