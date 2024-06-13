@@ -183,3 +183,11 @@ input[type="range"] {
   pointer-events: none;
   z-index: 1;
 }
+
+.sf_dropdown {
+  width: 100%;
+}
+
+.sf_checkbox {
+  margin-right: 10px;
+}

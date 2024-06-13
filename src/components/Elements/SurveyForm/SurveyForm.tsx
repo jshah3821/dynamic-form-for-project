@@ -134,7 +134,7 @@ const SurveyForm = ({
                 name={"survey_dropdown"}
                 value={formData[fieldId] || ""}
                 onChange={(e) => handleChange(e, fieldId)}
-                className="fluid"
+                className="sf_dropdown"
                 style={properties?.answer_style}
               >
                 <option key="" value="">
@@ -183,15 +183,13 @@ const SurveyForm = ({
             </div>
           )}
           {subType === "survey_checkbox" && (
-            <div
-              className="flex flex-row justify-start items-center radio_option_style"
-              style={properties?.answer_style}
-            >
+            <div className="flex flex-row justify-start items-center radio_option_style">
               {properties?.optionDetails?.map((option, index) => {
                 return (
                   <div
                     key={index}
-                    className="flex flex-row justify-start items-center"
+                    className="flex flex-row justify-start items-center sf_checkbox"
+                    style={properties?.answer_style}
                   >
                     <input
                       className="option_radio"
