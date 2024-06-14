@@ -72,13 +72,15 @@ const CheckboxElement = (props) => {
     paddingRight: props?.style?.paddingRight,
     paddingBottom: props?.style?.paddingBottom,
     direction: props?.style?.direction,
+    width: props?.style?.width,
+    height: props?.style?.height,
+    minWidth: props?.style?.minWidth,
+    minHeight: props?.style?.minHeight,
+    maxWidth: props?.style?.maxWidth,
+    maxHeight: props?.style?.maxHeight,
   };
   return (
-    <div
-      // className="px1"
-
-      style={spacingStyle}
-    >
+    <div style={spacingStyle}>
       <label className="input_label" style={inputTextStyle}>
         {props?.name ? props?.name : "Label"}
         {props?.required && (
@@ -87,7 +89,7 @@ const CheckboxElement = (props) => {
       </label>
       <div
         style={removeKeyInObject(props?.style, spacingStyle)}
-        className="flex flex-row justify-start items-center radio_option_style"
+        className="flex flex-row justify-start items-center radio_option_style checkbox_container"
       >
         {props?.optionDetails?.map((option, index) => {
           return (

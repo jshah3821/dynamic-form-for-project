@@ -592,9 +592,15 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
         reader.readAsDataURL(file);
       }
     } else if (name === "checkbox" || name === "survey_checkbox") {
+      let tempData = [...formData[id]];
+      if (tempData.find((data) => data === value)) {
+        tempData = tempData.filter((data) => data !== value);
+      } else {
+        tempData.push(value);
+      }
       setFormData((prevState) => ({
         ...prevState,
-        [id]: [...formData[id], value],
+        [id]: tempData,
       }));
     } else {
       setFormData((prevState) => ({

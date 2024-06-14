@@ -19,8 +19,8 @@ function App() {
   }
   return (
     <>
-      <FormBuilder jsonData={removeQuotesFromKeys(json)} />
-      {/* <PageBuilder jsonData={removeQuotesFromKeys(json)} /> */}
+      {/* <FormBuilder jsonData={removeQuotesFromKeys(json)} /> */}
+      <PageBuilder jsonData={removeQuotesFromKeys(json)} />
     </>
   );
 }

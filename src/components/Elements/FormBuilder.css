@@ -54,16 +54,23 @@ p {
   font-size: 12px;
 }
 
-.inputContainer {
+.form_inputContainer {
+  margin-bottom: 10px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  margin-bottom: 10px;
 }
 .radioContainer {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+}
+
+.form_input_placeholder::placeholder {
+  color: var(--placeholder-color);
+}
+
+.checkbox_container {
+  padding: 0 0.5rem;
 }
 
 .p3 {

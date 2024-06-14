@@ -23,6 +23,12 @@ const SelectElement = (props) => {
     paddingLeft: props?.style?.paddingLeft,
     paddingRight: props?.style?.paddingRight,
     paddingBottom: props?.style?.paddingBottom,
+    width: props?.style?.width,
+    height: props?.style?.height,
+    minWidth: props?.style?.minWidth,
+    minHeight: props?.style?.minHeight,
+    maxWidth: props?.style?.maxWidth,
+    maxHeight: props?.style?.maxHeight,
   };
 
   const spacingStyle = {
@@ -34,6 +40,12 @@ const SelectElement = (props) => {
     paddingLeft: props?.style?.paddingLeft,
     paddingRight: props?.style?.paddingRight,
     paddingBottom: props?.style?.paddingBottom,
+    width: props?.style?.width,
+    height: props?.style?.height,
+    minWidth: props?.style?.minWidth,
+    minHeight: props?.style?.minHeight,
+    maxWidth: props?.style?.maxWidth,
+    maxHeight: props?.style?.maxHeight,
   };
   return (
     <div style={spacingStyle} className="selectBoxContainer">
