@@ -66,7 +66,9 @@ const SelectElement = (props) => {
             color: "red",
           }}
         >
-          {props?.label} is required.
+          {props?.errors?.[props?.name] === true
+            ? `This field is required.`
+            : props?.errors?.[props?.name]}
         </p>
       )}
     </div>

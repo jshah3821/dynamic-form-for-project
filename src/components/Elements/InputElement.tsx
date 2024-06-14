@@ -60,17 +60,17 @@ const InputElement = (props) => {
         onChange={props?.onChange}
         value={props?.value}
       />
-      {(props?.required || props?.errors?.[props?.name]) && (
+      {(props?.required || props?.errors?.[props?.obj?.id]) && (
         <p
           style={{
-            visibility: props?.errors?.[props?.name] ? "visible" : "hidden",
+            visibility: props?.errors?.[props?.obj?.id] ? "visible" : "hidden",
             fontSize: "10px",
             color: "red",
           }}
         >
-          {props?.errors?.[props?.name] === true
-            ? `${props?.label || props?.name} is required.`
-            : props?.errors?.[props?.name]}
+          {props?.errors?.[props?.obj?.id] === true
+            ? `This field is required.`
+            : props?.errors?.[props?.obj?.id]}
         </p>
       )}
     </div>

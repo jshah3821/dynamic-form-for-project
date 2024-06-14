@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
-import { callApi } from "./api.ts";
+import { callApi } from "./api";
 import InputElement from "./InputElement";
 import ButtonElement from "./ButtonElement";
 import SelectElement from "./SelectElement";
 import RadioElement from "./RadioElement";
 import TextboxElement from "./TextboxElement";
 import CheckboxElement from "./CheckboxElement";
-import SurveyForm from "./SurveyForm/SurveyForm.tsx";
-import { removeQuotesFromKeys } from "./generalFunctions.ts";
+import SurveyForm from "./SurveyForm/SurveyForm";
+import { removeQuotesFromKeys } from "./generalFunctions";
 import { testimonialDefault64 } from "./assets/testimonialDefault64.js";
 import { FormBuilder as FormBuilderPackage } from "@shubham-chavda/react-custom-components";
 import ListElement from "./ListElement/ListElement";
@@ -480,21 +480,21 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
                 case "textarea":
                   setFormData((prev) => ({
                     ...prev,
-                    [obj?.properties?.name]: "",
+                    [obj?.id]: "",
                   }));
                   setInitialFormData((prev) => ({
                     ...prev,
-                    [obj?.properties?.name]: "",
+                    [obj?.id]: "",
                   }));
                   break;
                 case "checkbox":
                   setFormData((prev) => ({
                     ...prev,
-                    [obj?.properties?.name]: [],
+                    [obj?.id]: [],
                   }));
                   setInitialFormData((prev) => ({
                     ...prev,
-                    [obj?.properties?.name]: [],
+                    [obj?.id]: [],
                   }));
                   break;
                 default:
@@ -564,62 +564,6 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
     }));
   };
 
-  const handleChange = (event, id, checkbox, multipleFileUpload?) => {
-    let updatedFiles: any;
-    if (checkbox === "file") {
-      const fileList = event.target.files;
-      if (multipleFileUpload) {
-        const existingFiles = formData[id] || []; // Get existing files from formData
-        updatedFiles = [...existingFiles]; // Copy existing files to updatedFiles
-      } else {
-        updatedFiles = [];
-      }
-      for (let i = 0; i < fileList.length; i++) {
-        const file = fileList[i];
-        const reader = new FileReader();
-        reader.onload = (e: any) => {
-          const dataURL = e.target.result;
-          updatedFiles.push({ name: file.name, dataURL });
-
-          // if (updatedFiles.length === fileList.length) {
-          setFormData((prevState) => ({
-            ...prevState,
-            [id]: updatedFiles,
-          }));
-          // }
-        };
-        reader.readAsDataURL(file);
-      }
-    } else if (checkbox) {
-      const { checked, value } = event.target;
-      if (checked) {
-        if (formData[id]) {
-          setFormData((prevState) => ({
-            ...prevState,
-            [id]: [...formData[id], value],
-          }));
-        } else {
-          setFormData((prevState) => ({
-            ...prevState,
-            [id]: [value],
-          }));
-        }
-        // Add to selected options
-      } else {
-        setFormData((prevState) => ({
-          ...prevState,
-          [id]: formData[id].filter((option) => option !== value),
-        })); // Remove from selected options
-      }
-    } else {
-      const { value } = event.target;
-      setFormData((prevState) => ({
-        ...prevState,
-        [id]: value,
-      }));
-    }
-  };
-
   const formDataHandleChange = (event, id, multipleFileUpload?) => {
     const { name, value } = event?.target;
     let updatedFiles: any;
@@ -647,6 +591,11 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
         };
         reader.readAsDataURL(file);
       }
+    } else if (name === "checkbox" || name === "survey_checkbox") {
+      setFormData((prevState) => ({
+        ...prevState,
+        [id]: [...formData[id], value],
+      }));
     } else {
       setFormData((prevState) => ({
         ...prevState,
@@ -659,12 +608,15 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
     const newErrors = {};
     Object.keys(formData).forEach((key) => {
       const value = formData[key];
-      const isRequired = data?.find((obj) => obj?.id === key)?.properties
-        ?.validation?.required;
-      const isMinLength = data?.find((obj) => obj?.id === key)?.properties
-        ?.validation?.minLength;
+      const dataField = data?.find((obj) => obj?.id === key);
+      const isMinLength =
+        dataField?.properties?.validation?.minLength ||
+        dataField?.validation?.minLength;
 
-      if (isRequired) {
+      if (
+        dataField?.properties?.validation?.required ||
+        dataField?.validation?.required
+      ) {
         function checkEmptyValue(value) {
           if (Array.isArray(value)) {
             return value.length === 0 ? false : true; // Empty Array
@@ -682,7 +634,7 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
         value?.trim()?.length < isMinLength
           ? newErrors[key]
             ? true
-            : (newErrors[key] = `minimum ${isMinLength} characters required.`)
+            : (newErrors[key] = `Minimum ${isMinLength} characters required.`)
           : false;
       }
     });
@@ -710,7 +662,7 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
   };
 
   return data?.length > 0 ? (
-    <div className="mainFormContainer">
+    <div className="fb_container">
       <ToastContainer
         position="top-center"
         autoClose={2000}
@@ -734,6 +686,7 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
                     <InputElement
                       errors={errors}
                       key={index}
+                      obj={obj}
                       name={obj?.properties?.name}
                       id={index}
                       type={obj?.properties?.type}
@@ -743,19 +696,8 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
                       minLength={obj?.validation?.minLength}
                       maxLength={obj?.validation?.maxLength}
                       required={obj?.validation?.required}
-                      value={formData[obj?.properties?.name] || ""}
-                      onChange={(e) => {
-                        if (
-                          obj?.properties?.type === "number" &&
-                          obj?.validation?.maxLength
-                        ) {
-                          e.target.value?.trim()?.length <=
-                            obj?.validation?.maxLength &&
-                            handleChange(e, obj?.properties?.name, false);
-                        } else {
-                          handleChange(e, obj?.properties?.name, false);
-                        }
-                      }}
+                      value={formData[obj?.id] || ""}
+                      onChange={(e) => formDataHandleChange(e, obj?.id)}
                     />
                   </>
                 );
@@ -775,16 +717,14 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
                 return (
                   <SelectElement
                     errors={errors}
-                    name={obj?.properties?.name}
+                    name={obj?.id}
                     required={obj?.validation?.required}
                     key={index}
                     label={obj?.properties?.label}
                     options={obj?.properties?.optionDetails}
                     style={obj?.style}
-                    value={formData[obj?.properties?.name] || ""}
-                    onChange={(e) =>
-                      handleChange(e, obj?.properties?.name, false)
-                    }
+                    value={formData[obj?.id] || ""}
+                    onChange={(e) => formDataHandleChange(e, obj?.id)}
                   />
                 );
               case "radio":
@@ -792,15 +732,14 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
                   <RadioElement
                     errors={errors}
                     key={index}
+                    obj={obj}
                     name={obj?.properties?.name}
                     required={obj?.validation?.required}
                     label={obj?.properties?.label}
                     options={obj?.properties?.options}
                     style={obj?.style}
                     data={formData[obj?.properties?.name] || ""}
-                    onChange={(e) =>
-                      handleChange(e, obj?.properties?.name, false)
-                    }
+                    onChange={(e) => formDataHandleChange(e, obj?.id)}
                   />
                 );
               case "textarea":
@@ -809,6 +748,7 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
                     errors={errors}
                     key={index}
                     id={index}
+                    obj={obj}
                     name={obj?.properties?.name}
                     required={obj?.validation?.required}
                     rows={obj?.properties?.rows}
@@ -817,10 +757,8 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
                     minLength={obj?.validation?.minLength}
                     maxLength={obj?.validation?.maxLength}
                     style={obj?.style}
-                    value={formData[obj?.properties?.name] || ""}
-                    onChange={(e) =>
-                      handleChange(e, obj?.properties?.name, false)
-                    }
+                    value={formData[obj?.id] || ""}
+                    onChange={(e) => formDataHandleChange(e, obj?.id)}
                   />
                 );
               case "checkbox":
@@ -830,10 +768,11 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
                     errors={errors}
                     key={index}
                     id={index}
+                    obj={obj}
                     name={obj?.properties?.label}
                     style={obj?.style}
                     formData={formData}
-                    handleChange={handleChange}
+                    onChange={(e) => formDataHandleChange(e, obj?.id)}
                     required={obj?.validation?.required}
                   />
                 );
@@ -852,7 +791,7 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
                 );
               case "text":
                 return (
-                  <p key={index} style={obj?.style}>
+                  <p key={index} style={obj?.style} className="fp_text">
                     {obj?.properties?.text || "Please add relevant label"}
                   </p>
                 );

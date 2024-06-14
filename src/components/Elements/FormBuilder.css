@@ -16,7 +16,7 @@ p {
 }
 
 /* current change start*/
-.mainFormContainer {
+.fb_container {
   border: 1px solid #c0c0c094;
   border-radius: 6px;
   line-height: 20px;
@@ -25,7 +25,7 @@ p {
   padding: 1rem;
 }
 
-.mainFormContainer .checkbox {
+.fb_container .checkbox {
   display: inline-block;
   margin: 0 0 0px 9px !important;
   position: relative;
@@ -37,15 +37,11 @@ p {
   margin-bottom: 8px;
 }
 
-.mainFormContainer p {
-  padding: 10px;
-}
-
-.mainFormContainer button {
+.fb_container button {
   margin: 10px 0;
 }
 
-.mainFormContainer .checkbox-label {
+.fb_container .checkbox-label {
   position: relative;
   top: 5px;
 }
@@ -79,6 +75,10 @@ p {
 }
 .p5 {
   padding: 5rem;
+}
+
+.fp_text {
+  padding: 10px 0px;
 }
 
 input[type="text"],
