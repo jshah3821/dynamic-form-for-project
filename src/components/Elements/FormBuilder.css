@@ -1197,7 +1197,7 @@ textarea {
     border-radius: 5px;
   }
 }
-.height-button {
+.form_btn {
   height: unset;
   min-height: 40px;
   border-radius: 6px;
