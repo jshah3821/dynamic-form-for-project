@@ -10,7 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@shubham-chavda/react-custom-components": "file:shubham-chavda-react-custom-components-v1.0.63.tgz",
+    "@shubham-chavda/react-custom-components": "file:shubham-chavda-react-custom-components-v1.0.66.tgz",
     "axios": "^1.6.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
