@@ -27,16 +27,51 @@ const ListElement = ({ listData, key }) => {
     textTransform: listStyle?.textTransform,
   };
 
+  const listUnorderedStyle = {
+    color: listStyle?.color,
+    fontSize: listStyle?.fontSize,
+    fontStyle: listStyle?.fontStyle,
+    fontFamily: listStyle?.fontFamily,
+    fontWeight: listStyle?.fontWeight,
+    // textAlign: listStyle?.textAlign,
+    textDecoration: listStyle?.textDecoration,
+    textTransform: listStyle?.textTransform,
+    marginTop: listStyle?.marginTop,
+    marginLeft: listStyle?.marginLeft,
+    marginRight: listStyle?.marginRight,
+    marginBottom: listStyle?.marginBottom,
+    paddingTop: listStyle?.paddingTop,
+    paddingLeft: listStyle?.paddingLeft,
+    paddingRight: listStyle?.paddingRight,
+    paddingBottom: listStyle?.paddingBottom,
+    direction: listStyle?.direction,
+  };
+  const listContainer = {
+    marginTop: listStyle?.marginTop,
+    marginLeft: listStyle?.marginLeft,
+    marginRight: listStyle?.marginRight,
+    marginBottom: listStyle?.marginBottom,
+    paddingTop: listStyle?.paddingTop,
+    paddingLeft: listStyle?.paddingLeft,
+    paddingRight: listStyle?.paddingRight,
+    paddingBottom: listStyle?.paddingBottom,
+    direction: listStyle?.direction,
+  };
+
+  console.log("listContainer", listContainer);
+
   return (
     <div
       className="le_container"
-      style={removeKeyInObject(style, listElementTitleStyle)}
+      // style={removeKeyInObject(style, listElementTitleStyle)}
+
+      style={listContainer}
       key={key}
     >
       <p style={listElementTitleStyle}>{label}</p>
       <ul
         className="list-conatiner"
-        style={removeKeyInObject(listStyle, listItemTextStyle)}
+        style={removeKeyInObject(listStyle, listUnorderedStyle)}
       >
         {listItemDetails?.length > 0
           ? listItemDetails?.map((item, i) => {
