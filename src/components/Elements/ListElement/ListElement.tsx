@@ -14,6 +14,7 @@ const ListElement = ({ listData, key }) => {
     textDecoration: style?.textDecoration,
     textTransform: style?.textTransform,
     width: "100%",
+    direction: style?.direction,
   };
 
   const listItemTextStyle = {
@@ -28,14 +29,14 @@ const ListElement = ({ listData, key }) => {
   };
 
   const listUnorderedStyle = {
-    color: listStyle?.color,
-    fontSize: listStyle?.fontSize,
-    fontStyle: listStyle?.fontStyle,
-    fontFamily: listStyle?.fontFamily,
-    fontWeight: listStyle?.fontWeight,
+    // color: listStyle?.color,
+    // fontSize: listStyle?.fontSize,
+    // fontStyle: listStyle?.fontStyle,
+    // fontFamily: listStyle?.fontFamily,
+    // fontWeight: listStyle?.fontWeight,
 
-    textDecoration: listStyle?.textDecoration,
-    textTransform: listStyle?.textTransform,
+    // textDecoration: listStyle?.textDecoration,
+    // textTransform: listStyle?.textTransform,
     marginTop: listStyle?.marginTop,
     marginLeft: listStyle?.marginLeft,
     marginRight: listStyle?.marginRight,
@@ -44,7 +45,6 @@ const ListElement = ({ listData, key }) => {
     paddingLeft: listStyle?.paddingLeft,
     paddingRight: listStyle?.paddingRight,
     paddingBottom: listStyle?.paddingBottom,
-    direction: listStyle?.direction,
   };
   const listContainer = {
     marginTop: listStyle?.marginTop,
@@ -55,11 +55,37 @@ const ListElement = ({ listData, key }) => {
     paddingLeft: listStyle?.paddingLeft,
     paddingRight: listStyle?.paddingRight,
     paddingBottom: listStyle?.paddingBottom,
+    height: style?.height,
+    width: style?.width,
+    ratio: style?.ratio,
+    minWidth: style?.minWidth,
+    minHeight: style?.minHeight,
+    maxWidth: style?.maxWidth,
+    maxHeight: style?.maxHeight,
+    textAlign: style?.textAlign,
+    border: style?.border,
+    borderWidth: style?.borderWidth,
+    borderStyle: style?.borderStyle,
+    borderColor: style?.borderColor,
+    borderTopWidth: style?.borderTopWidth,
+    borderTopStyle: style?.borderTopStyle,
+    borderTopColor: style?.borderTopColor,
+    borderRightWidth: style?.borderRightWidth,
+    borderRightStyle: style?.borderRightStyle,
+    borderRightColor: style?.borderRightColor,
+    borderBottomWidth: style?.borderBottomWidth,
+    borderBottomStyle: style?.borderBottomStyle,
+    borderBottomColor: style?.borderBottomColor,
+    borderLeftWidth: style?.borderLeftWidth,
+    borderLeftStyle: style?.borderLeftStyle,
+    borderLeftColor: style?.borderLeftColor,
+    borderTopLeftRadius: style?.borderTopLeftRadius,
+    borderTopRightRadius: style?.borderTopRightRadius,
+    borderBottomLeftRadius: style?.borderBottomLeftRadius,
+    borderBottomRightRadius: style?.borderBottomRightRadius,
+    backgroundColor: style?.backgroundColor,
     direction: listStyle?.direction,
-    textAlign: listStyle?.textAlign,
   };
-
-  console.log("listContainer", listContainer);
 
   return (
     <div
