@@ -33,7 +33,6 @@ const ListElement = ({ listData, key }) => {
     fontStyle: listStyle?.fontStyle,
     fontFamily: listStyle?.fontFamily,
     fontWeight: listStyle?.fontWeight,
-
     textDecoration: listStyle?.textDecoration,
     textTransform: listStyle?.textTransform,
     marginTop: listStyle?.marginTop,
