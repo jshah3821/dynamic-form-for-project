@@ -113,7 +113,10 @@ const BannerElement = ({
               slideDetails.length
             }`}</div>
             <img
-              style={{ objectFit: sliderStyle?.objectFit }}
+              style={{
+                objectFit: sliderStyle?.objectFit,
+                borderRadius: sliderStyle?.borderRadius,
+              }}
               src={element["imageDetails"]["dataURL"]}
               className="banner-img"
               alt={`Slide ${index + 1}`}
