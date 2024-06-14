@@ -56,6 +56,7 @@ const ListElement = ({ listData, key }) => {
     paddingRight: listStyle?.paddingRight,
     paddingBottom: listStyle?.paddingBottom,
     direction: listStyle?.direction,
+    textAlign: listStyle?.textAlign,
   };
 
   console.log("listContainer", listContainer);
@@ -64,7 +65,6 @@ const ListElement = ({ listData, key }) => {
     <div
       className="le_container"
       // style={removeKeyInObject(style, listElementTitleStyle)}
-
       style={listContainer}
       key={key}
     >
