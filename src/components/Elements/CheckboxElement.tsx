@@ -23,6 +23,15 @@ const CheckboxElement = (props) => {
   // add border to the checkbox =
 
   let borderstyle = {
+    color: props?.style?.color,
+    fontSize: props?.style?.fontSize,
+    fontStyle: props?.style?.fontStyle,
+    fontFamily: props?.style?.fontFamily,
+    fontWeight: props?.style?.fontWeight,
+    textAlign: props?.style?.textAlign,
+    textDecoration: props?.style?.textDecoration,
+    textTransform: props?.style?.textTransform,
+
     border: props?.style?.border,
     // borderRadius: props?.style?.borderRadius,
     borderWidth: props?.style?.borderWidth,
@@ -74,6 +83,18 @@ const CheckboxElement = (props) => {
     direction: props?.style?.direction,
   };
 
+  let removeTextStyle = {
+    color: props?.style?.color,
+    fontSize: props?.style?.fontSize,
+    fontStyle: props?.style?.fontStyle,
+    fontFamily: props?.style?.fontFamily,
+    fontWeight: props?.style?.fontWeight,
+    textAlign: props?.style?.textAlign,
+    textDecoration: props?.style?.textDecoration,
+    textTransform: props?.style?.textTransform,
+    ...spacingStyle,
+  };
+
   return (
     <div
       // className="px1"
@@ -87,7 +108,7 @@ const CheckboxElement = (props) => {
         <span style={{ color: "red", marginLeft: "1px" }}>*</span>
       )}
       <div
-        style={removeKeyInObject(props?.style, spacingStyle)}
+        style={removeKeyInObject(props?.style, removeTextStyle)}
         className="flex flex-row justify-start items-center radio_option_style"
       >
         {props?.optionDetails?.map((option, index) => {
@@ -109,7 +130,7 @@ const CheckboxElement = (props) => {
               />
               <label
                 className="option_label_style"
-                style={inputTextStyle}
+                // style={inputTextStyle}
                 htmlFor={option.value + index}
               >
                 {option?.label}
