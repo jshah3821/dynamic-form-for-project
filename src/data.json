@@ -1,7 +1,7 @@
 [
   {
     "selectionType": "form",
-    "id": "yjcUaI6wJHkhS0jJlqYHL",
+    "id": "JR4G7iYp8o43fXlwkq6mA",
     "type": "element",
     "subType": "list",
     "properties": {
@@ -9,7 +9,7 @@
       "name": "Name",
       "label": "Label",
       "listStyle": {
-        "height": "200%",
+        "height": "",
         "width": "",
         "backgroundColor": "",
         "color": "black",
@@ -47,7 +47,7 @@
         "borderRadius": ""
       },
       "style": {
-        "height": "200%",
+        "height": "",
         "width": "",
         "listStyle": "disc",
         "backgroundColor": "",
@@ -59,7 +59,7 @@
         "fontFamily": "",
         "direction": "",
         "fontWeight": "",
-        "textAlign": "",
+        "textAlign": "center",
         "textDecoration": "",
         "textTransform": "",
         "ratio": "",

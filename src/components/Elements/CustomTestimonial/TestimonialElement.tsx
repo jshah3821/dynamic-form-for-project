@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import "./testimonialStyles.css";
 import "react-multi-carousel/lib/styles.css";
 import { testimonialDefault64 } from "../../Elements/assets/testimonialDefault64";
+import { removeKeyInObject } from "../utils/removeKeyInObject";
 
 const TestimonialElement = ({ testimonial, testimonialCardDetails }) => {
   const prevNextEnable =
@@ -54,10 +55,39 @@ const TestimonialElement = ({ testimonial, testimonialCardDetails }) => {
     }
   }, [currentSlide]);
 
+  const innerDivStyle = {
+    borderBottomColor: testimonial?.testimonialCardStyles.borderBottomColor,
+    borderBottomLeftRadius:
+      testimonial?.testimonialCardStyles.borderBottomLeftRadius,
+    borderBottomRightRadius:
+      testimonial?.testimonialCardStyles.borderBottomRightRadius,
+    borderBottomStyle: testimonial?.testimonialCardStyles.borderBottomStyle,
+    borderBottomWidth: testimonial?.testimonialCardStyles.borderBottomWidth,
+    borderColor: testimonial?.testimonialCardStyles.borderColor,
+    borderLeftColor: testimonial?.testimonialCardStyles.borderLeftColor,
+    borderLeftStyle: testimonial?.testimonialCardStyles.borderLeftStyle,
+    borderLeftWidth: testimonial?.testimonialCardStyles.borderLeftWidth,
+    borderRadius: testimonial?.testimonialCardStyles.borderRadius,
+    borderRightColor: testimonial?.testimonialCardStyles?.borderRightColor,
+    borderRightStyle: testimonial?.testimonialCardStyles?.borderRightStyle,
+    borderRightWidth: testimonial?.testimonialCardStyles?.borderRightWidth,
+    borderStyle: testimonial?.testimonialCardStyles?.borderStyle,
+    borderTopColor: testimonial?.testimonialCardStyles?.borderTopColor,
+    borderTopLeftRadius:
+      testimonial?.testimonialCardStyles?.borderTopRightRadius,
+    borderTopRightRadius:
+      testimonial?.testimonialCardStyles?.borderTopRightRadius,
+    borderTopStyle: testimonial?.testimonialCardStyles?.borderTopStyle,
+    borderTopWidth: testimonial?.testimonialCardStyles?.borderTopWidth,
+    borderWidth: testimonial?.testimonialCardStyles?.borderWidth,
+  };
   return (
     <div className="testimonial-container" style={testimonial?.style}>
       <div>
-        <div className="mainTestimonialCard" style={testimonial?.style}>
+        <div
+          className="mainTestimonialCard"
+          // style={testimonial?.style}
+        >
           {prevNextEnable && (
             <button className="test-prev" onClick={prevSlide}>
               &#10094;
@@ -75,7 +105,11 @@ const TestimonialElement = ({ testimonial, testimonialCardDetails }) => {
                 >
                   <div
                     className={`testimonial_inner_div_card`}
-                    style={testimonial?.testimonialCardStyles}
+                    // style={testimonial?.testimonialCardStyles}
+                    style={removeKeyInObject(
+                      testimonial?.testimonialCardStyles,
+                      innerDivStyle
+                    )}
                   >
                     <div className="testimonial-content">
                       <div className="img-wrapper">

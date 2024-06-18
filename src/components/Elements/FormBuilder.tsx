@@ -762,7 +762,7 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
                     required={obj?.validation?.required}
                     key={index}
                     label={obj?.properties?.label}
-                    options={obj?.properties?.options}
+                    options={obj?.properties?.optionDetails}
                     style={obj?.style}
                     value={formData[obj?.properties?.name] || ""}
                     onChange={(e) =>
