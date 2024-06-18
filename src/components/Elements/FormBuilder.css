@@ -1221,5 +1221,5 @@ textarea {
 
 .list-conatiner {
   width: 100%;
-  list-style-position: inside;
+  list-style-position: inside !important;
 }
