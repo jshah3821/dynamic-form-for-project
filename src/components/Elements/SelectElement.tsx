@@ -16,7 +16,6 @@ const SelectElement = (props) => {
   let selectstyle = {
     fontSize: props?.style?.fontSize,
     color: props?.style?.color,
-    fontStyle: props?.style?.fontStyle,
     fontFamily: props?.style?.fontFamily,
     fontWeight: props?.style?.fontWeight,
     textDecoration: props?.style?.textDecoration,

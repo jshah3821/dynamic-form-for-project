@@ -54,7 +54,6 @@ const TextboxElement = (props: any) => {
             ...inputTextStyle,
             ...inputContainerStyle,
           }),
-          "--placeholder-color": props?.style?.color,
         }}
         name={props?.name}
         onChange={props?.onChange}

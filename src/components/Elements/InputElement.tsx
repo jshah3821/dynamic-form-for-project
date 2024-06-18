@@ -70,7 +70,6 @@ const InputElement = (props) => {
             ...inputTextStyle,
             ...inputContainerStyle,
           }),
-          "--placeholder-color": props?.style?.color,
         }}
         onChange={props?.onChange}
         value={props?.value}
