@@ -3,7 +3,7 @@ import { removeKeyInObject } from "./utils/removeKeyInObject";
 const TextboxElement = (props: any) => {
   const inputTextStyle = {
     color: props?.style?.color,
-    fontSize: props?.style?.fontSize,
+    // fontSize: props?.style?.fontSize,
     fontStyle: props?.style?.fontStyle,
     fontFamily: props?.style?.fontFamily,
     fontWeight: props?.style?.fontWeight,

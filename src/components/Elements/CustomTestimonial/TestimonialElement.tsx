@@ -84,7 +84,10 @@ const TestimonialElement = ({ testimonial, testimonialCardDetails }) => {
   return (
     <div className="testimonial-container" style={testimonial?.style}>
       <div>
-        <div className="mainTestimonialCard" style={testimonial?.style}>
+        <div
+          className="mainTestimonialCard"
+          // style={testimonial?.style}
+        >
           {prevNextEnable && (
             <button className="test-prev" onClick={prevSlide}>
               &#10094;

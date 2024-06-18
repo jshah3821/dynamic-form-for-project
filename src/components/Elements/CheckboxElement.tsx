@@ -11,6 +11,7 @@ const CheckboxElement = (props) => {
     textDecoration: props?.style?.textDecoration,
     textTransform: props?.style?.textTransform,
     display: "block",
+    direction: props?.style?.direction,
   };
 
   //REMOVE BACKGROUND FROM THE CONTAINER
@@ -80,7 +81,7 @@ const CheckboxElement = (props) => {
     paddingLeft: props?.style?.paddingLeft,
     paddingRight: props?.style?.paddingRight,
     paddingBottom: props?.style?.paddingBottom,
-    direction: props?.style?.direction,
+    // direction: props?.style?.direction,
   };
 
   let removeTextStyle = {
@@ -92,6 +93,7 @@ const CheckboxElement = (props) => {
     textAlign: props?.style?.textAlign,
     textDecoration: props?.style?.textDecoration,
     textTransform: props?.style?.textTransform,
+    direction: props?.style?.direction,
     ...spacingStyle,
   };
 
