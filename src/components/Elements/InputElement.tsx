@@ -65,6 +65,7 @@ const InputElement = (props) => {
         maxLength={props?.maxLength || null}
         required={props?.required}
         style={{
+          color: props?.style?.color,
           ...removeKeyInObject(props?.style, {
             ...inputTextStyle,
             ...inputContainerStyle,

@@ -65,7 +65,7 @@ const CheckboxElement = (props) => {
     paddingBottom: props?.style?.paddingBottom,
 
     width: props?.style?.width,
-    height: props?.style?.width,
+    height: props?.style?.height,
     minWidth: props?.style?.minWidth,
     minHeight: props?.style?.minHeight,
     maxWidth: props?.style?.maxWidth,
@@ -106,12 +106,14 @@ const CheckboxElement = (props) => {
       </label>
       <div
         style={removeKeyInObject(props?.style, removeTextStyle)}
-        className="flex flex-row justify-start items-center radio_option_style"
+        className="flex flex-row justify-start flex-wrap items-center radio_option_style"
       >
         {props?.optionDetails?.map((option, index) => {
           return (
             <div
-              style={removeKeyInObject(props?.style, borderstyle)}
+              style={{
+                ...removeKeyInObject(props?.style, borderstyle),
+              }}
               key={index}
               className=" flex flex-row justify-start items-center"
             >
@@ -127,7 +129,10 @@ const CheckboxElement = (props) => {
               />
               <label
                 className="option_label_style"
-                // style={inputTextStyle}
+                style={{
+                  color: props?.style?.color,
+                  fontFamily: props?.style?.fontFamily,
+                }}
                 htmlFor={option.value + index}
               >
                 {option?.label}
