@@ -96,19 +96,14 @@ const CheckboxElement = (props) => {
     direction: props?.style?.direction,
     ...spacingStyle,
   };
-
   return (
-    <div
-      // className="px1"
-
-      style={spacingStyle}
-    >
+    <div style={spacingStyle}>
       <label className="input_label" style={inputTextStyle}>
         {props?.name ? props?.name : "Label"}
+        {props?.required && (
+          <span style={{ color: "red", marginLeft: "1px" }}>*</span>
+        )}
       </label>
-      {props?.required && (
-        <span style={{ color: "red", marginLeft: "1px" }}>*</span>
-      )}
       <div
         style={removeKeyInObject(props?.style, removeTextStyle)}
         className="flex flex-row justify-start items-center radio_option_style"
@@ -125,10 +120,10 @@ const CheckboxElement = (props) => {
                 style={inputTextStyle}
                 type="checkbox"
                 id={option?.value + index}
-                name="option"
-                value={option?.value}
-                checked={props.formData[props?.name]?.includes(option.value)}
-                onChange={(e) => props?.handleChange(e, props?.name, true)}
+                name="checkbox"
+                value={option.value}
+                checked={props.formData[props?.obj?.id]?.includes(option.value)}
+                onChange={props?.onChange}
               />
               <label
                 className="option_label_style"
@@ -140,19 +135,20 @@ const CheckboxElement = (props) => {
             </div>
           );
         })}
-        {props?.required && (
-          <p
-            style={{
-              visibility: props?.errors?.[props?.name] ? "visible" : "hidden",
-              fontSize: "10px",
-              color: "red",
-              paddingLeft: "0.5rem",
-            }}
-          >
-            {props?.name || `Label`} is required.
-          </p>
-        )}
       </div>
+      {props?.required && (
+        <p
+          style={{
+            visibility: props?.errors?.[props?.obj?.id] ? "visible" : "hidden",
+            fontSize: "10px",
+            color: "red",
+          }}
+        >
+          {props?.errors?.[props?.obj?.id] === true
+            ? `This field is required.`
+            : props?.errors?.[props?.obj?.id]}
+        </p>
+      )}
     </div>
   );
 };

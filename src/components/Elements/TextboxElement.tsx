@@ -24,11 +24,20 @@ const TextboxElement = (props: any) => {
     paddingRight: props?.style?.paddingRight,
     paddingBottom: props?.style?.paddingBottom,
     direction: props?.style?.direction,
+    width: props?.style?.width,
+    height: props?.style?.height,
+    minWidth: props?.style?.minWidth,
+    minHeight: props?.style?.minHeight,
+    maxWidth: props?.style?.maxWidth,
+    maxHeight: props?.style?.maxHeight,
   };
   return (
-    <div className="inputContainer px1" style={inputContainerStyle}>
+    <div className="inputContainer" style={inputContainerStyle}>
       <label style={inputTextStyle} htmlFor={props?.id}>
         {props?.label ? props?.label : "Label"}
+        {props?.required && (
+          <span style={{ color: "red", marginLeft: "1px" }}>*</span>
+        )}
       </label>
 
       <textarea
@@ -39,24 +48,28 @@ const TextboxElement = (props: any) => {
         minLength={props?.minLength}
         maxLength={props?.maxLength}
         required={props?.required}
-        style={removeKeyInObject(props?.style, {
-          ...inputTextStyle,
-          ...inputContainerStyle,
-        })}
+        style={{
+          ...removeKeyInObject(props?.style, {
+            ...inputTextStyle,
+            ...inputContainerStyle,
+          }),
+          "--placeholder-color": props?.style?.color,
+        }}
         name={props?.name}
         onChange={props?.onChange}
+        className="form_input_placeholder"
       />
-      {(props?.required || props?.errors?.[props?.name]) && (
+      {(props?.required || props?.errors?.[props?.obj?.id]) && (
         <p
           style={{
-            visibility: props?.errors?.[props?.name] ? "visible" : "hidden",
+            visibility: props?.errors?.[props?.obj?.id] ? "visible" : "hidden",
             fontSize: "10px",
             color: "red",
           }}
         >
-          {props?.errors?.[props?.name] === true
-            ? `${props?.label || props?.name} is required.`
-            : props?.errors?.[props?.name]}
+          {props?.errors?.[props?.obj?.id] === true
+            ? `This field is required.`
+            : props?.errors?.[props?.obj?.id]}
         </p>
       )}
     </div>

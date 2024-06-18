@@ -10,6 +10,17 @@ const FooterElement = ({ footerDetails, socialDetails, style }) => {
       window.location.replace(url);
     }
   }
+
+  const footersItemTextStyle = {
+    color: style?.color,
+    fontSize: style?.fontSize,
+    fontStyle: style?.fontStyle,
+    fontFamily: style?.fontFamily,
+    fontWeight: style?.fontWeight,
+    textAlign: style?.textAlign,
+    textDecoration: style?.textDecoration,
+    textTransform: style?.textTransform,
+  };
   return (
     <footer
       className="footer flex justify-around left-align flex-column"
@@ -41,13 +52,14 @@ const FooterElement = ({ footerDetails, socialDetails, style }) => {
       <div className="flex justify-around left-align">
         {footerDetails?.map((section, sectionIndex) => (
           <div key={sectionIndex}>
-            <h3>{section?.title}</h3>
+            <h3 style={footersItemTextStyle}>{section?.title}</h3>
             <ul className="p0">
               {section?.links?.map((link, linkIndex) => (
                 <li
                   onClick={() => replaceRoute(link?.linkURL)}
-                  className="left-align font-13 pointer"
+                  className="pointer"
                   key={linkIndex}
+                  style={footersItemTextStyle}
                 >
                   {link?.linkName}
                 </li>
@@ -56,7 +68,9 @@ const FooterElement = ({ footerDetails, socialDetails, style }) => {
           </div>
         ))}
       </div>
-      <div className="center font-13">Copyright © 2024</div>
+      <div className="center" style={footersItemTextStyle}>
+        Copyright © 2024
+      </div>
     </footer>
   );
 };

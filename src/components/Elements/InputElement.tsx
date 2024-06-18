@@ -7,11 +7,10 @@ const InputElement = (props) => {
     fontStyle: props?.style?.fontStyle,
     fontFamily: props?.style?.fontFamily,
     fontWeight: props?.style?.fontWeight,
-    textAlign: props?.style?.textAlign,
     direction: props?.style?.direction,
     textDecoration: props?.style?.textDecoration,
     textTransform: props?.style?.textTransform,
-    width: "100%",
+    textAlign: props?.style?.textAlign,
   };
 
   const inputContainerStyle = {
@@ -23,6 +22,12 @@ const InputElement = (props) => {
     paddingLeft: props?.style?.paddingLeft,
     paddingRight: props?.style?.paddingRight,
     paddingBottom: props?.style?.paddingBottom,
+    width: props?.style?.width,
+    height: props?.style?.height,
+    minWidth: props?.style?.minWidth,
+    minHeight: props?.style?.minHeight,
+    maxWidth: props?.style?.maxWidth,
+    maxHeight: props?.style?.maxHeight,
   };
 
   const spacingStyle = {
@@ -35,9 +40,15 @@ const InputElement = (props) => {
     paddingRight: props?.style?.paddingRight,
     paddingBottom: props?.style?.paddingBottom,
     direction: props?.style?.direction,
+    width: props?.style?.width,
+    height: props?.style?.height,
+    minWidth: props?.style?.minWidth,
+    minHeight: props?.style?.minHeight,
+    maxWidth: props?.style?.maxWidth,
+    maxHeight: props?.style?.maxHeight,
   };
   return (
-    <div className="inputContainer " style={spacingStyle}>
+    <div className="form_inputContainer " style={spacingStyle}>
       <label style={inputTextStyle} htmlFor={props?.id}>
         {props?.label ? props?.label : "Label"}
         {props?.required && (
@@ -53,24 +64,28 @@ const InputElement = (props) => {
         minLength={props?.minLength || null}
         maxLength={props?.maxLength || null}
         required={props?.required}
-        style={removeKeyInObject(props?.style, {
-          ...inputTextStyle,
-          ...inputContainerStyle,
-        })}
+        style={{
+          ...removeKeyInObject(props?.style, {
+            ...inputTextStyle,
+            ...inputContainerStyle,
+          }),
+          "--placeholder-color": props?.style?.color,
+        }}
         onChange={props?.onChange}
         value={props?.value}
+        className="form_input_placeholder"
       />
-      {(props?.required || props?.errors?.[props?.name]) && (
+      {(props?.required || props?.errors?.[props?.obj?.id]) && (
         <p
           style={{
-            visibility: props?.errors?.[props?.name] ? "visible" : "hidden",
+            visibility: props?.errors?.[props?.obj?.id] ? "visible" : "hidden",
             fontSize: "10px",
             color: "red",
           }}
         >
-          {props?.errors?.[props?.name] === true
-            ? `${props?.label || props?.name} is required.`
-            : props?.errors?.[props?.name]}
+          {props?.errors?.[props?.obj?.id] === true
+            ? `This field is required.`
+            : props?.errors?.[props?.obj?.id]}
         </p>
       )}
     </div>

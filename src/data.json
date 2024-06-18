@@ -1,7 +1,7 @@
 [
   {
     "selectionType": "form",
-    "id": "JR4G7iYp8o43fXlwkq6mA",
+    "id": "iXSZH66RNpszsN0hdBM4j",
     "type": "element",
     "subType": "list",
     "properties": {
@@ -44,12 +44,14 @@
         "borderLeftWidth": "",
         "borderLeftStyle": "",
         "borderLeftColor": "",
-        "borderRadius": ""
+        "borderRadius": "",
+        "textAlign": "center",
+        "listStyle": "decimal"
       },
       "style": {
         "height": "",
         "width": "",
-        "listStyle": "disc",
+        "listStyle": "decimal",
         "backgroundColor": "",
         "color": "black",
         "paddingTop": "",

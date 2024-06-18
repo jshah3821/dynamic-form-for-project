@@ -91,6 +91,18 @@ const BannerElement = ({
     dots[slideIndex - 1].className += " active";
   }
 
+  const BannerTextStyle = {
+    backgroundColor: sliderStyle?.backgroundColor,
+    color: sliderStyle?.color,
+    fontSize: sliderStyle?.fontSize,
+    fontStyle: sliderStyle?.fontStyle,
+    fontFamily: sliderStyle?.fontFamily,
+    fontWeight: sliderStyle?.fontWeight,
+    textAlign: sliderStyle?.textAlign,
+    textDecoration: sliderStyle?.textDecoration,
+    textTransform: sliderStyle?.textTransform,
+  };
+
   return (
     <div className="parent-banner">
       <div className="slideshow-container" style={sliderStyle}>
@@ -101,7 +113,10 @@ const BannerElement = ({
               slideDetails.length
             }`}</div>
             <img
-              style={{ objectFit: sliderStyle?.objectFit }}
+              style={{
+                objectFit: sliderStyle?.objectFit,
+                borderRadius: sliderStyle?.borderRadius,
+              }}
               src={element["imageDetails"]["dataURL"]}
               className="banner-img"
               alt={`Slide ${index + 1}`}
@@ -123,7 +138,7 @@ const BannerElement = ({
               }
                                 `}
             >
-              <span style={sliderStyle}>{element["caption"]}</span>
+              <span style={BannerTextStyle}>{element["caption"]}</span>
             </div>
           </div>
           // </div>

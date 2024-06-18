@@ -1,8 +1,6 @@
 import { removeKeyInObject } from "./utils/removeKeyInObject";
 
 const SelectElement = (props) => {
-  console.log("props", props);
-
   let labelStyle = {
     textAlign: props?.style?.textAlign,
     fontSize: props?.style?.fontSize,
@@ -34,6 +32,12 @@ const SelectElement = (props) => {
     paddingLeft: props?.style?.paddingLeft,
     paddingRight: props?.style?.paddingRight,
     paddingBottom: props?.style?.paddingBottom,
+    width: props?.style?.width,
+    height: props?.style?.height,
+    minWidth: props?.style?.minWidth,
+    minHeight: props?.style?.minHeight,
+    maxWidth: props?.style?.maxWidth,
+    maxHeight: props?.style?.maxHeight,
   };
 
   const spacingStyle = {
@@ -45,10 +49,21 @@ const SelectElement = (props) => {
     paddingLeft: props?.style?.paddingLeft,
     paddingRight: props?.style?.paddingRight,
     paddingBottom: props?.style?.paddingBottom,
+    width: props?.style?.width,
+    height: props?.style?.height,
+    minWidth: props?.style?.minWidth,
+    minHeight: props?.style?.minHeight,
+    maxWidth: props?.style?.maxWidth,
+    maxHeight: props?.style?.maxHeight,
   };
   return (
     <div style={spacingStyle} className="selectBoxContainer">
-      <label style={labelStyle}>{props?.label}</label>
+      <label className="input_label" style={labelStyle}>
+        {props?.label ? props?.label : "Label"}
+        {props?.required && (
+          <span style={{ color: "red", marginLeft: "1px" }}>*</span>
+        )}
+      </label>
       <select
         value={props?.value}
         onChange={props?.onChange}
@@ -72,7 +87,9 @@ const SelectElement = (props) => {
             color: "red",
           }}
         >
-          {props?.label} is required.
+          {props?.errors?.[props?.name] === true
+            ? `This field is required.`
+            : props?.errors?.[props?.name]}
         </p>
       )}
     </div>

@@ -1,8 +1,10 @@
 import { useRef, useState } from "react";
-import "./SurveyForm.css";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import { removeKeyInObject } from "../utils/removeKeyInObject";
+import "./SurveyForm.css";
+
 const SurveyForm = ({
+  queData,
   properties,
   subType,
   errors,
@@ -40,9 +42,12 @@ const SurveyForm = ({
 
     setTooltipStyle({ display: "block", left: `${leftOffset}px` });
   };
+
   const required = properties?.validation?.required;
 
   const fieldName = properties?.name + index;
+
+  const fieldId = queData?.id;
 
   const { question_style } = properties;
   const { answer_style } = properties;
@@ -58,8 +63,15 @@ const SurveyForm = ({
     paddingTop: question_style?.paddingTop,
   };
 
-  const ansContentStyle = {
+  const ansContentTextStyle = {
     color: answer_style?.color,
+    fontSize: answer_style?.fontSize,
+    fontStyle: answer_style?.fontStyle,
+    fontFamily: answer_style?.fontFamily,
+    fontWeight: answer_style?.fontWeight,
+    textAlign: answer_style?.textAlign,
+    textDecoration: answer_style?.textDecoration,
+    textTransform: answer_style?.textTransform,
   };
 
   return (
@@ -93,25 +105,25 @@ const SurveyForm = ({
             <input
               id="shortanswer"
               type="text"
-              name={fieldName || "shortanswer" + index}
-              className="flex flex-column items-center justify-center ans_input_style"
+              name={"shortanswer"}
+              className="flex flex-column items-center justify-center ans_input"
               placeholder="Enter your answer here"
               maxLength={properties?.validation?.maxLength || null}
               minLength={properties?.validation?.minLength || null}
               style={properties?.answer_style}
-              value={formData[fieldName] || ""}
-              onChange={(e) => handleChange(e, fieldName, false)}
+              value={formData[fieldId] || ""}
+              onChange={(e) => handleChange(e, fieldId)}
             />
           )}
           {subType === "longanswer" && (
             <textarea
               id="longanswer"
-              className="flex flex-column items-center justify-center ans_textarea_style"
+              className="flex flex-column items-center justify-center ans_textarea"
               placeholder="Enter your answer here"
               style={properties?.answer_style}
-              name={fieldName || "longanswer" + index}
-              value={formData[fieldName] || ""}
-              onChange={(e) => handleChange(e, fieldName, false)}
+              name={"longanswer"}
+              value={formData[fieldId] || ""}
+              onChange={(e) => handleChange(e, fieldId)}
               maxLength={properties?.validation?.maxLength || null}
               minLength={properties?.validation?.minLength || null}
             />
@@ -119,19 +131,18 @@ const SurveyForm = ({
           {subType === "survey_dropdown" && (
             <div>
               <select
-                name={fieldName || "survey_dropdown" + index}
-                value={formData[fieldName] || ""}
-                onChange={(e) => handleChange(e, fieldName, false)}
-                className="fluid"
+                name={"survey_dropdown"}
+                value={formData[fieldId] || ""}
+                onChange={(e) => handleChange(e, fieldId)}
+                className="sf_dropdown"
                 style={properties?.answer_style}
               >
+                <option key="" value="">
+                  Select your option
+                </option>
                 {properties?.optionDetails?.map((option) => {
                   return (
-                    <option
-                      key={option.value}
-                      value={option.value}
-                      style={properties?.answer_style?.color}
-                    >
+                    <option key={option.value} value={option.value}>
                       {option.label}
                     </option>
                   );
@@ -140,7 +151,10 @@ const SurveyForm = ({
             </div>
           )}
           {subType === "survey_radio" && (
-            <div className="flex flex-row justify-start items-center radio_option_style">
+            <div
+              className="flex flex-row justify-start items-center radio_option_style"
+              style={properties?.answer_style}
+            >
               {properties?.optionDetails?.map((option) => {
                 return (
                   <div
@@ -150,16 +164,16 @@ const SurveyForm = ({
                     <input
                       type="radio"
                       id={option.value}
-                      name="option"
+                      name="survey_radio"
                       value={option.value}
                       className="option_radio"
-                      checked={formData[fieldName] === option.value}
-                      onChange={(e) => handleChange(e, fieldName, false)}
+                      checked={formData[fieldId] === option.value}
+                      onChange={(e) => handleChange(e, fieldId)}
                     />
                     <label
                       htmlFor={option.value}
                       className="option_label_style"
-                      style={ansContentStyle}
+                      style={ansContentTextStyle}
                     >
                       {option.label}
                     </label>
@@ -169,26 +183,29 @@ const SurveyForm = ({
             </div>
           )}
           {subType === "survey_checkbox" && (
-            <div className="flex flex-row justify-start items-center radio_option_style">
+            <div
+              className="flex flex-row justify-start items-center radio_option_style"
+              style={properties?.answer_style}
+            >
               {properties?.optionDetails?.map((option, index) => {
                 return (
                   <div
                     key={index}
-                    className="flex flex-row justify-start items-center"
+                    className="flex flex-row justify-start items-center sf_checkbox"
                   >
                     <input
                       className="option_radio"
                       type="checkbox"
                       id={option.value + index}
-                      name="option"
+                      name="survey_checkbox"
                       value={option.value}
-                      checked={formData[fieldName]?.includes(option.value)}
-                      onChange={(e) => handleChange(e, fieldName, true)}
+                      checked={formData[fieldId]?.includes(option.value)}
+                      onChange={(e) => handleChange(e, fieldId)}
                     />
                     <label
                       htmlFor={option.value}
                       className="option_label_style"
-                      style={ansContentStyle}
+                      style={ansContentTextStyle}
                     >
                       {option.label}
                     </label>
@@ -199,12 +216,12 @@ const SurveyForm = ({
           )}
           {subType === "survey_image" && (
             <div>
-              <div className="flex flex-row flex-wrap justify-start items-center align-center pointer fluid">
-                {formData?.[fieldName]?.map((image, index) => (
+              <div className="flex flex-row flex-wrap justify-start items-center align-center pointer">
+                {formData?.[fieldId]?.map((image, index) => (
                   <div key={Math.random()} className="que_img_div">
                     <div
                       className="sf_cancel_icon"
-                      onClick={() => handleRemoveFile(fieldName, index)}
+                      onClick={() => handleRemoveFile(fieldId, index)}
                     >
                       X
                     </div>
@@ -232,9 +249,9 @@ const SurveyForm = ({
                 className="fileUpload"
                 id="file-upload"
                 type="file"
-                name={"file" + index}
+                name={"survey_image"}
                 onChange={(e) =>
-                  handleChange(e, fieldName, "file", properties?.isMultiAllowed)
+                  handleChange(e, fieldId, properties?.isMultiAllowed)
                 }
                 multiple={properties?.isMultiAllowed}
               />
@@ -252,9 +269,9 @@ const SurveyForm = ({
                     min={properties?.validation?.minRange}
                     max={properties?.validation?.maxRange}
                     name={fieldName || "range" + index}
-                    value={formData[fieldName] || 0}
+                    value={formData[fieldId] || 0}
                     onChange={(e) => {
-                      handleChange(e, fieldName, false);
+                      handleChange(e, fieldId);
                       handleRangeTooltip(e);
                     }}
                     className="sf_range_input"
@@ -267,19 +284,19 @@ const SurveyForm = ({
                       color: properties?.answer_style?.color,
                     }}
                   >
-                    {`${formData[fieldName] || 0} ${
+                    {`${formData[fieldId] || 0} ${
                       properties?.validation?.unit || ""
                     }`}
                   </span>
                 </div>
                 <div className="sf_range_label">
-                  <span className="min-value">
+                  <span className="min-value" style={ansContentTextStyle}>
                     {properties?.validation?.minRange
                       ? properties?.validation?.minRange
                       : 0}
                     {properties?.validation?.unit}
                   </span>
-                  <span className="max-value">
+                  <span className="max-value" style={ansContentTextStyle}>
                     {properties?.validation?.maxRange
                       ? properties?.validation?.maxRange
                       : 100}
@@ -306,17 +323,20 @@ const SurveyForm = ({
               </div>
             </div>
           )}
-          {(required || errors?.[fieldName]) && (
+          {(required || errors?.[fieldId] || errors?.[fieldId] !== "") && (
             <p
               style={{
-                visibility: errors?.[fieldName] ? "visible" : "hidden",
+                visibility:
+                  errors?.[fieldId] || errors?.[fieldId] !== ""
+                    ? "visible"
+                    : "hidden",
                 fontSize: "10px",
                 color: "red",
               }}
             >
-              {errors?.[fieldName] === true
-                ? `${properties?.label || fieldName} is required.`
-                : errors?.[fieldName]}
+              {errors?.[fieldId] === true
+                ? `This field is required.`
+                : errors?.[fieldId]}
             </p>
           )}
         </div>
