@@ -11,6 +11,7 @@ const CheckboxElement = (props) => {
     textDecoration: props?.style?.textDecoration,
     textTransform: props?.style?.textTransform,
     display: "block",
+    direction: props?.style?.direction,
   };
 
   //REMOVE BACKGROUND FROM THE CONTAINER
@@ -23,6 +24,15 @@ const CheckboxElement = (props) => {
   // add border to the checkbox =
 
   let borderstyle = {
+    color: props?.style?.color,
+    fontSize: props?.style?.fontSize,
+    fontStyle: props?.style?.fontStyle,
+    fontFamily: props?.style?.fontFamily,
+    fontWeight: props?.style?.fontWeight,
+    textAlign: props?.style?.textAlign,
+    textDecoration: props?.style?.textDecoration,
+    textTransform: props?.style?.textTransform,
+
     border: props?.style?.border,
     // borderRadius: props?.style?.borderRadius,
     borderWidth: props?.style?.borderWidth,
@@ -71,13 +81,20 @@ const CheckboxElement = (props) => {
     paddingLeft: props?.style?.paddingLeft,
     paddingRight: props?.style?.paddingRight,
     paddingBottom: props?.style?.paddingBottom,
+    // direction: props?.style?.direction,
+  };
+
+  let removeTextStyle = {
+    color: props?.style?.color,
+    fontSize: props?.style?.fontSize,
+    fontStyle: props?.style?.fontStyle,
+    fontFamily: props?.style?.fontFamily,
+    fontWeight: props?.style?.fontWeight,
+    textAlign: props?.style?.textAlign,
+    textDecoration: props?.style?.textDecoration,
+    textTransform: props?.style?.textTransform,
     direction: props?.style?.direction,
-    width: props?.style?.width,
-    height: props?.style?.height,
-    minWidth: props?.style?.minWidth,
-    minHeight: props?.style?.minHeight,
-    maxWidth: props?.style?.maxWidth,
-    maxHeight: props?.style?.maxHeight,
+    ...spacingStyle,
   };
   return (
     <div style={spacingStyle}>
@@ -88,8 +105,8 @@ const CheckboxElement = (props) => {
         )}
       </label>
       <div
-        style={removeKeyInObject(props?.style, spacingStyle)}
-        className="flex flex-row justify-start items-center radio_option_style checkbox_container"
+        style={removeKeyInObject(props?.style, removeTextStyle)}
+        className="flex flex-row justify-start items-center radio_option_style"
       >
         {props?.optionDetails?.map((option, index) => {
           return (
@@ -110,7 +127,7 @@ const CheckboxElement = (props) => {
               />
               <label
                 className="option_label_style"
-                style={inputTextStyle}
+                // style={inputTextStyle}
                 htmlFor={option.value + index}
               >
                 {option?.label}
