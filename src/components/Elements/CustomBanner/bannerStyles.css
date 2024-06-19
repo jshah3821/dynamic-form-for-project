@@ -208,3 +208,26 @@
     opacity: 1;
   }
 }
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+  .bottom-center span {
+    display: block;
+    word-wrap: break-word;
+  }
+  .top-left span {
+    display: block;
+    word-wrap: break-word;
+  }
+  .top-right span {
+    display: block;
+    word-wrap: break-word;
+  }
+  .bottom-left span {
+    display: block;
+    word-wrap: break-word;
+  }
+  .bottom-right span {
+    display: block;
+    word-wrap: break-word;
+  }
+}

@@ -22,13 +22,10 @@ const FooterElement = ({ footerDetails, socialDetails, style }) => {
     textTransform: style?.textTransform,
   };
   return (
-    <footer
-      className="footer flex justify-around left-align flex-column"
-      style={style}
-    >
+    <footer className="fe_container" style={style}>
       <div>
         {socialDetails && (
-          <ul className="social-list flex p0 m0 justify-end">
+          <ul className="fe_social_container">
             {socialDetails?.map((socialLink, socialIndex) => (
               <li
                 onClick={() => window.open(socialLink?.url)}
@@ -49,23 +46,22 @@ const FooterElement = ({ footerDetails, socialDetails, style }) => {
           </ul>
         )}
       </div>
-      <div className="flex justify-around left-align">
+      <div className="fe_content_container">
         {footerDetails?.map((section, sectionIndex) => (
-          <div key={sectionIndex}>
+          <ul key={sectionIndex}>
             <h3 style={footersItemTextStyle}>{section?.title}</h3>
-            <ul className="p0">
-              {section?.links?.map((link, linkIndex) => (
-                <li
-                  onClick={() => replaceRoute(link?.linkURL)}
-                  className="pointer"
-                  key={linkIndex}
-                  style={footersItemTextStyle}
-                >
-                  {link?.linkName}
-                </li>
-              ))}
-            </ul>
-          </div>
+
+            {section?.links?.map((link, linkIndex) => (
+              <li
+                onClick={() => replaceRoute(link?.linkURL)}
+                className="pointer"
+                key={linkIndex}
+                style={footersItemTextStyle}
+              >
+                {link?.linkName}
+              </li>
+            ))}
+          </ul>
         ))}
       </div>
       <div className="center" style={footersItemTextStyle}>

@@ -244,7 +244,7 @@ const PageBuilder = ({ id, jsonData }: Props) => {
   const data = id ? dataArray?.[id] : jsonData;
 
   return data?.length > 0 ? (
-    <div className="mainPageContainer">
+    <div className="mainPageContainer" style={{ width: "100%" }}>
       <ToastContainer
         position="top-center"
         autoClose={2000}
