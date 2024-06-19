@@ -10,7 +10,47 @@ const TestimonialElement = ({ testimonial, testimonialCardDetails }) => {
   const autoPlay = testimonial?.testimonialDetails?.autoPlay;
 
   const [currentSlide, setCurrentSlide] = useState(0);
-  const visibleCards = 3;
+  const [visibleCards, setVisibleCards] = useState(3);
+  const divRef = useRef(null);
+  const [windowSize, setWindowSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (divRef.current) {
+        setWindowSize({
+          width: divRef.current.offsetWidth,
+          height: divRef.current.offsetHeight,
+        });
+      }
+    };
+
+    // Add event listener to window resize
+    window.addEventListener("resize", handleResize);
+
+    // Clean up event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  // Example function to call when size changes
+  const handleSizeChange = () => {
+    if (windowSize.width > 320 && windowSize.width < 480) {
+      setVisibleCards(1);
+    } else if (windowSize.width > 480 && windowSize.width < 812) {
+      setVisibleCards(2);
+    } else {
+      setVisibleCards(3);
+    }
+  };
+
+  // Optionally, you can call your function whenever windowSize changes
+  useEffect(() => {
+    handleSizeChange();
+  }, [windowSize]);
 
   const prevSlide = () => {
     setCurrentSlide((prevSlide) => Math.max(0, prevSlide - 1));
@@ -82,68 +122,72 @@ const TestimonialElement = ({ testimonial, testimonialCardDetails }) => {
     borderWidth: testimonial?.testimonialCardStyles?.borderWidth,
   };
   return (
-    <div className="testimonial-container" style={testimonial?.style}>
+    <div
+      className="testimonial-container"
+      ref={divRef}
+      style={testimonial?.style}
+    >
       <div>
-        <div className="mainTestimonialCard">
+        <div className="testimonial_subcontainer">
           {prevNextEnable && (
-            <button className="test-prev" onClick={prevSlide}>
+            <button className="testimonial_prev_btn" onClick={prevSlide}>
               &#10094;
             </button>
           )}
-
-          {testimonialCardDetails
-            .slice(currentSlide, currentSlide + visibleCards)
-            .map((item, index) => {
-              return (
-                <div
-                  className="testimonial_card_styles"
-                  key={currentSlide + index}
-                  style={testimonial?.testimonialCardStyles}
-                >
+          <div className="testimonial_container">
+            {testimonialCardDetails
+              .slice(currentSlide, currentSlide + visibleCards)
+              .map((item, index) => {
+                return (
                   <div
-                    className={`testimonial_inner_div_card`}
-                    // style={testimonial?.testimonialCardStyles}
-                    style={removeKeyInObject(
-                      testimonial?.testimonialCardStyles,
-                      innerDivStyle
-                    )}
+                    className="testimonial_card_styles"
+                    key={currentSlide + index}
+                    style={testimonial?.testimonialCardStyles}
                   >
-                    <div className="testimonial-content">
-                      <div className="img-wrapper">
-                        <img
-                          src={
-                            item.imageDetails.dataURL
-                              ? item.imageDetails.dataURL
-                              : testimonialDefault64
-                          }
-                          alt="profile"
-                          style={testimonial?.cardImageStyles}
-                        />
+                    <div
+                      className={`testimonial_inner_div_card`}
+                      // style={testimonial?.testimonialCardStyles}
+                      style={removeKeyInObject(
+                        testimonial?.testimonialCardStyles,
+                        innerDivStyle
+                      )}
+                    >
+                      <div className="testimonial-content">
+                        <div className="img-wrapper">
+                          <img
+                            src={
+                              item.imageDetails.dataURL
+                                ? item.imageDetails.dataURL
+                                : testimonialDefault64
+                            }
+                            alt="profile"
+                            style={testimonial?.cardImageStyles}
+                          />
+                        </div>
+                        <p
+                          className="testimonial-author"
+                          style={testimonial?.cardTitleStyles}
+                        >
+                          {item.name}
+                        </p>
+                        <p
+                          className="feedback_text"
+                          style={testimonial?.cardContentStyles}
+                        >
+                          {item.feedback}
+                        </p>
                       </div>
-                      <p
-                        className="testimonial-author"
-                        style={testimonial?.cardTitleStyles}
-                      >
-                        {item.name}
-                      </p>
-                      <p
-                        className="feedback_text"
-                        style={testimonial?.cardContentStyles}
-                      >
-                        {item.feedback}
-                      </p>
                     </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+          </div>
           {prevNextEnable && (
             <button className="test-next" onClick={nextSlide}>
               &#10095;
             </button>
           )}
         </div>
-
         <div className="indicators">
           {testimonialCardDetails?.map((item, index) => (
             <span

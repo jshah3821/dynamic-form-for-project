@@ -619,6 +619,8 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
         dataField?.properties?.validation?.minLength ||
         dataField?.validation?.minLength;
 
+      const isEmail = dataField?.properties?.type;
+
       if (
         dataField?.properties?.validation?.required ||
         dataField?.validation?.required
@@ -642,6 +644,13 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
             ? true
             : (newErrors[key] = `Minimum ${isMinLength} characters required.`)
           : false;
+      }
+      if (isEmail === "email") {
+        let emailReg =
+          /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if (!emailReg.test(value)) {
+          newErrors[key] = `Please provide valid Email address`;
+        }
       }
     });
     setErrors(newErrors);

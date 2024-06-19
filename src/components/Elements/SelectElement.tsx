@@ -16,7 +16,6 @@ const SelectElement = (props) => {
   let selectstyle = {
     fontSize: props?.style?.fontSize,
     color: props?.style?.color,
-    fontStyle: props?.style?.fontStyle,
     fontFamily: props?.style?.fontFamily,
     fontWeight: props?.style?.fontWeight,
     textDecoration: props?.style?.textDecoration,
@@ -67,10 +66,16 @@ const SelectElement = (props) => {
       <select
         value={props?.value}
         onChange={props?.onChange}
-        style={removeKeyInObject(props?.style, selectstyle)}
+        style={{
+          color: props?.style?.color,
+          ...removeKeyInObject(props?.style, selectstyle),
+        }}
         name={props?.label}
         id={props?.id}
       >
+        <option value="" disabled>
+          Please select option
+        </option>
         {props?.options?.map((option, innerIndex) => {
           return (
             <option key={innerIndex} value={option?.value}>

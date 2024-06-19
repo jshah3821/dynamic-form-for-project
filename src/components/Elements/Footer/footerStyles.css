@@ -1,9 +1,27 @@
-.footer {
+.fe_container {
   background-color: rgb(51, 51, 51);
   color: rgb(255, 255, 255);
-  text-align: center;
   padding: 2rem 6rem;
   line-height: 30px;
+  justify-content: space-around;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  width: 100%;
+}
+
+.fe_social_container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding: 0;
+  margin: 0;
+}
+
+.fe_content_container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  align-items: center;
 }
 
 .footer-links {
@@ -22,4 +40,15 @@ a {
   color: #fff;
   color: unset;
   text-decoration: none;
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: portrait) {
+  .fe_container {
+    padding: 2rem 1rem;
+  }
+  .fe_content_container {
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: center;
+  }
 }

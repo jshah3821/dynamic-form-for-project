@@ -123,7 +123,7 @@ const BannerElement = ({
             />
             {/* <div className="text">{element['caption']}</div> */}
             <div
-              className={`text ${
+              className={`banner_text ${
                 captionPosition === "top left"
                   ? "top-left"
                   : captionPosition === "top right"
