@@ -1,5 +1,5 @@
 import { removeKeyInObject } from "./utils/removeKeyInObject";
-
+import React from "react";
 const InputElement = (props) => {
   const inputTextStyle = {
     color: props?.style?.color,
