@@ -6,10 +6,6 @@
   padding: 0px 0.5rem;
 }
 
-.le_ul_container {
-  list-style-position: inside;
-}
-
-.le_ul_style_container {
+.le_list_container {
   width: 100%;
 }

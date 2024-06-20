@@ -16,16 +16,15 @@ p {
 }
 
 /* current change start*/
-.mainFormContainer {
+.fb_container {
   border: 1px solid #c0c0c094;
   border-radius: 6px;
-  line-height: 20px;
   margin: 20px auto;
   max-width: 70%;
   padding: 1rem;
 }
 
-.mainFormContainer .checkbox {
+.fb_container .checkbox {
   display: inline-block;
   margin: 0 0 0px 9px !important;
   position: relative;
@@ -37,15 +36,11 @@ p {
   margin-bottom: 8px;
 }
 
-.mainFormContainer p {
-  padding: 10px;
-}
-
-.mainFormContainer button {
+.fb_container button {
   margin: 10px 0;
 }
 
-.mainFormContainer .checkbox-label {
+.fb_container .checkbox-label {
   position: relative;
   top: 5px;
 }
@@ -59,16 +54,24 @@ p {
   font-size: 12px;
 }
 
-.inputContainer {
+.form_inputContainer {
+  margin-bottom: 10px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  margin-bottom: 10px;
 }
 .radioContainer {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+}
+
+.form_input_placeholder::placeholder {
+  color: var(--grey-color-888);
+  font-family: "Poppins", sans-serif;
+}
+
+.checkbox_container {
+  padding: 0 0.5rem;
 }
 
 .p3 {
@@ -79,6 +82,16 @@ p {
 }
 .p5 {
   padding: 5rem;
+}
+
+.fp_text {
+  padding: 10px 0px;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 input[type="text"],
@@ -1191,8 +1204,8 @@ textarea {
     border-radius: 5px;
   }
 }
-.height-button {
-  height: unset !important;
+.form_btn {
+  height: unset;
   min-height: 40px;
   border-radius: 6px;
 }
@@ -1215,5 +1228,20 @@ textarea {
 
 .list-conatiner {
   width: 100%;
-  list-style-position: inside;
+  list-style-position: inside !important;
+  overflow: auto;
+}
+
+.list-conatiner::-webkit-scrollbar {
+  width: 3px;
+}
+
+.list-conatiner::-webkit-scrollbar-thumb {
+  background-color: var(--grey-color-888);
+  border-radius: 3px;
+}
+
+.list-conatiner::-webkit-scrollbar-track {
+  background-color: var(--grey-color-eee);
+  border-radius: 3px;
 }

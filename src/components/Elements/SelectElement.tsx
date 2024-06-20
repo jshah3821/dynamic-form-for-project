@@ -1,8 +1,6 @@
 import { removeKeyInObject } from "./utils/removeKeyInObject";
 
 const SelectElement = (props) => {
- 
-
   let labelStyle = {
     textAlign: props?.style?.textAlign,
     fontSize: props?.style?.fontSize,
@@ -16,6 +14,14 @@ const SelectElement = (props) => {
   };
 
   let selectstyle = {
+    fontSize: props?.style?.fontSize,
+    color: props?.style?.color,
+    fontFamily: props?.style?.fontFamily,
+    fontWeight: props?.style?.fontWeight,
+    textDecoration: props?.style?.textDecoration,
+    textTransform: props?.style?.textTransform,
+    direction: props?.style?.direction,
+
     textAlign: props?.style?.textAlign,
     marginTop: props?.style?.marginTop,
     marginLeft: props?.style?.marginLeft,
@@ -25,6 +31,12 @@ const SelectElement = (props) => {
     paddingLeft: props?.style?.paddingLeft,
     paddingRight: props?.style?.paddingRight,
     paddingBottom: props?.style?.paddingBottom,
+    width: props?.style?.width,
+    height: props?.style?.height,
+    minWidth: props?.style?.minWidth,
+    minHeight: props?.style?.minHeight,
+    maxWidth: props?.style?.maxWidth,
+    maxHeight: props?.style?.maxHeight,
   };
 
   const spacingStyle = {
@@ -36,17 +48,34 @@ const SelectElement = (props) => {
     paddingLeft: props?.style?.paddingLeft,
     paddingRight: props?.style?.paddingRight,
     paddingBottom: props?.style?.paddingBottom,
+    width: props?.style?.width,
+    height: props?.style?.height,
+    minWidth: props?.style?.minWidth,
+    minHeight: props?.style?.minHeight,
+    maxWidth: props?.style?.maxWidth,
+    maxHeight: props?.style?.maxHeight,
   };
   return (
     <div style={spacingStyle} className="selectBoxContainer">
-      <label style={labelStyle}>{props?.label}</label>
+      <label className="input_label" style={labelStyle}>
+        {props?.label ? props?.label : "Label"}
+        {props?.required && (
+          <span style={{ color: "red", marginLeft: "1px" }}>*</span>
+        )}
+      </label>
       <select
         value={props?.value}
         onChange={props?.onChange}
-        style={removeKeyInObject(props?.style, selectstyle)}
+        style={{
+          color: props?.style?.color,
+          ...removeKeyInObject(props?.style, selectstyle),
+        }}
         name={props?.label}
         id={props?.id}
       >
+        <option value="" disabled>
+          Please select option
+        </option>
         {props?.options?.map((option, innerIndex) => {
           return (
             <option key={innerIndex} value={option?.value}>
@@ -63,7 +92,9 @@ const SelectElement = (props) => {
             color: "red",
           }}
         >
-          {props?.label} is required.
+          {props?.errors?.[props?.name] === true
+            ? `This field is required.`
+            : props?.errors?.[props?.name]}
         </p>
       )}
     </div>

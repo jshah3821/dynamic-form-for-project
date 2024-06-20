@@ -244,7 +244,7 @@ const PageBuilder = ({ id, jsonData }: Props) => {
   const data = id ? dataArray?.[id] : jsonData;
 
   return data?.length > 0 ? (
-    <div className="mainPageContainer">
+    <div className="mainPageContainer" style={{ width: "100%" }}>
       <ToastContainer
         position="top-center"
         autoClose={2000}
@@ -284,10 +284,8 @@ const PageBuilder = ({ id, jsonData }: Props) => {
                   <BannerElement
                     id={obj.id}
                     autoPlay={obj?.bannerDetails?.autoPlay}
-                    sliderStyle={obj?.bannerDetails?.style}
-                    nextPrvButtonAvailable={
-                      obj?.bannerDetails?.nextPrvButtonAvailable
-                    }
+                    sliderStyle={obj?.style}
+                    nextPrvButtonAvailable={obj?.bannerDetails?.prevNextEnable}
                     sliderHeight={obj?.bannerDetails?.height}
                     slideDetails={
                       slideDetails || obj?.bannerDetails?.slideDetails

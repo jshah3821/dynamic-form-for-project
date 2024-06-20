@@ -6,7 +6,7 @@ const ButtonElement = (props: any) => {
     <div style={directionStyle} className="px1">
       <button
         // className={"button-Border"}
-        className={`height-button form_button_css_updated`}
+        className={`form_btn form_button_css_updated`}
         //* keep it for reference
         style={props?.style}
         onClick={props?.onClick}

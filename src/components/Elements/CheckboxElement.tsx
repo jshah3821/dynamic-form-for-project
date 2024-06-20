@@ -11,6 +11,7 @@ const CheckboxElement = (props) => {
     textDecoration: props?.style?.textDecoration,
     textTransform: props?.style?.textTransform,
     display: "block",
+    direction: props?.style?.direction,
   };
 
   //REMOVE BACKGROUND FROM THE CONTAINER
@@ -23,6 +24,15 @@ const CheckboxElement = (props) => {
   // add border to the checkbox =
 
   let borderstyle = {
+    color: props?.style?.color,
+    fontSize: props?.style?.fontSize,
+    fontStyle: props?.style?.fontStyle,
+    fontFamily: props?.style?.fontFamily,
+    fontWeight: props?.style?.fontWeight,
+    textAlign: props?.style?.textAlign,
+    textDecoration: props?.style?.textDecoration,
+    textTransform: props?.style?.textTransform,
+
     border: props?.style?.border,
     // borderRadius: props?.style?.borderRadius,
     borderWidth: props?.style?.borderWidth,
@@ -55,7 +65,7 @@ const CheckboxElement = (props) => {
     paddingBottom: props?.style?.paddingBottom,
 
     width: props?.style?.width,
-    height: props?.style?.width,
+    height: props?.style?.height,
     minWidth: props?.style?.minWidth,
     minHeight: props?.style?.minHeight,
     maxWidth: props?.style?.maxWidth,
@@ -71,29 +81,39 @@ const CheckboxElement = (props) => {
     paddingLeft: props?.style?.paddingLeft,
     paddingRight: props?.style?.paddingRight,
     paddingBottom: props?.style?.paddingBottom,
-    direction: props?.style?.direction,
+    // direction: props?.style?.direction,
   };
 
+  let removeTextStyle = {
+    color: props?.style?.color,
+    fontSize: props?.style?.fontSize,
+    fontStyle: props?.style?.fontStyle,
+    fontFamily: props?.style?.fontFamily,
+    fontWeight: props?.style?.fontWeight,
+    textAlign: props?.style?.textAlign,
+    textDecoration: props?.style?.textDecoration,
+    textTransform: props?.style?.textTransform,
+    direction: props?.style?.direction,
+    ...spacingStyle,
+  };
   return (
-    <div
-      // className="px1"
-
-      style={spacingStyle}
-    >
+    <div style={spacingStyle}>
       <label className="input_label" style={inputTextStyle}>
         {props?.name ? props?.name : "Label"}
+        {props?.required && (
+          <span style={{ color: "red", marginLeft: "1px" }}>*</span>
+        )}
       </label>
-      {props?.required && (
-        <span style={{ color: "red", marginLeft: "1px" }}>*</span>
-      )}
       <div
-        style={removeKeyInObject(props?.style, spacingStyle)}
-        className="flex flex-row justify-start items-center radio_option_style"
+        style={removeKeyInObject(props?.style, removeTextStyle)}
+        className="flex flex-row justify-start flex-wrap items-center radio_option_style"
       >
         {props?.optionDetails?.map((option, index) => {
           return (
             <div
-              style={removeKeyInObject(props?.style, borderstyle)}
+              style={{
+                ...removeKeyInObject(props?.style, borderstyle),
+              }}
               key={index}
               className=" flex flex-row justify-start items-center"
             >
@@ -102,14 +122,17 @@ const CheckboxElement = (props) => {
                 style={inputTextStyle}
                 type="checkbox"
                 id={option?.value + index}
-                name="option"
-                value={option?.value}
-                checked={props.formData[props?.name]?.includes(option.value)}
-                onChange={(e) => props?.handleChange(e, props?.name, true)}
+                name="checkbox"
+                value={option.value}
+                checked={props.formData[props?.obj?.id]?.includes(option.value)}
+                onChange={props?.onChange}
               />
               <label
                 className="option_label_style"
-                style={inputTextStyle}
+                style={{
+                  color: props?.style?.color,
+                  fontFamily: props?.style?.fontFamily,
+                }}
                 htmlFor={option.value + index}
               >
                 {option?.label}
@@ -117,19 +140,20 @@ const CheckboxElement = (props) => {
             </div>
           );
         })}
-        {props?.required && (
-          <p
-            style={{
-              visibility: props?.errors?.[props?.name] ? "visible" : "hidden",
-              fontSize: "10px",
-              color: "red",
-              paddingLeft: "0.5rem",
-            }}
-          >
-            {props?.name || `Label`} is required.
-          </p>
-        )}
       </div>
+      {props?.required && (
+        <p
+          style={{
+            visibility: props?.errors?.[props?.obj?.id] ? "visible" : "hidden",
+            fontSize: "10px",
+            color: "red",
+          }}
+        >
+          {props?.errors?.[props?.obj?.id] === true
+            ? `This field is required.`
+            : props?.errors?.[props?.obj?.id]}
+        </p>
+      )}
     </div>
   );
 };
