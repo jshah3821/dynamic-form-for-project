@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import { removeKeyInObject } from "../utils/removeKeyInObject";
 import "./SurveyForm.css";
@@ -73,6 +73,8 @@ const SurveyForm = ({
     textDecoration: answer_style?.textDecoration,
     textTransform: answer_style?.textTransform,
   };
+
+  localStorage.getItem("formData");
 
   return (
     <div

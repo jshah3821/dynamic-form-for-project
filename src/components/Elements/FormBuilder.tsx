@@ -565,18 +565,22 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
   };
 
   const [imageFile, setImageFile] = useState("");
-  // console.log(imageFile, "imageFile");
+  console.log(imageFile, "imageFile");
 
-  localStorage.setItem(imageFile, "file");
+  useEffect(() => {
+    localStorage.setItem("formData", imageFile);
+  }, [imageFile]);
 
   const formDataHandleChange = (event, id, multipleFileUpload?) => {
     const { name, value } = event?.target;
     let updatedFiles: any;
 
     // console.log(updatedFiles, "updatedFiles");
+
     if (name === "survey_image") {
       const fileList = event.target.files;
-      setImageFile(fileList);
+      console.log(fileList, "filelidsdsad");
+
       if (multipleFileUpload) {
         const existingFiles = formData[id] || []; // Get existing files from formData
         updatedFiles = [...existingFiles]; // Copy existing files to updatedFiles
@@ -588,14 +592,15 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
         const reader = new FileReader();
         reader.onload = (e: any) => {
           const dataURL = e.target.result;
-          updatedFiles.push({ name: file.name, dataURL });
 
-          // if (updatedFiles.length === fileList.length) {
-          setFormData((prevState) => ({
-            ...prevState,
-            [id]: updatedFiles,
-          }));
-          // }
+          updatedFiles.push({ name: file.name, dataURL });
+          setImageFile(dataURL);
+          if (updatedFiles.length === fileList.length) {
+            setFormData((prevState) => ({
+              ...prevState,
+              [id]: updatedFiles,
+            }));
+          }
         };
         reader.readAsDataURL(file);
       }
@@ -839,6 +844,8 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
                   errors={errors}
                   subType={obj?.subType}
                   properties={obj?.properties}
+                  imageFile={imageFile}
+                  setImageFile={setImageFile}
                 />
               </>
             );
