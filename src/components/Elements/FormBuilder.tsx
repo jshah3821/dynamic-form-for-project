@@ -564,11 +564,19 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
     }));
   };
 
+  const [imageFile, setImageFile] = useState("");
+  // console.log(imageFile, "imageFile");
+
+  localStorage.setItem(imageFile, "file");
+
   const formDataHandleChange = (event, id, multipleFileUpload?) => {
     const { name, value } = event?.target;
     let updatedFiles: any;
+
+    // console.log(updatedFiles, "updatedFiles");
     if (name === "survey_image") {
       const fileList = event.target.files;
+      setImageFile(fileList);
       if (multipleFileUpload) {
         const existingFiles = formData[id] || []; // Get existing files from formData
         updatedFiles = [...existingFiles]; // Copy existing files to updatedFiles
