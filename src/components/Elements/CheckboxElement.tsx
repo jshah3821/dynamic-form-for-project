@@ -1,4 +1,6 @@
 import { removeKeyInObject } from "./utils/removeKeyInObject";
+import React from "react";
+import "./FormBuilder.css";
 
 const CheckboxElement = (props) => {
   const inputTextStyle = {
@@ -106,7 +108,7 @@ const CheckboxElement = (props) => {
       </label>
       <div
         style={removeKeyInObject(props?.style, removeTextStyle)}
-        className="flex flex-row justify-start flex-wrap items-center radio_option_style"
+        className="checkbox-container radio_option_style"
       >
         {props?.optionDetails?.map((option, index) => {
           return (

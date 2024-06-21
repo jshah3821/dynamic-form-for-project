@@ -152,7 +152,7 @@ const SurveyForm = ({
           )}
           {subType === "survey_radio" && (
             <div
-              className="flex flex-row justify-start items-center radio_option_style"
+              className="checkbox-container"
               style={properties?.answer_style}
             >
               {properties?.optionDetails?.map((option) => {
@@ -184,7 +184,7 @@ const SurveyForm = ({
           )}
           {subType === "survey_checkbox" && (
             <div
-              className="flex flex-row justify-start items-center radio_option_style"
+              className="checkbox-container"
               style={properties?.answer_style}
             >
               {properties?.optionDetails?.map((option, index) => {

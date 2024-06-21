@@ -1245,3 +1245,13 @@ textarea {
   background-color: var(--grey-color-eee);
   border-radius: 3px;
 }
+
+@media (min-width: 992px) {
+  .checkbox-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+}

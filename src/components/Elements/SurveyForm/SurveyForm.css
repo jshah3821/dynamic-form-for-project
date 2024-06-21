@@ -71,7 +71,7 @@
 }
 .que_img_div {
   padding: 10px;
-  width: 25%;
+  width: 100% !important;
   position: relative;
 }
 .que_img_arr {
