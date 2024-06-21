@@ -73,9 +73,17 @@ const SurveyForm = ({
     textDecoration: answer_style?.textDecoration,
     textTransform: answer_style?.textTransform,
   };
+  const [imageUrl, setImageUrl] = useState("");
 
-  localStorage.getItem("formData");
+  useEffect(() => {
+    const dataImage = localStorage.getItem("formData") || "";
+    console.log(dataImage, "daaddfg");
+    if (dataImage) {
+      setImageUrl(dataImage);
+    }
+  }, []);
 
+  console.log(imageUrl, "imgshjhjksls");
   return (
     <div
       style={queContStyle}
@@ -228,7 +236,7 @@ const SurveyForm = ({
                       X
                     </div>
                     <img
-                      src={image.dataURL}
+                      src={imageUrl}
                       className="que_img_arr"
                       alt="header-logo"
                     />
