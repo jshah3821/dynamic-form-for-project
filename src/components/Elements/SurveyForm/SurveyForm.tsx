@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import { removeKeyInObject } from "../utils/removeKeyInObject";
 import "./SurveyForm.css";
@@ -13,6 +13,8 @@ const SurveyForm = ({
   handleRemoveFile,
   handleSubmitFormData,
   index,
+  imageFile,
+  setImageFile,
 }) => {
   const fileRef = useRef<any>(null);
   const [tooltipStyle, setTooltipStyle] = useState<any>({
@@ -73,17 +75,16 @@ const SurveyForm = ({
     textDecoration: answer_style?.textDecoration,
     textTransform: answer_style?.textTransform,
   };
-  const [imageUrl, setImageUrl] = useState("");
+  // const [imageUrl, setImageUrl] = useState("");
 
-  useEffect(() => {
-    const dataImage = localStorage.getItem("formData") || "";
-    console.log(dataImage, "daaddfg");
-    if (dataImage) {
-      setImageUrl(dataImage);
-    }
-  }, []);
-
-  console.log(imageUrl, "imgshjhjksls");
+  // useEffect(() => {
+  //   const dataImage = localStorage.getItem("formData") || "";
+  //   console.log(dataImage, "daaddfg");
+  //   if (dataImage) {
+  //     setImageUrl(dataImage);
+  //   }
+  // }, []);
+  console.log(imageFile, "imageFile");
   return (
     <div
       style={queContStyle}
@@ -236,7 +237,7 @@ const SurveyForm = ({
                       X
                     </div>
                     <img
-                      src={imageUrl}
+                      src={imageFile}
                       className="que_img_arr"
                       alt="header-logo"
                     />
