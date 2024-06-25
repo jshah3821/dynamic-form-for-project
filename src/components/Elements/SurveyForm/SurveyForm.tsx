@@ -1,7 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import { removeKeyInObject } from "../utils/removeKeyInObject";
 import "./SurveyForm.css";
+import React from "react";
 
 const SurveyForm = ({
   queData,

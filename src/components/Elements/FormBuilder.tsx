@@ -1,3 +1,4 @@
+import React from "react";
 import { useEffect, useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import { callApi } from "./api";
@@ -744,24 +745,22 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
             switch (obj?.subType) {
               case "input":
                 return (
-                  <>
-                    <InputElement
-                      errors={errors}
-                      key={index}
-                      obj={obj}
-                      name={obj?.properties?.name}
-                      id={index}
-                      type={obj?.properties?.type}
-                      style={obj?.style}
-                      label={obj?.properties?.label}
-                      placeholder={obj?.properties?.placeholder}
-                      minLength={obj?.validation?.minLength}
-                      maxLength={obj?.validation?.maxLength}
-                      required={obj?.validation?.required}
-                      value={formData[obj?.id] || ""}
-                      onChange={(e) => formDataHandleChange(e, obj?.id)}
-                    />
-                  </>
+                  <InputElement
+                    errors={errors}
+                    key={index}
+                    obj={obj}
+                    name={obj?.properties?.name}
+                    id={index}
+                    type={obj?.properties?.type}
+                    style={obj?.style}
+                    label={obj?.properties?.label}
+                    placeholder={obj?.properties?.placeholder}
+                    minLength={obj?.validation?.minLength}
+                    maxLength={obj?.validation?.maxLength}
+                    required={obj?.validation?.required}
+                    value={formData[obj?.id] || ""}
+                    onChange={(e) => formDataHandleChange(e, obj?.id)}
+                  />
                 );
               case "button":
                 return (

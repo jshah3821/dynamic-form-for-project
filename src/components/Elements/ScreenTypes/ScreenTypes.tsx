@@ -4,6 +4,7 @@ import { HiOutlineDeviceTablet } from "react-icons/hi2";
 import { VscDeviceMobile } from "react-icons/vsc";
 import "./ScreenTypes.css";
 import { useGetTheme } from "../ScreenContext";
+
 export default function ScreenTypes() {
   const { resposiveIconClickHandle } = useGetTheme();
   return (
