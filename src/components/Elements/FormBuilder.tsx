@@ -15,6 +15,7 @@ import ListElement from "./ListElement/ListElement";
 import "react-toastify/dist/ReactToastify.css";
 import "react-multi-carousel/lib/styles.css";
 import "./FormBuilder.css";
+import { useGetTheme } from "./ScreenContext.js";
 
 const dataArray = {
   1: [
@@ -445,8 +446,15 @@ interface Props {
   jsonData?: any;
 }
 export const FormBuilder = ({ id, jsonData }: Props) => {
+  const { previewType }: any = useGetTheme();
+
   const data = id ? dataArray?.[id] : jsonData;
   const [formData, setFormData] = useState({});
+
+  useEffect(() => {
+    console.log("formData", formData);
+  }, [formData]);
+
   const [errors, setErrors] = useState({});
   const [isSubmitClicked, setSubmitClicked] = useState(false);
   const [initialFormData, setInitialFormData] = useState({});
@@ -471,6 +479,9 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
   useEffect(() => {
     data?.length > 0
       ? data?.map((obj, i) => {
+          {
+            console.log("obj?.type", obj?.type);
+          }
           switch (obj?.type) {
             case "element":
               switch (obj?.subType) {
@@ -501,6 +512,9 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
                   return null;
               }
             case "surveyform":
+              {
+                console.log("obj", obj);
+              }
               switch (obj?.subType) {
                 case "shortanswer":
                 case "longanswer":
@@ -516,10 +530,22 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
                   break;
                 case "survey_checkbox":
                 case "survey_image":
-                  setFormData((prev) => ({
-                    ...prev,
-                    [obj?.id]: [],
-                  }));
+                  setFormData(
+                    (prev) => {
+                      console.log("prev", prev);
+
+                      return {
+                        ...prev,
+                        [obj?.id]: [],
+                      };
+                    }
+
+                    //   (
+                    //   {
+                    //   ...prev,
+                    //   [obj?.id]: [],
+                    // })
+                  );
                   setInitialFormData((prev) => ({
                     ...prev,
                     [obj?.id]: [],
@@ -573,6 +599,9 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
 
   const formDataHandleChange = (event, id, multipleFileUpload?) => {
     const { name, value } = event?.target;
+
+    console.log("name, value", name, value);
+
     let updatedFiles: any;
 
     // console.log(updatedFiles, "updatedFiles");
@@ -690,7 +719,12 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
   };
 
   return data?.length > 0 ? (
-    <div className="fb_container">
+    <div
+      // className={`prev_container ${previewType}`}
+      className={`fb_container ${previewType}`}
+
+      // className="fb_container"
+    >
       <ToastContainer
         position="top-center"
         autoClose={2000}

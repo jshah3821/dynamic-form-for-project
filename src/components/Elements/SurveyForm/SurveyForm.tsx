@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import { removeKeyInObject } from "../utils/removeKeyInObject";
 import "./SurveyForm.css";
@@ -236,8 +236,9 @@ const SurveyForm = ({
                     >
                       X
                     </div>
+
                     <img
-                      src={imageFile}
+                      src={image?.dataURL}
                       className="que_img_arr"
                       alt="header-logo"
                     />

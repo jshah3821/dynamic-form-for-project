@@ -73,6 +73,8 @@
   padding: 10px;
   width: 100% !important;
   position: relative;
+  width: 100% !important;
+  object-fit: contain;
 }
 .que_img_arr {
   width: 100%;
@@ -86,7 +88,6 @@
   background-color: #f6f6f6;
   outline: none;
   border: 1px solid #888;
-  /* padding: 10px; */
 }
 .fileUpload {
   display: block !important;
