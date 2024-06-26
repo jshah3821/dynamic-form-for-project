@@ -3,7 +3,7 @@ import { CgLaptop } from "react-icons/cg";
 import { HiOutlineDeviceTablet } from "react-icons/hi2";
 import { VscDeviceMobile } from "react-icons/vsc";
 import "./ScreenTypes.css";
-import Tooltip from "../Tooltip/Tooltip";
+import Tooltip from "../CustomTooltip/Tooltip";
 
 export default function ScreenTypes({ resposiveIconClickHandle }) {
   return (
