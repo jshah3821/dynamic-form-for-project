@@ -64,6 +64,12 @@ const SurveyForm = ({
     paddingLeft: question_style?.paddingLeft,
     paddingRight: question_style?.paddingRight,
     paddingTop: question_style?.paddingTop,
+    height: question_style?.height,
+    width: question_style?.width,
+    minHeight: question_style?.minHeight,
+    minWidth: question_style?.minWidth,
+    maxHeight: question_style?.maxHeight,
+    maxWidth: question_style?.maxWidth,
   };
 
   const ansContentTextStyle = {
