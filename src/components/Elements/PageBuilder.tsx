@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import HeaderElement from "./Header/HeaderElement";
 import TestimonialElement from "./CustomTestimonial/TestimonialElement";
 import FooterElement from "./Footer/FooterElement";
@@ -11,6 +11,7 @@ import { removeQuotesFromKeys } from "./generalFunctions";
 import TableElement from "./Table/TableElement";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ScreenTypes from "./ScreenTypes/ScreenTypes";
 
 interface Props {
   id?: number;
@@ -241,10 +242,29 @@ const dataArray = {
 };
 
 const PageBuilder = ({ id, jsonData }: Props) => {
+  const [previewType, setPreviewType] = useState("");
+
+  const resposiveIconClickHandle = (responsiveType) => {
+    setPreviewType(responsiveType);
+  };
+
+  console.log("previewType", previewType);
+
   const data = id ? dataArray?.[id] : jsonData;
 
   return data?.length > 0 ? (
-    <div className="mainPageContainer" style={{ width: "100%" }}>
+    <div
+      // className="previewType"
+      className={`${previewType}`}
+      style={{
+        width: "100%",
+        display: "flex",
+        flexDirection: "column",
+        margin: "0 auto",
+        gap: "10px",
+      }}
+    >
+      <ScreenTypes resposiveIconClickHandle={resposiveIconClickHandle} />
       <ToastContainer
         position="top-center"
         autoClose={2000}
