@@ -1,0 +1,84 @@
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: fit-content;
+  background-color: var(--white-color);
+  box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.3);
+  color: black;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px 5px;
+  position: absolute;
+  z-index: 1;
+  font-size: 12px;
+}
+
+.whiteSpace_class {
+  white-space: nowrap;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent white transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+.tooltip .bottom {
+  top: 150%;
+  left: -50%;
+}
+
+.tooltip .bottom::after {
+  bottom: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-color: transparent transparent var(--white-color) transparent;
+}
+
+.tooltip .right {
+  top: 0%;
+  left: 110%;
+}
+
+.tooltip .right::after {
+  top: 50%;
+  right: 100%;
+  margin-top: -5px;
+  border-color: transparent var(--white-color) transparent transparent;
+}
+
+.tooltip .top {
+  bottom: 150%;
+  left: -50%;
+}
+
+.tooltip .top::after {
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-color: var(--white-color) transparent transparent transparent;
+}
+
+.tooltip .left {
+  top: 0%;
+  right: 110%;
+}
+
+.tooltip .left::after {
+  top: 50%;
+  left: 100%;
+  margin-top: -5px;
+  border-color: transparent transparent transparent var(--white-color);
+}
