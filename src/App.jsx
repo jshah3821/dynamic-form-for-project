@@ -21,17 +21,13 @@ function App() {
       return acc;
     }, {});
   }
+  // <MyProvider>
+  // </MyProvider>
 
   return (
-    <MyProvider>
-      <ScreenTypes />
-      {/* className={`prev_container ${previewType}`} */}
-      <FormBuilder
-        // previewType={previewType}
-        jsonData={removeQuotesFromKeys(json)}
-      />
-      {/* <PageBuilder jsonData={removeQuotesFromKeys(json)} /> */}
-    </MyProvider>
+    // <FormBuilder jsonData={removeQuotesFromKeys(json)} />
+
+    <PageBuilder jsonData={removeQuotesFromKeys(json)} />
   );
 }
 

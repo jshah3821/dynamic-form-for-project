@@ -3,9 +3,8 @@ import { CgLaptop } from "react-icons/cg";
 import { HiOutlineDeviceTablet } from "react-icons/hi2";
 import { VscDeviceMobile } from "react-icons/vsc";
 import "./ScreenTypes.css";
-import { useGetTheme } from "../ScreenContext";
-export default function ScreenTypes() {
-  const { resposiveIconClickHandle } = useGetTheme();
+
+export default function ScreenTypes({ resposiveIconClickHandle }) {
   return (
     <div className="preview_responsive_container">
       <CgLaptop

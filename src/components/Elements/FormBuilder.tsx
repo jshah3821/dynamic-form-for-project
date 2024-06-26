@@ -16,6 +16,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "react-multi-carousel/lib/styles.css";
 import "./FormBuilder.css";
 import { useGetTheme } from "./ScreenContext.js";
+import ScreenTypes from "./ScreenTypes/ScreenTypes.js";
 
 const dataArray = {
   1: [
@@ -446,14 +447,18 @@ interface Props {
   jsonData?: any;
 }
 export const FormBuilder = ({ id, jsonData }: Props) => {
-  const { previewType }: any = useGetTheme();
+  // const { previewType }: any = useGetTheme();
+  const [previewType, setPreviewType] = useState("");
 
+  const resposiveIconClickHandle = (responsiveType) => {
+    setPreviewType(responsiveType);
+  };
   const data = id ? dataArray?.[id] : jsonData;
   const [formData, setFormData] = useState({});
 
   useEffect(() => {
-    console.log("formData", formData);
-  }, [formData]);
+    console.log("previewType", previewType);
+  });
 
   const [errors, setErrors] = useState({});
   const [isSubmitClicked, setSubmitClicked] = useState(false);
@@ -708,12 +713,14 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
   };
 
   return data?.length > 0 ? (
+    // <MyProvider>
+    // </MyProvider>
     <div
       // className={`prev_container ${previewType}`}
       className={`fb_container ${previewType}`}
-
       // className="fb_container"
     >
+      <ScreenTypes resposiveIconClickHandle={resposiveIconClickHandle} />
       <ToastContainer
         position="top-center"
         autoClose={2000}
