@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import FormBuilder from "./components/Elements/FormBuilder";
 import PageBuilder from "./components/Elements/PageBuilder";
 import json from "./data.json";
-import ScreenTypes from "./components/Elements/ScreenTypes/ScreenTypes";
-import MyProvider from "./components/Elements/ScreenContext";
+
 
 function App() {
   function removeQuotesFromKeys(obj) {
@@ -21,8 +20,6 @@ function App() {
       return acc;
     }, {});
   }
-  // <MyProvider>
-  // </MyProvider>
 
   return (
     <FormBuilder jsonData={removeQuotesFromKeys(json)} />

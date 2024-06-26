@@ -82,16 +82,7 @@ const SurveyForm = ({
     textDecoration: answer_style?.textDecoration,
     textTransform: answer_style?.textTransform,
   };
-  // const [imageUrl, setImageUrl] = useState("");
 
-  // useEffect(() => {
-  //   const dataImage = localStorage.getItem("formData") || "";
-  //   console.log(dataImage, "daaddfg");
-  //   if (dataImage) {
-  //     setImageUrl(dataImage);
-  //   }
-  // }, []);
-  console.log(imageFile, "imageFile");
   return (
     <div
       style={queContStyle}
