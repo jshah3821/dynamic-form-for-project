@@ -192,3 +192,7 @@ input[type="range"] {
 .sf_checkbox {
   margin-right: 10px;
 }
+
+.sf_canvas {
+  width: 100%;
+}

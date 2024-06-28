@@ -22,7 +22,7 @@ const SurveyForm = ({
     display: "none",
     left: 0,
   });
-
+  console.log(queData, "queData");
   const handleRangeTooltip = (e) => {
     const newValue = e.target.value;
     const rangeWidth = e.target.offsetWidth;
@@ -54,7 +54,6 @@ const SurveyForm = ({
 
   const { question_style } = properties;
   const { answer_style } = properties;
-
   const queContStyle = {
     marginBottom: question_style.marginBottom,
     marginLeft: question_style?.marginLeft,
@@ -84,10 +83,7 @@ const SurveyForm = ({
   };
 
   return (
-    <div
-      style={queContStyle}
-      className="flex justify-around left-align flex-column"
-    >
+    <div style={queContStyle} className="sf_canvas">
       {properties?.questionDetails?.question_image?.dataURL && (
         <img
           src={properties.questionDetails.question_image.dataURL}

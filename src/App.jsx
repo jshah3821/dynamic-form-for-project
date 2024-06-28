@@ -3,7 +3,6 @@ import FormBuilder from "./components/Elements/FormBuilder";
 import PageBuilder from "./components/Elements/PageBuilder";
 import json from "./data.json";
 
-
 function App() {
   function removeQuotesFromKeys(obj) {
     if (typeof obj !== "object" || obj === null) {
@@ -22,6 +21,7 @@ function App() {
   }
 
   return (
+    
     <FormBuilder jsonData={removeQuotesFromKeys(json)} />
 
     // <PageBuilder jsonData={removeQuotesFromKeys(json)} />

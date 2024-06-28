@@ -658,6 +658,12 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
     }
   };
 
+  const canvasStyle = data.map((item, i) => {
+    return item?.canvasCssStyling;
+  });
+
+  // console.log(canvasStyle[0].gap, "canvasStyle");
+
   const handleValidate = () => {
     const newErrors = {};
     Object.keys(formData).forEach((key) => {
@@ -746,133 +752,144 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
         theme="light"
         style={{ fontSize: "12px" }}
       />
-      {data?.map((obj, index) => {
-        switch (obj?.type) {
-          case "element":
-            switch (obj?.subType) {
-              case "input":
-                return (
-                  <InputElement
-                    errors={errors}
-                    key={index}
-                    obj={obj}
-                    name={obj?.properties?.name}
-                    id={index}
-                    type={obj?.properties?.type}
-                    style={obj?.style}
-                    label={obj?.properties?.label}
-                    placeholder={obj?.properties?.placeholder}
-                    minLength={obj?.validation?.minLength}
-                    maxLength={obj?.validation?.maxLength}
-                    required={obj?.validation?.required}
-                    value={formData[obj?.id] || ""}
-                    onChange={(e) => formDataHandleChange(e, obj?.id)}
-                  />
-                );
-              case "button":
-                return (
-                  <ButtonElement
-                    key={index}
-                    label={obj?.properties?.label}
-                    onClick={() => {
-                      handleSubmitFormData();
-                    }}
-                    disabled={obj?.properties?.disabled}
-                    style={obj?.style}
-                  />
-                );
-              case "select":
-                return (
-                  <SelectElement
-                    errors={errors}
-                    name={obj?.id}
-                    required={obj?.validation?.required}
-                    key={index}
-                    label={obj?.properties?.label}
-                    options={obj?.properties?.optionDetails}
-                    style={obj?.style}
-                    value={formData[obj?.id] || ""}
-                    onChange={(e) => formDataHandleChange(e, obj?.id)}
-                  />
-                );
-              case "radio":
-                return (
-                  <RadioElement
-                    errors={errors}
-                    key={index}
-                    obj={obj}
-                    name={obj?.properties?.name}
-                    required={obj?.validation?.required}
-                    label={obj?.properties?.label}
-                    options={obj?.properties?.options}
-                    style={obj?.style}
-                    data={formData[obj?.properties?.name] || ""}
-                    onChange={(e) => formDataHandleChange(e, obj?.id)}
-                  />
-                );
-              case "textarea":
-                return (
-                  <TextboxElement
-                    errors={errors}
-                    key={index}
-                    id={index}
-                    obj={obj}
-                    name={obj?.properties?.name}
-                    required={obj?.validation?.required}
-                    rows={obj?.properties?.rows}
-                    label={obj?.properties?.label}
-                    placeholder={obj?.properties?.placeholder}
-                    minLength={obj?.validation?.minLength}
-                    maxLength={obj?.validation?.maxLength}
-                    style={obj?.style}
-                    value={formData[obj?.id] || ""}
-                    onChange={(e) => formDataHandleChange(e, obj?.id)}
-                  />
-                );
-              case "checkbox":
-                return (
-                  <CheckboxElement
-                    optionDetails={obj?.properties?.optionDetails}
-                    errors={errors}
-                    key={index}
-                    id={index}
-                    obj={obj}
-                    name={obj?.properties?.label}
-                    style={obj?.style}
-                    formData={formData}
-                    onChange={(e) => formDataHandleChange(e, obj?.id)}
-                    required={obj?.validation?.required}
-                  />
-                );
-              case "list":
-                return <ListElement key={index} listData={obj} />;
-              default:
-                return null;
-            }
-          case "typography":
-            switch (obj?.subType) {
-              case "heading":
-                return (
-                  <h2 key={index} style={obj?.style}>
-                    {obj?.text}
-                  </h2>
-                );
-              case "text":
-                return (
-                  <p key={index} style={obj?.style} className="fp_text">
-                    {obj?.properties?.text || "Please add relevant label"}
-                  </p>
-                );
-              default:
-                return null;
-            }
-          case "layout":
-            return obj?.subType === "hr" ? (
-              <hr key={index} style={obj?.style} />
-            ) : null;
-          case "surveyform":
-            return (
-              <>
+      <div
+        style={{
+          display: canvasStyle[0]?.display,
+          alignItems: canvasStyle[0]?.alignItems,
+          gap: canvasStyle[0]?.gap,
+          gridTemplateRows: canvasStyle[0]?.gridTemplateRows,
+          gridTemplateColumns: canvasStyle[0]?.gridTemplateColumns,
+          flexDirection: canvasStyle[0]?.flexDirection,
+          backgroundColor: canvasStyle[0]?.backgroundColor,
+        }}
+      >
+        {" "}
+        {data?.map((obj, index) => {
+          switch (obj?.type) {
+            case "element":
+              switch (obj?.subType) {
+                case "input":
+                  return (
+                    <InputElement
+                      errors={errors}
+                      key={index}
+                      obj={obj}
+                      name={obj?.properties?.name}
+                      id={index}
+                      type={obj?.properties?.type}
+                      style={obj?.style}
+                      label={obj?.properties?.label}
+                      placeholder={obj?.properties?.placeholder}
+                      minLength={obj?.validation?.minLength}
+                      maxLength={obj?.validation?.maxLength}
+                      required={obj?.validation?.required}
+                      value={formData[obj?.id] || ""}
+                      onChange={(e) => formDataHandleChange(e, obj?.id)}
+                    />
+                  );
+                case "button":
+                  return (
+                    <ButtonElement
+                      key={index}
+                      label={obj?.properties?.label}
+                      onClick={() => {
+                        handleSubmitFormData();
+                      }}
+                      disabled={obj?.properties?.disabled}
+                      style={obj?.style}
+                    />
+                  );
+                case "select":
+                  return (
+                    <SelectElement
+                      errors={errors}
+                      name={obj?.id}
+                      required={obj?.validation?.required}
+                      key={index}
+                      label={obj?.properties?.label}
+                      options={obj?.properties?.optionDetails}
+                      style={obj?.style}
+                      value={formData[obj?.id] || ""}
+                      onChange={(e) => formDataHandleChange(e, obj?.id)}
+                    />
+                  );
+                case "radio":
+                  return (
+                    <RadioElement
+                      errors={errors}
+                      key={index}
+                      obj={obj}
+                      name={obj?.properties?.name}
+                      required={obj?.validation?.required}
+                      label={obj?.properties?.label}
+                      options={obj?.properties?.options}
+                      style={obj?.style}
+                      data={formData[obj?.properties?.name] || ""}
+                      onChange={(e) => formDataHandleChange(e, obj?.id)}
+                    />
+                  );
+                case "textarea":
+                  return (
+                    <TextboxElement
+                      errors={errors}
+                      key={index}
+                      id={index}
+                      obj={obj}
+                      name={obj?.properties?.name}
+                      required={obj?.validation?.required}
+                      rows={obj?.properties?.rows}
+                      label={obj?.properties?.label}
+                      placeholder={obj?.properties?.placeholder}
+                      minLength={obj?.validation?.minLength}
+                      maxLength={obj?.validation?.maxLength}
+                      style={obj?.style}
+                      value={formData[obj?.id] || ""}
+                      onChange={(e) => formDataHandleChange(e, obj?.id)}
+                    />
+                  );
+                case "checkbox":
+                  return (
+                    <CheckboxElement
+                      optionDetails={obj?.properties?.optionDetails}
+                      errors={errors}
+                      key={index}
+                      id={index}
+                      obj={obj}
+                      name={obj?.properties?.label}
+                      style={obj?.style}
+                      formData={formData}
+                      onChange={(e) => formDataHandleChange(e, obj?.id)}
+                      required={obj?.validation?.required}
+                    />
+                  );
+                case "list":
+                  return <ListElement key={index} listData={obj} />;
+                default:
+                  return null;
+              }
+            case "typography":
+              switch (obj?.subType) {
+                case "heading":
+                  return (
+                    <h2 key={index} style={obj?.style}>
+                      {obj?.text}
+                    </h2>
+                  );
+                case "text":
+                  return (
+                    <p key={index} style={obj?.style} className="fp_text">
+                      {obj?.properties?.text || "Please add relevant label"}
+                    </p>
+                  );
+                default:
+                  return null;
+              }
+            case "layout":
+              return obj?.subType === "hr" ? (
+                <hr key={index} style={obj?.style} />
+              ) : null;
+            case "surveyform":
+              return (
                 <SurveyForm
                   key={index}
                   index={index}
@@ -887,20 +904,21 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
                   imageFile={imageFile}
                   setImageFile={setImageFile}
                 />
-              </>
-            );
-          case "template":
-            return (
-              <FormBuilderPackage
-                key={index}
-                jsonData={removeQuotesFromKeys(obj?.json)}
-              />
-            );
+              );
+            case "template":
+              return (
+                <FormBuilderPackage
+                  key={index}
+                  jsonData={removeQuotesFromKeys(obj?.json)}
+                />
+              );
 
-          default:
-            return null;
-        }
-      })}
+            default:
+              return null;
+          }
+        })}
+      </div>
+
       {data?.some((obj) => validSubtypes.includes(obj.subType)) &&
         !data?.some((obj) => invalidSubtypes.includes(obj.subType)) && (
           <div className="submit_btn_container">
