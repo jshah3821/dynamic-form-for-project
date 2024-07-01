@@ -16,6 +16,7 @@ import ScreenTypes from "./ScreenTypes/ScreenTypes";
 interface Props {
   id?: number;
   jsonData?: any;
+  canvasStyle?: any;
 }
 
 const dataArray = {
@@ -241,7 +242,7 @@ const dataArray = {
   ],
 };
 
-const PageBuilder = ({ id, jsonData }: Props) => {
+const PageBuilder = ({ id, jsonData, canvasStyle }: Props) => {
   const [previewType, setPreviewType] = useState("");
 
   const resposiveIconClickHandle = (responsiveType) => {
@@ -278,49 +279,23 @@ const PageBuilder = ({ id, jsonData }: Props) => {
         theme="light"
         style={{ fontSize: "12px" }}
       />
-      {data?.map((obj, index) => {
-        switch (obj?.type) {
-          case "component":
-            switch (obj?.subType) {
-              case "banner":
-                const slideDetails =
-                  obj?.bannerDetails?.slideDetails?.sort((a, b) => {
-                    // If sequence key is present in both objects, compare them
-                    if ("sequence" in a && "sequence" in b) {
-                      return a.sequence - b.sequence;
-                    }
-                    // If sequence key is present only in 'a', 'a' comes first
-                    if ("sequence" in a) {
-                      return -1;
-                    }
-                    // If sequence key is present only in 'b', 'b' comes first
-                    if ("sequence" in b) {
-                      return 1;
-                    }
-                    // If sequence key is not present in both objects, maintain the original order
-                    return 0;
-                  }) || [];
-                return (
-                  <BannerElement
-                    id={obj.id}
-                    autoPlay={obj?.bannerDetails?.autoPlay}
-                    sliderStyle={obj?.style}
-                    nextPrvButtonAvailable={obj?.bannerDetails?.prevNextEnable}
-                    sliderHeight={obj?.bannerDetails?.height}
-                    slideDetails={
-                      slideDetails || obj?.bannerDetails?.slideDetails
-                    }
-                    resizeBannerWidth={obj?.bannerDetails?.resizeBannerWidth}
-                    arrowButtonType={obj?.bannerDetails?.arrowButtonType}
-                    captionPosition={obj?.bannerDetails?.captionPosition}
-                  />
-                );
-              case "header":
-                return <HeaderElement headerProps={obj} />;
-              case "testimonial":
-                const slideDetailsTestimonial =
-                  obj?.testimonialDetails?.testimonialCardDetails?.sort(
-                    (a, b) => {
+      <div
+        style={{
+          display: canvasStyle?.display,
+          alignItems: canvasStyle?.alignItems,
+          gap: canvasStyle?.gap,
+          gridTemplateRows: canvasStyle?.gridTemplateRows,
+          gridTemplateColumns: canvasStyle?.gridTemplateColumns,
+          flexDirection: canvasStyle?.flexDirection,
+        }}
+      >
+        {data?.map((obj, index) => {
+          switch (obj?.type) {
+            case "component":
+              switch (obj?.subType) {
+                case "banner":
+                  const slideDetails =
+                    obj?.bannerDetails?.slideDetails?.sort((a, b) => {
                       // If sequence key is present in both objects, compare them
                       if ("sequence" in a && "sequence" in b) {
                         return a.sequence - b.sequence;
@@ -335,39 +310,80 @@ const PageBuilder = ({ id, jsonData }: Props) => {
                       }
                       // If sequence key is not present in both objects, maintain the original order
                       return 0;
-                    }
-                  ) || [];
-                return (
-                  <TestimonialElement
-                    testimonial={obj}
-                    testimonialCardDetails={
-                      slideDetailsTestimonial ||
-                      obj?.testimonialDetails?.testimonialCardDetails
-                    }
-                  />
-                );
-              case "footer":
-                return (
-                  <FooterElement
-                    footerDetails={obj?.footer?.footerDetails}
-                    socialDetails={obj?.footer?.socialDetails}
-                    style={obj?.style}
-                  />
-                );
-              case "table":
-                return <TableElement tableProps={obj} />;
+                    }) || [];
+                  return (
+                    <BannerElement
+                      id={obj.id}
+                      autoPlay={obj?.bannerDetails?.autoPlay}
+                      sliderStyle={obj?.style}
+                      nextPrvButtonAvailable={
+                        obj?.bannerDetails?.prevNextEnable
+                      }
+                      sliderHeight={obj?.bannerDetails?.height}
+                      slideDetails={
+                        slideDetails || obj?.bannerDetails?.slideDetails
+                      }
+                      resizeBannerWidth={obj?.bannerDetails?.resizeBannerWidth}
+                      arrowButtonType={obj?.bannerDetails?.arrowButtonType}
+                      captionPosition={obj?.bannerDetails?.captionPosition}
+                    />
+                  );
+                case "header":
+                  return <HeaderElement headerProps={obj} />;
+                case "testimonial":
+                  const slideDetailsTestimonial =
+                    obj?.testimonialDetails?.testimonialCardDetails?.sort(
+                      (a, b) => {
+                        // If sequence key is present in both objects, compare them
+                        if ("sequence" in a && "sequence" in b) {
+                          return a.sequence - b.sequence;
+                        }
+                        // If sequence key is present only in 'a', 'a' comes first
+                        if ("sequence" in a) {
+                          return -1;
+                        }
+                        // If sequence key is present only in 'b', 'b' comes first
+                        if ("sequence" in b) {
+                          return 1;
+                        }
+                        // If sequence key is not present in both objects, maintain the original order
+                        return 0;
+                      }
+                    ) || [];
+                  return (
+                    <TestimonialElement
+                      testimonial={obj}
+                      testimonialCardDetails={
+                        slideDetailsTestimonial ||
+                        obj?.testimonialDetails?.testimonialCardDetails
+                      }
+                    />
+                  );
+                case "footer":
+                  return (
+                    <FooterElement
+                      footerDetails={obj?.footer?.footerDetails}
+                      socialDetails={obj?.footer?.socialDetails}
+                      style={obj?.style}
+                    />
+                  );
+                case "table":
+                  return <TableElement tableProps={obj} />;
 
-              default:
-                return null;
-            }
-          case "template":
-            return (
-              <FormBuilderPackage jsonData={removeQuotesFromKeys(obj?.json)} />
-            );
-          default:
-            return null;
-        }
-      })}
+                default:
+                  return null;
+              }
+            case "template":
+              return (
+                <FormBuilderPackage
+                  jsonData={removeQuotesFromKeys(obj?.json)}
+                />
+              );
+            default:
+              return null;
+          }
+        })}
+      </div>
     </div>
   ) : (
     <p style={{ textAlign: "center" }}>No preview Page data available</p>

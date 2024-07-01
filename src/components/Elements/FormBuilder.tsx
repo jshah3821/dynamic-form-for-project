@@ -446,8 +446,9 @@ const dataArray = {
 interface Props {
   id?: number;
   jsonData?: any;
+  canvasStyle?: any;
 }
-export const FormBuilder = ({ id, jsonData }: Props) => {
+export const FormBuilder = ({ id, jsonData, canvasStyle }: Props) => {
   // const { previewType }: any = useGetTheme();
   const [previewType, setPreviewType] = useState("");
 
@@ -658,12 +659,6 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
     }
   };
 
-  const canvasStyle = data.map((item, i) => {
-    return item?.canvasCssStyling;
-  });
-
-  // console.log(canvasStyle[0].gap, "canvasStyle");
-
   const handleValidate = () => {
     const newErrors = {};
     Object.keys(formData).forEach((key) => {
@@ -754,13 +749,12 @@ export const FormBuilder = ({ id, jsonData }: Props) => {
       />
       <div
         style={{
-          display: canvasStyle[0]?.display,
-          alignItems: canvasStyle[0]?.alignItems,
-          gap: canvasStyle[0]?.gap,
-          gridTemplateRows: canvasStyle[0]?.gridTemplateRows,
-          gridTemplateColumns: canvasStyle[0]?.gridTemplateColumns,
-          flexDirection: canvasStyle[0]?.flexDirection,
-          backgroundColor: canvasStyle[0]?.backgroundColor,
+          display: canvasStyle?.display,
+          alignItems: canvasStyle?.alignItems,
+          gap: canvasStyle?.gap,
+          gridTemplateRows: canvasStyle?.gridTemplateRows,
+          gridTemplateColumns: canvasStyle?.gridTemplateColumns,
+          flexDirection: canvasStyle?.flexDirection,
         }}
       >
         {" "}

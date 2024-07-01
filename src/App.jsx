@@ -21,10 +21,14 @@ function App() {
   }
 
   return (
-    
-    <FormBuilder jsonData={removeQuotesFromKeys(json)} />
+    <FormBuilder
+      jsonData={removeQuotesFromKeys(json?.canvasFields)}
+      canvasStyle={json?.canvasCssStyling}
+    />
 
-    // <PageBuilder jsonData={removeQuotesFromKeys(json)} />
+    // <PageBuilder 
+    // jsonData={removeQuotesFromKeys(json?.canvasFields)}
+    //   canvasStyle={json?.canvasCssStyling} />
   );
 }
 
