@@ -232,7 +232,7 @@ const SurveyForm = ({
                     </div>
 
                     <img
-                      src={image?.dataURL}
+                      src={imageFile}
                       className="que_img_arr"
                       alt="header-logo"
                     />
