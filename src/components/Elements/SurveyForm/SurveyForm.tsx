@@ -17,6 +17,8 @@ const SurveyForm = ({
   imageFile,
   setImageFile,
 }) => {
+  console.log("formData", formData);
+
   const fileRef = useRef<any>(null);
   const [tooltipStyle, setTooltipStyle] = useState<any>({
     display: "none",
@@ -232,7 +234,8 @@ const SurveyForm = ({
                     </div>
 
                     <img
-                      src={imageFile}
+                      // src={imageFile}
+                      src={image?.dataURL}
                       className="que_img_arr"
                       alt="header-logo"
                     />

@@ -658,48 +658,42 @@ export const FormBuilder = ({ id, jsonData, canvasStyle }: Props) => {
   //   }
   // };
 
-  const formDataHandleChange = (event, id, multipleFileUpload?) => {
-    const { name, value } = event?.target;
+  const formDataHandleChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    id: string,
+    multipleFileUpload?: boolean
+  ) => {
+    const { name } = event.target;
 
     if (name === "survey_image") {
       const fileList = event.target.files;
-      let updatedFiles = multipleFileUpload ? [...(formData[id] || [])] : [];
+      if (!fileList) return;
 
-      // Array to hold all promises from FileReader.onload events
-      const promises = [];
+      let updatedFiles: any[] = [];
 
-      for (let i = 0; i < fileList.length; i++) {
-        const file = fileList[i];
+      Array.from(fileList).forEach((file) => {
         const reader = new FileReader();
-        const promise = new Promise((resolve, reject) => {
-          reader.onload = (e: any) => {
-            const dataURL = e.target.result;
+        reader.onload = (e: ProgressEvent<FileReader>) => {
+          if (e.target && e.target.result) {
+            const dataURL = e.target.result as string;
             updatedFiles.push({ name: file.name, dataURL });
-            setImageFile(dataURL);
-            resolve();
-          };
-          reader.onerror = (error) => reject(error);
-        });
 
-        promises.push(promise);
+            // Update form data only after processing all files
+            if (updatedFiles.length === fileList.length) {
+              setFormData((prevState) => ({
+                ...prevState,
+                [id]: multipleFileUpload
+                  ? [...(formData[id] || []), ...updatedFiles]
+                  : updatedFiles,
+              }));
+            }
+          }
+        };
+
         reader.readAsDataURL(file);
-      }
-
-      // After all files are read, update formData[id]
-      Promise.all(promises)
-        .then(() => {
-          setFormData((prevState) => ({
-            ...prevState,
-            [id]: updatedFiles,
-          }));
-        })
-        .catch((error) => {
-          console.error("Error reading files:", error);
-          // Handle error if necessary
-        });
-    } else if (name === "checkbox" || name === "survey_checkbox") {
-      // Checkbox handling logic
+      });
     } else {
+      const { value } = event.target;
       setFormData((prevState) => ({
         ...prevState,
         [id]: value,
