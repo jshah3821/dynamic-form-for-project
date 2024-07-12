@@ -16,6 +16,7 @@ const ListElement = ({ listData, key }) => {
   };
 
   const listItemContainer = {
+    backgroundColor: style?.backgroundColor,
     height: style?.height,
     width: style?.width,
     minWidth: style?.minWidth,
