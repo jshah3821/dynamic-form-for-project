@@ -604,53 +604,101 @@ export const FormBuilder = ({ id, jsonData, canvasStyle }: Props) => {
     localStorage.setItem("formData", imageFile);
   }, [imageFile]);
 
+  // const formDataHandleChange = (event, id, multipleFileUpload?) => {
+  //   const { name, value } = event?.target;
+
+  //   console.log("name, value", name, value);
+
+  //   let updatedFiles: any;
+  //   if (name === "survey_image") {
+  //     const fileList = event.target.files;
+  //     console.log("fileList", fileList);
+
+  //     console.log("updatedFiles", updatedFiles);
+
+  //     if (multipleFileUpload) {
+  //       const existingFiles = formData[id] || []; // Get existing files from formData
+  //       updatedFiles = [...existingFiles]; // Copy existing files to updatedFiles
+  //     } else {
+  //       updatedFiles = [];
+  //     }
+  //     for (let i = 0; i < fileList.length; i++) {
+  //       const file = fileList[i];
+  //       const reader = new FileReader();
+  //       reader.onload = (e: any) => {
+  //         const dataURL = e.target.result;
+
+  //         updatedFiles.push({ name: file.name, dataURL });
+  //         setImageFile(dataURL);
+  //         if (updatedFiles.length === fileList.length) {
+  //           setFormData((prevState) => ({
+  //             ...prevState,
+  //             [id]: updatedFiles,
+  //           }));
+  //         }
+  //       };
+  //       reader.readAsDataURL(file);
+  //     }
+  //   } else if (name === "checkbox" || name === "survey_checkbox") {
+  //     let tempData = [...formData[id]];
+  //     if (tempData.find((data) => data === value)) {
+  //       tempData = tempData.filter((data) => data !== value);
+  //     } else {
+  //       tempData.push(value);
+  //     }
+  //     setFormData((prevState) => ({
+  //       ...prevState,
+  //       [id]: tempData,
+  //     }));
+  //   } else {
+  //     setFormData((prevState) => ({
+  //       ...prevState,
+  //       [id]: value,
+  //     }));
+  //   }
+  // };
+
   const formDataHandleChange = (event, id, multipleFileUpload?) => {
     const { name, value } = event?.target;
 
-    console.log("name, value", name, value);
-
-    let updatedFiles: any;
-
-    // console.log(updatedFiles, "updatedFiles");
-
     if (name === "survey_image") {
       const fileList = event.target.files;
-      console.log(fileList, "filelidsdsad");
+      let updatedFiles = multipleFileUpload ? [...(formData[id] || [])] : [];
 
-      if (multipleFileUpload) {
-        const existingFiles = formData[id] || []; // Get existing files from formData
-        updatedFiles = [...existingFiles]; // Copy existing files to updatedFiles
-      } else {
-        updatedFiles = [];
-      }
+      // Array to hold all promises from FileReader.onload events
+      const promises = [];
+
       for (let i = 0; i < fileList.length; i++) {
         const file = fileList[i];
         const reader = new FileReader();
-        reader.onload = (e: any) => {
-          const dataURL = e.target.result;
+        const promise = new Promise((resolve, reject) => {
+          reader.onload = (e: any) => {
+            const dataURL = e.target.result;
+            updatedFiles.push({ name: file.name, dataURL });
+            setImageFile(dataURL);
+            resolve();
+          };
+          reader.onerror = (error) => reject(error);
+        });
 
-          updatedFiles.push({ name: file.name, dataURL });
-          setImageFile(dataURL);
-          if (updatedFiles.length === fileList.length) {
-            setFormData((prevState) => ({
-              ...prevState,
-              [id]: updatedFiles,
-            }));
-          }
-        };
+        promises.push(promise);
         reader.readAsDataURL(file);
       }
+
+      // After all files are read, update formData[id]
+      Promise.all(promises)
+        .then(() => {
+          setFormData((prevState) => ({
+            ...prevState,
+            [id]: updatedFiles,
+          }));
+        })
+        .catch((error) => {
+          console.error("Error reading files:", error);
+          // Handle error if necessary
+        });
     } else if (name === "checkbox" || name === "survey_checkbox") {
-      let tempData = [...formData[id]];
-      if (tempData.find((data) => data === value)) {
-        tempData = tempData.filter((data) => data !== value);
-      } else {
-        tempData.push(value);
-      }
-      setFormData((prevState) => ({
-        ...prevState,
-        [id]: tempData,
-      }));
+      // Checkbox handling logic
     } else {
       setFormData((prevState) => ({
         ...prevState,
