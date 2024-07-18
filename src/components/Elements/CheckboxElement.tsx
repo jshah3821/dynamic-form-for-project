@@ -137,7 +137,7 @@ const CheckboxElement = (props) => {
                 className="option_label_style"
                 style={{
                   color: props?.style?.color,
-                  fontFamily: props?.style?.fontFamily,
+                  // fontFamily: props?.style?.fontFamily,
                 }}
                 htmlFor={option.value + index}
               >

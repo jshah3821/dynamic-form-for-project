@@ -100,7 +100,7 @@ const SurveyForm = ({
         >
           {properties?.questionDetails?.question_text
             ? properties?.questionDetails?.question_text
-            : subType === "survey_image"
+            : subType === "survey_image" || subType === "range"
             ? "Label"
             : "Question"}
           {required && <span className="required_color">*</span>}
@@ -248,7 +248,12 @@ const SurveyForm = ({
                 style={properties?.answer_style}
               >
                 <FaCloudUploadAlt />
-                <span className="font-12 font-weight-100 ml1 text_wrap_css">
+                <span
+                  style={properties?.answer_style}
+                  // className="font-12 font-weight-100 ml1 text_wrap_css"
+
+                  className=" font-weight-100 ml1 text_wrap_css"
+                >
                   {properties?.isMultiAllowed ? "Upload Files" : "Upload File"}
                 </span>
               </div>

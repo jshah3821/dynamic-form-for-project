@@ -664,7 +664,7 @@ export const FormBuilder = ({ id, jsonData, canvasStyle }: Props) => {
     multipleFileUpload?: boolean
   ) => {
     const { name } = event.target;
-
+    const { value } = event.target;
     if (name === "survey_image") {
       const fileList = event.target.files;
       if (!fileList) return;
@@ -689,11 +689,20 @@ export const FormBuilder = ({ id, jsonData, canvasStyle }: Props) => {
             }
           }
         };
-
         reader.readAsDataURL(file);
       });
+    } else if (name === "checkbox" || name === "survey_checkbox") {
+      let tempData = [...formData[id]];
+      if (tempData.find((data) => data === value)) {
+        tempData = tempData.filter((data) => data !== value);
+      } else {
+        tempData.push(value);
+      }
+      setFormData((prevState) => ({
+        ...prevState,
+        [id]: tempData,
+      }));
     } else {
-      const { value } = event.target;
       setFormData((prevState) => ({
         ...prevState,
         [id]: value,

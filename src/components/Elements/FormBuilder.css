@@ -968,9 +968,9 @@ textarea {
 .font-11 {
   font-size: 11px !important;
 }
-.font-12 {
+/* .font-12 {
   font-size: 12px !important;
-}
+} */
 .font-13 {
   font-size: 13px !important;
 }
@@ -1291,6 +1291,7 @@ textarea {
   align-items: center;
   position: absolute;
   left: 0%;
+  top: 20%;
   transform: translateX(30px);
 }
 
@@ -1434,4 +1435,9 @@ textarea {
 .inputContainer,
 .le_container {
   width: 100%;
+}
+
+.checkbox-container {
+  display: flex;
+  flex-wrap: wrap;
 }

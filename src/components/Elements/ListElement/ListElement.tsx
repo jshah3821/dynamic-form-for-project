@@ -8,7 +8,7 @@ const ListElement = ({ listData, key }) => {
     color: listStyle?.color,
     fontSize: listStyle?.fontSize,
     fontStyle: listStyle?.fontStyle,
-    fontFamily: listStyle?.fontFamily,
+    fontFamily: style?.fontFamily,
     fontWeight: listStyle?.fontWeight,
     // textAlign: listStyle?.textAlign,
     textDecoration: listStyle?.textDecoration,

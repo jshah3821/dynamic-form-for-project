@@ -30,7 +30,7 @@ const FooterElement = ({ footerDetails, socialDetails, style }) => {
               <li
                 onClick={() => window.open(socialLink?.url)}
                 key={socialIndex}
-                className="li_decoration px1 pointer"
+                className="li_decoration ul-style pointer"
               >
                 {socialLink.icon === "CiFacebook" ? (
                   <CiFacebook />
