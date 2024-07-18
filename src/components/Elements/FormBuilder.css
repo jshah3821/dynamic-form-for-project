@@ -1230,6 +1230,7 @@ textarea {
   width: 100%;
   list-style-position: inside !important;
   overflow: auto;
+  margin-bottom: 0px;
 }
 
 .list-conatiner::-webkit-scrollbar {
