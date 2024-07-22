@@ -4,18 +4,30 @@ import React from "react";
 const ListElement = ({ listData, key }) => {
   const { label, listItemDetails, style, listStyle } = listData?.properties;
 
+  // const listItemTextStyle = {
+  //   color: listStyle?.color,
+  //   fontSize: listStyle?.fontSize,
+  //   fontStyle: listStyle?.fontStyle,
+  //   fontFamily: listStyle?.fontFamily,
+  //   fontWeight: listStyle?.fontWeight,
+  //   textAlign: listStyle?.textAlign,
+  //   textDecoration: listStyle?.textDecoration,
+  //   textTransform: listStyle?.textTransform,
+  // };
+
   const listItemTextStyle = {
-    color: listStyle?.color,
-    fontSize: listStyle?.fontSize,
-    fontStyle: listStyle?.fontStyle,
-    fontFamily: listStyle?.fontFamily,
-    fontWeight: listStyle?.fontWeight,
-    // textAlign: listStyle?.textAlign,
-    textDecoration: listStyle?.textDecoration,
-    textTransform: listStyle?.textTransform,
+    color: style?.color,
+    fontSize: style?.fontSize,
+    fontStyle: style?.fontStyle,
+    fontFamily: style?.fontFamily,
+    fontWeight: style?.fontWeight,
+    textAlign: style?.textAlign,
+    textDecoration: style?.textDecoration,
+    textTransform: style?.textTransform,
   };
 
   const listItemContainer = {
+    fontStyle: listStyle?.fontStyle,
     backgroundColor: style?.backgroundColor,
     height: style?.height,
     width: style?.width,
@@ -50,11 +62,7 @@ const ListElement = ({ listData, key }) => {
       <ul className="list-conatiner" style={listStyle}>
         {listItemDetails?.length > 0
           ? listItemDetails?.map((item, i) => {
-              return (
-                <li key={i} style={listItemTextStyle}>
-                  {item?.name}
-                </li>
-              );
+              return <li key={i}> {item?.name}</li>;
             })
           : null}
       </ul>
