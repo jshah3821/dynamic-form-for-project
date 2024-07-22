@@ -1,7 +1,7 @@
 import { removeKeyInObject } from "./utils/removeKeyInObject";
 
 const SelectElement = (props) => {
-  let labelStyle = {
+  const labelStyle = {
     textAlign: props?.style?.textAlign,
     fontSize: props?.style?.fontSize,
     color: props?.style?.color,
@@ -13,7 +13,7 @@ const SelectElement = (props) => {
     direction: props?.style?.direction,
   };
 
-  let selectstyle = {
+  const selectstyle = {
     fontSize: props?.style?.fontSize,
     color: props?.style?.color,
     fontFamily: props?.style?.fontFamily,
@@ -21,7 +21,6 @@ const SelectElement = (props) => {
     textDecoration: props?.style?.textDecoration,
     textTransform: props?.style?.textTransform,
     direction: props?.style?.direction,
-
     textAlign: props?.style?.textAlign,
     marginTop: props?.style?.marginTop,
     marginLeft: props?.style?.marginLeft,
