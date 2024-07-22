@@ -1427,3 +1427,17 @@ textarea {
   width: auto;
   height: auto;
 }
+
+.selectBoxContainer,
+.form_inputContainer,
+.fp_text,
+.px1,
+.inputContainer,
+.le_container {
+  width: 100%;
+}
+
+.checkbox-container {
+  display: flex;
+  flex-wrap: wrap;
+}
