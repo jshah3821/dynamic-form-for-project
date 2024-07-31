@@ -263,6 +263,7 @@ const PageBuilder = ({ id, jsonData, canvasStyle }: Props) => {
         flexDirection: "column",
         margin: "0 auto",
         gap: "10px",
+        height: "100%",
       }}
     >
       <ScreenTypes resposiveIconClickHandle={resposiveIconClickHandle} />
@@ -287,6 +288,7 @@ const PageBuilder = ({ id, jsonData, canvasStyle }: Props) => {
           gridTemplateRows: canvasStyle?.gridTemplateRows,
           gridTemplateColumns: canvasStyle?.gridTemplateColumns,
           flexDirection: canvasStyle?.flexDirection,
+          height: "100%",
         }}
       >
         {data?.map((obj, index) => {
