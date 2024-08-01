@@ -45,7 +45,7 @@ const HeaderElement = ({ headerProps }) => {
   };
 
   return (
-    <div style={{ position: "relative" }}>
+    <div style={{ height: "100%", position: "relative" }}>
       <div
         className="he_container"
         style={removeKeyInObject(styles, menuItemTextStyle)}

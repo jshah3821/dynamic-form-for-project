@@ -1,9 +1,17 @@
 import React from "react";
 import "./TableStyles.css";
+import { removeKeyInObject } from "../utils/removeKeyInObject";
 
 const TableElement = ({ tableProps }) => {
   const tableHeadStyles = tableProps?.headingStyle;
   const tableCellStyles = tableProps?.tableStyle;
+  let heightStyle = {
+    height: tableCellStyles?.height,
+
+  };
+  // const heightStyle = tableCellStyles?.height
+  console.log("tableCellStyles", tableCellStyles, heightStyle)
+
   return (
     <div className="te_container">
       <p className="te_heading_text" style={tableHeadStyles}>
@@ -14,13 +22,25 @@ const TableElement = ({ tableProps }) => {
           <tbody className="te_tbbody_container" style={tableCellStyles}>
             {tableProps?.tableDetails?.tableData?.map((row_item, rowIndex) => (
               <tr
-                style={tableCellStyles}
+                style={
+                  removeKeyInObject(
+                    tableCellStyles,
+                    heightStyle
+                  )
+                }
+                // style={tableCellStyles}
                 className="te_tbbody_container"
                 key={"row_item" + rowIndex.toString()}
               >
                 {row_item?.map((col_item, colIndex) => (
                   <td
-                    style={tableCellStyles}
+                    style={
+                      removeKeyInObject(
+                        tableCellStyles,
+                        heightStyle
+                      )
+                    }
+                    // style={tableCellStyles}
                     key={"col_item" + colIndex.toString()}
                   >
                     {col_item}
