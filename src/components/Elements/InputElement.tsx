@@ -70,6 +70,7 @@ const InputElement = (props) => {
             ...inputTextStyle,
             ...inputContainerStyle,
           }),
+          flex: "1",
         }}
         onChange={props?.onChange}
         value={props?.value}
