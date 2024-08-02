@@ -73,6 +73,11 @@ const SurveyForm = ({
     maxWidth: question_style?.maxWidth,
   };
 
+  const combinedStyle = {
+    ...answer_style,
+    height: question_style?.height,
+  };
+
   const ansContentTextStyle = {
     color: answer_style?.color,
     fontSize: answer_style?.fontSize,
@@ -101,13 +106,13 @@ const SurveyForm = ({
           {properties?.questionDetails?.question_text
             ? properties?.questionDetails?.question_text
             : subType === "survey_image" || subType === "range"
-            ? "Label"
-            : "Question"}
+              ? "Label"
+              : "Question"}
           {required && <span className="required_color">*</span>}
         </p>
       )}
-      <div className="flex flex-column mt-5">
-        <div className="relative">
+      <div className="flex flex-column mt-5" style={{ height: "100%" }}>
+        <div className="relative" style={{ height: "100%", paddingBottom: "90px" }}>
           {subType === "shortanswer" && (
             <input
               id="shortanswer"
@@ -117,7 +122,7 @@ const SurveyForm = ({
               placeholder="Enter your answer here"
               maxLength={properties?.validation?.maxLength || null}
               minLength={properties?.validation?.minLength || null}
-              style={properties?.answer_style}
+              style={combinedStyle}
               value={formData[fieldId] || ""}
               onChange={(e) => handleChange(e, fieldId)}
             />
@@ -127,7 +132,7 @@ const SurveyForm = ({
               id="longanswer"
               className="flex flex-column items-center justify-center ans_textarea"
               placeholder="Enter your answer here"
-              style={properties?.answer_style}
+              style={combinedStyle}
               name={"longanswer"}
               value={formData[fieldId] || ""}
               onChange={(e) => handleChange(e, fieldId)}
@@ -298,9 +303,8 @@ const SurveyForm = ({
                       color: properties?.answer_style?.color,
                     }}
                   >
-                    {`${formData[fieldId] || 0} ${
-                      properties?.validation?.unit || ""
-                    }`}
+                    {`${formData[fieldId] || 0} ${properties?.validation?.unit || ""
+                      }`}
                   </span>
                 </div>
                 <div className="sf_range_label">
