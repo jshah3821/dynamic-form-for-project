@@ -799,6 +799,7 @@ export const FormBuilder = ({ id, jsonData, canvasStyle }: Props) => {
         style={{ fontSize: "12px" }}
       />
       <div
+        className="formBuilder_main_container"
         style={{
           display: canvasStyle?.display,
           alignItems: canvasStyle?.alignItems,
@@ -806,7 +807,7 @@ export const FormBuilder = ({ id, jsonData, canvasStyle }: Props) => {
           gridTemplateRows: canvasStyle?.gridTemplateRows,
           gridTemplateColumns: canvasStyle?.gridTemplateColumns,
           flexDirection: canvasStyle?.flexDirection,
-          height: "80%"
+
         }}
       >
         {" "}

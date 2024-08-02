@@ -112,7 +112,7 @@ const SurveyForm = ({
         </p>
       )}
       <div className="flex flex-column mt-5" style={{ height: "100%" }}>
-        <div className="relative" style={{ height: "100%", paddingBottom: "90px" }}>
+        <div className="relative" style={{ height: "100%" }}>
           {subType === "shortanswer" && (
             <input
               id="shortanswer"
@@ -325,14 +325,14 @@ const SurveyForm = ({
             </div>
           ) : null}
           {subType === "submit_button" && (
-            <div>
-              <div className="flex flex-row justify-start items-center align-center pointer fluid">
+            <div style={{ height: "100%" }}>
+              <div className="flex flex-row justify-start items-center align-center pointer fluid" style={{ height: "100%" }}>
                 <button
                   className={"form_button_css"}
                   onClick={() => {
                     handleSubmitFormData(properties?.questionDetails?.call_url);
                   }}
-                  style={properties?.answer_style}
+                  style={{ ...properties?.answer_style, height: "100%" }}
                 >
                   {properties?.questionDetails?.button_label
                     ? properties?.questionDetails?.button_label
