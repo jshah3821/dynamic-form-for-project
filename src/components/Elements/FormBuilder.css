@@ -41,9 +41,9 @@ p {
 .fb_container {
   position: relative;
   border: 1px solid #c0c0c094;
-  border-radius: 6px;
-  margin: 10px auto !important;
-  max-width: 70%;
+  border-radius: 5px;
+  margin: 5px auto !important;
+  max-width: 75%;
   padding: 0.5rem 0rem !important;
   overflow-x: hidden;
   overflow-y: hidden;
@@ -1225,7 +1225,7 @@ textarea {
   position: absolute;
   bottom: 0;
   display: flex;
-
+  height: 7%;
   gap: 2rem;
   padding: 0px 10px !important;
   padding-bottom: 10px !important;

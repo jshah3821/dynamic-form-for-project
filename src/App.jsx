@@ -19,10 +19,12 @@ function App() {
       return acc;
     }, {});
   }
+  console.log("==>", json.formName);
 
   return (
     <FormBuilder
       jsonData={removeQuotesFromKeys(json?.canvasFields)}
+      formName={removeQuotesFromKeys(json?.formName)}
       canvasStyle={json?.canvasCssStyling}
     />
 
