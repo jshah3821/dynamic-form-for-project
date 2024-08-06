@@ -66,6 +66,8 @@ const TestimonialElement = ({
           setVisibleCards(3);
           break;
         case "prev_ls_mobile":
+          setVisibleCards(3);
+          break;
         case "prev_pt_mobile":
           setVisibleCards(1);
           break;
