@@ -359,6 +359,7 @@ const PageBuilder = ({ id, jsonData, canvasStyle }: Props) => {
                         slideDetailsTestimonial ||
                         obj?.testimonialDetails?.testimonialCardDetails
                       }
+                      previewType={previewType}
                     />
                   );
                 case "footer":

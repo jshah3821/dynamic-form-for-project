@@ -1467,9 +1467,9 @@ textarea {
 }
 
 .prev_pt_mobile .testimonial_container {
-  display: grid;
+  /* display: grid;
   gap: 10px;
-  grid-template-columns: auto;
+  grid-template-columns: auto; */
 }
 
 .prev_pt_mobile .testimonial_inner_div_card {
