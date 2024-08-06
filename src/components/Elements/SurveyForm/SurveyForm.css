@@ -16,7 +16,7 @@
   background-color: #c0c0c094;
   color: rgb(51, 51, 51);
   padding: 10px;
-  /* margin-bottom: 20px; */
+  margin-bottom: 10px !important;
   margin-top: 10px;
   font-family: "Poppins", sans-serif;
   border-radius: 3px;
@@ -34,6 +34,7 @@
   font-size: 14px;
   color: rgb(51, 51, 51);
   font-family: "Poppins", sans-serif;
+  flex-grow: 1;
 }
 
 .ans_textarea {
@@ -41,6 +42,7 @@
   font-size: 14px;
   color: rgb(51, 51, 51);
   font-family: "Poppins", sans-serif;
+  flex-grow: 1;
 }
 
 .question_img {
@@ -196,4 +198,6 @@ input[type="range"] {
 
 .sf_canvas {
   width: 100%;
+  display: flex;
+  flex-direction: column;
 }
