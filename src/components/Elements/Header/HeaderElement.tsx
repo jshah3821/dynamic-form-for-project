@@ -45,7 +45,7 @@ const HeaderElement = ({ headerProps }) => {
   };
 
   return (
-    <div style={{ height: "100%", position: "relative" }}>
+    <>
       <div
         className="he_container"
         style={removeKeyInObject(styles, menuItemTextStyle)}
@@ -109,7 +109,7 @@ const HeaderElement = ({ headerProps }) => {
           })}
         </ul>
       ) : null}
-    </div>
+    </>
   );
 };
 

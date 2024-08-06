@@ -103,15 +103,18 @@ const BannerElement = ({
     textTransform: sliderStyle?.textTransform,
   };
 
+  const bannerHeight = {
+    height: sliderStyle?.height
+  }
+
   return (
-    <div className="parent-banner">
+    <div className="parent-banner" style={bannerHeight}>
       <div className="slideshow-container" style={sliderStyle}>
         {/* Full-width images with number and caption text */}
         {slideDetails.map((element, index) => (
           <div className={`fade hide-slide mySlides${id}`} key={index}>
-            <div className="numbertext">{`${index + 1} / ${
-              slideDetails.length
-            }`}</div>
+            <div className="numbertext">{`${index + 1} / ${slideDetails.length
+              }`}</div>
             <img
               style={{
                 objectFit: sliderStyle?.objectFit,
@@ -123,19 +126,18 @@ const BannerElement = ({
             />
             {/* <div className="text">{element['caption']}</div> */}
             <div
-              className={`banner_text ${
-                captionPosition === "top left"
-                  ? "top-left"
-                  : captionPosition === "top right"
+              className={`banner_text ${captionPosition === "top left"
+                ? "top-left"
+                : captionPosition === "top right"
                   ? "top-right"
                   : captionPosition === "bottom left"
-                  ? "bottom-left"
-                  : captionPosition === "bottom center"
-                  ? "bottom-center"
-                  : captionPosition === "bottom right"
-                  ? "bottom-right"
-                  : ""
-              }
+                    ? "bottom-left"
+                    : captionPosition === "bottom center"
+                      ? "bottom-center"
+                      : captionPosition === "bottom right"
+                        ? "bottom-right"
+                        : ""
+                }
                                 `}
             >
               <span style={BannerTextStyle}>{element["caption"]}</span>
@@ -146,17 +148,15 @@ const BannerElement = ({
         {nextPrvButtonAvailable && (
           <>
             <a
-              className={`prev ${
-                arrowButtonType === "rectangle" ? "" : "circle"
-              }`}
+              className={`prev ${arrowButtonType === "rectangle" ? "" : "circle"
+                }`}
               onClick={() => minusSlides(-1)}
             >
               &#10094;
             </a>
             <a
-              className={`next ${
-                arrowButtonType === "rectangle" ? "" : "circle"
-              }`}
+              className={`next ${arrowButtonType === "rectangle" ? "" : "circle"
+                }`}
               onClick={() => plusSlides(1)}
             >
               &#10095;

@@ -1490,3 +1490,24 @@ textarea {
   display: flex;
   flex-wrap: wrap;
 }
+
+.pageBuilder_main {
+  height: 100%;
+  /* margin-bottom: "60px"; */
+  overflow-x: hidden;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    width: 3px;
+    margin-left: 5px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--grey-color-888);
+    border-radius: 3px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: var(--grey-color-eee);
+    border-radius: 3px;
+  }
+}

@@ -22,16 +22,16 @@ function App() {
   console.log("==>", json.formName);
 
   return (
-    <FormBuilder
-      jsonData={removeQuotesFromKeys(json?.canvasFields)}
-      formName={removeQuotesFromKeys(json?.formName)}
-      canvasStyle={json?.canvasCssStyling}
-    />
-
-    // <PageBuilder
+    // <FormBuilder
     //   jsonData={removeQuotesFromKeys(json?.canvasFields)}
+    //   formName={removeQuotesFromKeys(json?.formName)}
     //   canvasStyle={json?.canvasCssStyling}
     // />
+
+    <PageBuilder
+      jsonData={removeQuotesFromKeys(json?.canvasFields)}
+      canvasStyle={json?.canvasCssStyling}
+    />
   );
 }
 
