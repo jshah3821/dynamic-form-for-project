@@ -17,40 +17,40 @@ const TableElement = ({ tableProps }) => {
       <p className="te_heading_text" style={tableHeadStyles}>
         {tableProps?.tableHeadingDetails?.tableHeading}
       </p>
-      <div className="te_content_container">
-        <table className="te_table_container">
-          <tbody className="te_tbbody_container" style={tableCellStyles}>
-            {tableProps?.tableDetails?.tableData?.map((row_item, rowIndex) => (
-              <tr
-                style={
-                  removeKeyInObject(
-                    tableCellStyles,
-                    heightStyle
-                  )
-                }
-                // style={tableCellStyles}
-                className="te_tbbody_container"
-                key={"row_item" + rowIndex.toString()}
-              >
-                {row_item?.map((col_item, colIndex) => (
-                  <td
-                    style={
-                      removeKeyInObject(
-                        tableCellStyles,
-                        heightStyle
-                      )
-                    }
-                    // style={tableCellStyles}
-                    key={"col_item" + colIndex.toString()}
-                  >
-                    {col_item}
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      {/* <div className="te_content_container"> */}
+      <table className="te_table_container" style={tableCellStyles}>
+        <tbody className="te_tbbody_container">
+          {tableProps?.tableDetails?.tableData?.map((row_item, rowIndex) => (
+            <tr
+              style={
+                removeKeyInObject(
+                  tableCellStyles,
+                  heightStyle
+                )
+              }
+              // style={tableCellStyles}
+              className="te_tbbody_container"
+              key={"row_item" + rowIndex.toString()}
+            >
+              {row_item?.map((col_item, colIndex) => (
+                <td
+                  style={
+                    removeKeyInObject(
+                      tableCellStyles,
+                      heightStyle
+                    )
+                  }
+                  // style={tableCellStyles}
+                  key={"col_item" + colIndex.toString()}
+                >
+                  {col_item}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      {/* </div> */}
     </div>
   );
 };
