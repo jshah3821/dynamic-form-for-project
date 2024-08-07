@@ -155,14 +155,17 @@ const TestimonialElement = ({
       ref={divRef}
       style={testimonial?.style}
     >
-      <div>
-        <div className="testimonial_subcontainer">
+      <div style={{ height: "80%" }}>
+        <div
+          className="testimonial_subcontainer"
+          style={{ height: testimonial?.style?.height }}
+        >
           {prevNextEnable && (
             <button className="testimonial_prev_btn" onClick={prevSlide}>
               &#10094;
             </button>
           )}
-          <div className="testimonial_container">
+          <div className="testimonial_container" style={{ height: "100%" }}>
             {testimonialCardDetails
               .slice(currentSlide, currentSlide + visibleCards)
               .map((item, index) => {
