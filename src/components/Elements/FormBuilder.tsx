@@ -851,7 +851,7 @@ export const FormBuilder = ({ id, jsonData, formName, canvasStyle }: Props) => {
                       onChange={(e) => formDataHandleChange(e, obj?.id)}
                     />
                   );
-                case "px1":
+                case "button":
                   return (
                     <ButtonElement
                       key={index}
