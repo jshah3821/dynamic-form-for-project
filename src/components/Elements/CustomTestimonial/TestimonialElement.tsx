@@ -4,7 +4,11 @@ import "react-multi-carousel/lib/styles.css";
 import { testimonialDefault64 } from "../../Elements/assets/testimonialDefault64";
 import { removeKeyInObject } from "../utils/removeKeyInObject";
 
-const TestimonialElement = ({ testimonial, testimonialCardDetails }) => {
+const TestimonialElement = ({
+  testimonial,
+  testimonialCardDetails,
+  previewType,
+}) => {
   const prevNextEnable =
     testimonial?.testimonialDetails?.nextPrvButtonAvailable;
   const autoPlay = testimonial?.testimonialDetails?.autoPlay;
@@ -37,20 +41,44 @@ const TestimonialElement = ({ testimonial, testimonialCardDetails }) => {
   }, []);
 
   // Example function to call when size changes
-  const handleSizeChange = () => {
-    if (windowSize.width > 320 && windowSize.width < 480) {
-      setVisibleCards(1);
-    } else if (windowSize.width > 480 && windowSize.width < 812) {
-      setVisibleCards(2);
-    } else {
-      setVisibleCards(3);
-    }
-  };
+  // const handleSizeChange = () => {
+  //   if (windowSize.width > 320 && windowSize.width < 480) {
+  //     setVisibleCards(1);
+  //   } else if (windowSize.width > 480 && windowSize.width < 812) {
+  //     setVisibleCards(2);
+  //   } else {
+  //     setVisibleCards(3);
+  //   }
+  // };
 
-  // Optionally, you can call your function whenever windowSize changes
+  // // Optionally, you can call your function whenever windowSize changes
+  // useEffect(() => {
+  //   handleSizeChange();
+  // }, [windowSize]);
+
   useEffect(() => {
+    const handleSizeChange = () => {
+      switch (previewType) {
+        case "prev_desktop":
+          setVisibleCards(3);
+          break;
+        case "prev_tablet":
+          setVisibleCards(3);
+          break;
+        case "prev_ls_mobile":
+          setVisibleCards(2);
+          break;
+        case "prev_pt_mobile":
+          setVisibleCards(1);
+          break;
+        default:
+          setVisibleCards(3);
+          break;
+      }
+    };
+
     handleSizeChange();
-  }, [windowSize]);
+  }, [previewType]);
 
   const prevSlide = () => {
     setCurrentSlide((prevSlide) => Math.max(0, prevSlide - 1));
@@ -127,14 +155,17 @@ const TestimonialElement = ({ testimonial, testimonialCardDetails }) => {
       ref={divRef}
       style={testimonial?.style}
     >
-      <div>
-        <div className="testimonial_subcontainer">
+      <div style={{ height: "80%" }}>
+        <div
+          className="testimonial_subcontainer"
+          style={{ height: testimonial?.style?.height }}
+        >
           {prevNextEnable && (
             <button className="testimonial_prev_btn" onClick={prevSlide}>
               &#10094;
             </button>
           )}
-          <div className="testimonial_container">
+          <div className="testimonial_container" style={{ height: "100%" }}>
             {testimonialCardDetails
               .slice(currentSlide, currentSlide + visibleCards)
               .map((item, index) => {

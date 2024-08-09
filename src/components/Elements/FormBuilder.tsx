@@ -447,14 +447,16 @@ interface Props {
   id?: number;
   jsonData?: any;
   canvasStyle?: any;
+  formName?: any;
 }
-export const FormBuilder = ({ id, jsonData, canvasStyle }: Props) => {
+export const FormBuilder = ({ id, jsonData, formName, canvasStyle }: Props) => {
   // const { previewType }: any = useGetTheme();
   const [previewType, setPreviewType] = useState("");
 
   const resposiveIconClickHandle = (responsiveType) => {
     setPreviewType(responsiveType);
   };
+
   const data = id ? dataArray?.[id] : jsonData;
   const [formData, setFormData] = useState({});
 
@@ -815,7 +817,17 @@ export const FormBuilder = ({ id, jsonData, canvasStyle }: Props) => {
           //   canvasStyle?.headingStyle?.height,
         }}
       >
-        {" "}
+        <p
+          style={{
+            marginBottom: "10px",
+            textAlign: "center",
+            fontSize: "20px",
+            fontWeight: "bolder",
+            textTransform: "capitalize",
+          }}
+        >
+          {formName}
+        </p>
         {data?.map((obj, index) => {
           switch (obj?.type) {
             case "element":

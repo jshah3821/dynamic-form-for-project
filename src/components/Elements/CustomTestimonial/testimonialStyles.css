@@ -58,7 +58,8 @@ textarea {
 
 .testimonial_card_styles {
   border-radius: 10px;
-  height: 16.5rem;
+  /* height: 16.5rem; */
+  height: 100%;
   width: 85%;
   margin: 20px;
   border-radius: 10px;
@@ -94,6 +95,7 @@ textarea {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  /* height: 100%; */
 }
 
 .testimonial_card_styles h3 {
@@ -132,6 +134,7 @@ textarea {
   grid-template-columns: auto auto auto;
   align-items: center;
   gap: 10px;
+  height: 100%;
 }
 
 .indicators {
@@ -155,7 +158,7 @@ textarea {
 
 .testimonial_card_styles {
   border-radius: 10px;
-  height: 16.5rem;
+  /* height: 16.5rem; */
   width: 85%;
   font-size: 14px;
   color: #666;

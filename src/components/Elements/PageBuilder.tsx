@@ -256,7 +256,7 @@ const PageBuilder = ({ id, jsonData, canvasStyle }: Props) => {
   return data?.length > 0 ? (
     <div
       // className="previewType"
-      className={`${previewType}`}
+      className={` ${previewType}`}
       style={{
         width: "100%",
         display: "flex",
@@ -281,6 +281,7 @@ const PageBuilder = ({ id, jsonData, canvasStyle }: Props) => {
         style={{ fontSize: "12px" }}
       />
       <div
+        className="pageBuilder_main"
         style={{
           display: canvasStyle?.display,
           alignItems: canvasStyle?.alignItems,
@@ -359,6 +360,7 @@ const PageBuilder = ({ id, jsonData, canvasStyle }: Props) => {
                         slideDetailsTestimonial ||
                         obj?.testimonialDetails?.testimonialCardDetails
                       }
+                      previewType={previewType}
                     />
                   );
                 case "footer":
