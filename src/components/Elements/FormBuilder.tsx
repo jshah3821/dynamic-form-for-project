@@ -486,104 +486,104 @@ export const FormBuilder = ({ id, jsonData, canvasStyle }: Props) => {
   useEffect(() => {
     data?.length > 0
       ? data?.map((obj, i) => {
-        {
-          console.log("obj?.type", obj?.type);
-        }
-        switch (obj?.type) {
-          case "element":
-            switch (obj?.subType) {
-              case "input":
-              case "select":
-              case "radio":
-              case "textarea":
-                setFormData((prev) => ({
-                  ...prev,
-                  [obj?.id]: "",
-                }));
-                setInitialFormData((prev) => ({
-                  ...prev,
-                  [obj?.id]: "",
-                }));
-                break;
-              case "checkbox":
-                setFormData((prev) => ({
-                  ...prev,
-                  [obj?.id]: [],
-                }));
-                setInitialFormData((prev) => ({
-                  ...prev,
-                  [obj?.id]: [],
-                }));
-                break;
-              default:
-                return null;
-            }
-          case "surveyform":
-            {
-              console.log("obj", obj);
-            }
-            switch (obj?.subType) {
-              case "shortanswer":
-              case "longanswer":
-              case "survey_radio":
-                setFormData((prev) => ({
-                  ...prev,
-                  [obj?.id]: "",
-                }));
-                setInitialFormData((prev) => ({
-                  ...prev,
-                  [obj?.id]: "",
-                }));
-                break;
-              case "survey_checkbox":
-              case "survey_image":
-                setFormData(
-                  (prev) => {
-                    console.log("prev", prev);
+          {
+            console.log("obj?.type", obj?.type);
+          }
+          switch (obj?.type) {
+            case "element":
+              switch (obj?.subType) {
+                case "input":
+                case "select":
+                case "radio":
+                case "textarea":
+                  setFormData((prev) => ({
+                    ...prev,
+                    [obj?.id]: "",
+                  }));
+                  setInitialFormData((prev) => ({
+                    ...prev,
+                    [obj?.id]: "",
+                  }));
+                  break;
+                case "checkbox":
+                  setFormData((prev) => ({
+                    ...prev,
+                    [obj?.id]: [],
+                  }));
+                  setInitialFormData((prev) => ({
+                    ...prev,
+                    [obj?.id]: [],
+                  }));
+                  break;
+                default:
+                  return null;
+              }
+            case "surveyform":
+              {
+                console.log("obj", obj);
+              }
+              switch (obj?.subType) {
+                case "shortanswer":
+                case "longanswer":
+                case "survey_radio":
+                  setFormData((prev) => ({
+                    ...prev,
+                    [obj?.id]: "",
+                  }));
+                  setInitialFormData((prev) => ({
+                    ...prev,
+                    [obj?.id]: "",
+                  }));
+                  break;
+                case "survey_checkbox":
+                case "survey_image":
+                  setFormData(
+                    (prev) => {
+                      console.log("prev", prev);
 
-                    return {
-                      ...prev,
-                      [obj?.id]: [],
-                    };
-                  }
+                      return {
+                        ...prev,
+                        [obj?.id]: [],
+                      };
+                    }
 
-                  //   (
-                  //   {
-                  //   ...prev,
-                  //   [obj?.id]: [],
-                  // })
-                );
-                setInitialFormData((prev) => ({
-                  ...prev,
-                  [obj?.id]: [],
-                }));
-                break;
-              case "range":
-                setInitialFormData((prev) => ({
-                  ...prev,
-                  [obj?.id]: "",
-                }));
-                setFormData((prev) => ({
-                  ...prev,
-                  [obj?.id]: "",
-                }));
-                break;
-              case "survey_dropdown":
-                setFormData((prev) => ({
-                  ...prev,
-                  [obj?.id]: "",
-                }));
-                setInitialFormData((prev) => ({
-                  ...prev,
-                  [obj?.id]: "",
-                }));
-              default:
-                return null;
-            }
-          default:
-            return null;
-        }
-      })
+                    //   (
+                    //   {
+                    //   ...prev,
+                    //   [obj?.id]: [],
+                    // })
+                  );
+                  setInitialFormData((prev) => ({
+                    ...prev,
+                    [obj?.id]: [],
+                  }));
+                  break;
+                case "range":
+                  setInitialFormData((prev) => ({
+                    ...prev,
+                    [obj?.id]: "",
+                  }));
+                  setFormData((prev) => ({
+                    ...prev,
+                    [obj?.id]: "",
+                  }));
+                  break;
+                case "survey_dropdown":
+                  setFormData((prev) => ({
+                    ...prev,
+                    [obj?.id]: "",
+                  }));
+                  setInitialFormData((prev) => ({
+                    ...prev,
+                    [obj?.id]: "",
+                  }));
+                default:
+                  return null;
+              }
+            default:
+              return null;
+          }
+        })
       : null;
   }, [data]);
 
@@ -782,7 +782,7 @@ export const FormBuilder = ({ id, jsonData, canvasStyle }: Props) => {
     <div
       // className={`prev_container ${previewType}`}
       className={`fb_container ${previewType}`}
-    // className="fb_container"
+      // className="fb_container"
     >
       <ScreenTypes resposiveIconClickHandle={resposiveIconClickHandle} />
       <ToastContainer
@@ -807,7 +807,12 @@ export const FormBuilder = ({ id, jsonData, canvasStyle }: Props) => {
           gridTemplateRows: canvasStyle?.gridTemplateRows,
           gridTemplateColumns: canvasStyle?.gridTemplateColumns,
           flexDirection: canvasStyle?.flexDirection,
-
+          // height:
+          //   canvasStyle?.style?.height ||
+          //   canvasStyle?.properties?.style?.height ||
+          //   canvasStyle?.properties?.question_style?.height ||
+          //   canvasStyle?.tableStyle?.height ||
+          //   canvasStyle?.headingStyle?.height,
         }}
       >
         {" "}
@@ -834,7 +839,7 @@ export const FormBuilder = ({ id, jsonData, canvasStyle }: Props) => {
                       onChange={(e) => formDataHandleChange(e, obj?.id)}
                     />
                   );
-                case "button":
+                case "px1":
                   return (
                     <ButtonElement
                       key={index}

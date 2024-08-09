@@ -76,9 +76,9 @@ p {
   margin-bottom: 8px;
 }
 
-.fb_container button {
+/* .fb_container button {
   margin: 10px 0;
-}
+} */
 
 .fb_container .checkbox-label {
   position: relative;
@@ -1256,6 +1256,7 @@ textarea {
   border-radius: 6px;
 }
 .form_button_css_updated {
+  flex: 1;
   width: 100%;
   height: 45px;
   background-color: #f6f6f6;

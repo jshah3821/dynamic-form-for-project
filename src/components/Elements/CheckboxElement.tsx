@@ -96,11 +96,13 @@ const CheckboxElement = (props) => {
     textDecoration: props?.style?.textDecoration,
     textTransform: props?.style?.textTransform,
     direction: props?.style?.direction,
+    height: props?.style?.height,
     ...spacingStyle,
   };
 
   let flex = {
     width: "100%",
+    height: props?.style?.height,
   };
   return (
     <div style={(spacingStyle, flex)}>

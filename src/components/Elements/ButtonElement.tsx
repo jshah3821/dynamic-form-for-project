@@ -1,14 +1,15 @@
 const ButtonElement = (props: any) => {
   const directionStyle = {
     direction: props?.style?.direction,
+    height: props?.style?.height,
+    display: "flex",
+    flexDirection: "column",
   };
   return (
     <div style={directionStyle} className="px1">
       <button
-        // className={"button-Border"}
         className={`form_btn form_button_css_updated`}
-        //* keep it for reference
-        style={props?.style}
+        style={(props?.style, { height: "100%", width: props?.style?.width })}
         onClick={props?.onClick}
         disabled={props?.disabled}
       >

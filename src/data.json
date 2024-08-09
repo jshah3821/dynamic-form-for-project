@@ -1,27 +1,75 @@
-<<<<<<< HEAD
 {
   "canvasFields": [
     {
       "selectionType": "form",
       "type": "element",
-      "subType": "input",
-      "title": "Text Input",
-      "icon": {
-        "key": null,
-        "ref": null,
-        "props": { "className": "field_icons" },
-        "_owner": null,
-        "_store": {}
-      },
+      "subType": "button",
+      "title": "Button",
       "properties": {
-        "type": "Text",
-        "name": "Name",
-        "label": "Label",
-        "placeholder": "Placeholder"
+        "label": "Button",
+        "type": "submit",
+        "callURL": "",
+        "disabled": false
       },
-      "validation": { "minLength": "", "maxLength": "", "required": false },
       "style": {
         "height": "50%",
+        "width": "200px",
+        "backgroundColor": "",
+        "color": "",
+        "paddingTop": "",
+        "marginTop": "",
+        "fontSize": "",
+        "fontStyle": "",
+        "fontFamily": "",
+        "fontWeight": "",
+        "textAlign": "",
+        "textDecoration": "",
+        "textTransform": "",
+        "ratio": "",
+        "minWidth": "",
+        "minHeight": "",
+        "maxWidth": "",
+        "maxHeight": "",
+        "objectFit": "contain",
+        "isBorder": "",
+        "borderWidth": "",
+        "borderStyle": "",
+        "borderColor": "",
+        "borderTopWidth": "",
+        "borderTopStyle": "",
+        "borderTopColor": "",
+        "borderRightWidth": "",
+        "borderRightStyle": "",
+        "borderRightColor": "",
+        "borderBottomWidth": "",
+        "borderBottomStyle": "",
+        "borderBottomColor": "",
+        "borderLeftWidth": "",
+        "borderLeftStyle": "",
+        "borderLeftColor": "",
+        "borderRadius": "",
+        "borderTopLeftRadius": "",
+        "borderTopRightRadius": "",
+        "borderBottomLeftRadius": "",
+        "borderBottomRightRadius": ""
+      },
+      "id": "m05KaCMRkfk7A33Qqksjx",
+      "isSelectedField": false
+    },
+    {
+      "selectionType": "form",
+      "type": "element",
+      "subType": "select",
+      "title": "Select",
+      "properties": {
+        "label": "Label",
+        "optionDetails": [
+          { "label": "Option 1", "value": "Option 1" },
+          { "label": "Option 2", "value": "Option 2" }
+        ]
+      },
+      "style": {
+        "height": "",
         "width": "",
         "backgroundColor": "",
         "color": "",
@@ -64,8 +112,8 @@
         "borderBottomLeftRadius": "",
         "borderBottomRightRadius": ""
       },
-      "id": "wqtHUtIVBj9KUDBdZrhpT",
-      "isSelectedField": true
+      "id": "iTGeKepUulWfYxBq2iV3M",
+      "isSelectedField": false
     }
   ],
   "canvasCssStyling": {
@@ -74,8 +122,6 @@
     "gap": "0px",
     "gridTemplateRows": "",
     "gridTemplateColumns": ""
-  }
+  },
+  "formName": "cscs"
 }
-=======
-{"canvasFields":[{"selectionType":"surveyform","type":"surveyform","subType":"submit_button","title":"Submit Button","icon":{"key":null,"ref":null,"props":{"className":"field_icons"},"_owner":null,"_store":{}},"properties":{"name":"survey_image","question_style":{"backgroundColor":"#f6f6f6","fontSize":"16px","fontStyle":"","fontFamily":"","fontWeight":"","textAlign":"","textDecoration":"","textTransform":"","color":"#000000","width":"","height":"60%","minWidth":"","minHeight":"","maxWidth":"","maxHeight":"","objectFit":"","overflow":"","marginTop":"","marginLeft":"","marginRight":"","marginBottom":"","paddingTop":"","paddingLeft":"","paddingRight":"","paddingBottom":"","isBorder":"","borderWidth":"","borderStyle":"","borderColor":"","borderTopWidth":"","borderTopStyle":"","borderTopColor":"","borderRightWidth":"","borderRightStyle":"","borderRightColor":"","borderBottomWidth":"","borderBottomStyle":"","borderBottomColor":"","borderLeftWidth":"","borderLeftStyle":"","borderLeftColor":"","borderRadius":"","borderTopLeftRadius":"","borderTopRightRadius":"","borderBottomLeftRadius":"","borderBottomRightRadius":""},"answer_style":{"backgroundColor":"#ffffff","fontSize":"14px","fontFamily":"","fontWeight":"","textAlign":"","textDecoration":"","textTransform":"","height":"50px","width":"","minWidth":"","minHeight":"","maxWidth":"","maxHeight":"","overflow":"","marginTop":"","marginLeft":"","marginRight":"","marginBottom":"","paddingTop":"","paddingLeft":"","paddingRight":"","paddingBottom":"","isBorder":"","borderWidth":"","borderStyle":"","borderColor":"","borderTopWidth":"","borderTopStyle":"","borderTopColor":"","borderRightWidth":"","borderRightStyle":"","borderRightColor":"","borderBottomWidth":"","borderBottomStyle":"","borderBottomColor":"","borderLeftWidth":"","borderLeftStyle":"","borderLeftColor":"","borderRadius":"","borderTopLeftRadius":"","borderTopRightRadius":"","borderBottomLeftRadius":"","borderBottomRightRadius":""}},"id":"RMp1kKNse77kj8qKlBW6I","isSelectedField":true},{"selectionType":"surveyform","type":"surveyform","subType":"shortanswer","title":"Short Answer","icon":{"key":null,"ref":null,"props":{"className":"field_icons"},"_owner":null,"_store":{}},"properties":{"name":"shortanswer","question_style":{"backgroundColor":"#f6f6f6","fontSize":"16px","fontStyle":"","fontFamily":"","fontWeight":"","textAlign":"","textDecoration":"","textTransform":"","color":"#000000","width":"","height":"60%","minWidth":"","minHeight":"","maxWidth":"","maxHeight":"","objectFit":"","overflow":"","marginTop":"","marginLeft":"","marginRight":"","marginBottom":"","paddingTop":"","paddingLeft":"","paddingRight":"","paddingBottom":"","isBorder":"","borderWidth":"","borderStyle":"","borderColor":"","borderTopWidth":"","borderTopStyle":"","borderTopColor":"","borderRightWidth":"","borderRightStyle":"","borderRightColor":"","borderBottomWidth":"","borderBottomStyle":"","borderBottomColor":"","borderLeftWidth":"","borderLeftStyle":"","borderLeftColor":"","borderRadius":"","borderTopLeftRadius":"","borderTopRightRadius":"","borderBottomLeftRadius":"","borderBottomRightRadius":""},"answer_style":{"backgroundColor":"#ffffff","fontSize":"14px","fontFamily":"","fontWeight":"","textAlign":"","textDecoration":"","textTransform":"","height":"50px","width":"","minWidth":"","minHeight":"","maxWidth":"","maxHeight":"","overflow":"","marginTop":"","marginLeft":"","marginRight":"","marginBottom":"","paddingTop":"","paddingLeft":"","paddingRight":"","paddingBottom":"","isBorder":"","borderWidth":"","borderStyle":"","borderColor":"","borderTopWidth":"","borderTopStyle":"","borderTopColor":"","borderRightWidth":"","borderRightStyle":"","borderRightColor":"","borderBottomWidth":"","borderBottomStyle":"","borderBottomColor":"","borderLeftWidth":"","borderLeftStyle":"","borderLeftColor":"","borderRadius":"","borderTopLeftRadius":"","borderTopRightRadius":"","borderBottomLeftRadius":"","borderBottomRightRadius":""}},"id":"KcVzY0htDqigMvLDPkYds","isSelectedField":false},{"selectionType":"surveyform","type":"surveyform","subType":"shortanswer","title":"Short Answer","properties":{"name":"shortanswer","question_style":{"backgroundColor":"#f6f6f6","fontSize":"16px","fontStyle":"","fontFamily":"","fontWeight":"","textAlign":"","textDecoration":"","textTransform":"","color":"#000000","width":"","height":"98%","minWidth":"","minHeight":"","maxWidth":"","maxHeight":"","objectFit":"","overflow":"","marginTop":"","marginLeft":"","marginRight":"","marginBottom":"","paddingTop":"","paddingLeft":"","paddingRight":"","paddingBottom":"","isBorder":"","borderWidth":"","borderStyle":"","borderColor":"","borderTopWidth":"","borderTopStyle":"","borderTopColor":"","borderRightWidth":"","borderRightStyle":"","borderRightColor":"","borderBottomWidth":"","borderBottomStyle":"","borderBottomColor":"","borderLeftWidth":"","borderLeftStyle":"","borderLeftColor":"","borderRadius":"","borderTopLeftRadius":"","borderTopRightRadius":"","borderBottomLeftRadius":"","borderBottomRightRadius":""},"answer_style":{"backgroundColor":"#ffffff","fontSize":"14px","fontFamily":"","fontWeight":"","textAlign":"","textDecoration":"","textTransform":"","height":"50px","width":"","minWidth":"","minHeight":"","maxWidth":"","maxHeight":"","overflow":"","marginTop":"","marginLeft":"","marginRight":"","marginBottom":"","paddingTop":"","paddingLeft":"","paddingRight":"","paddingBottom":"","isBorder":"","borderWidth":"","borderStyle":"","borderColor":"","borderTopWidth":"","borderTopStyle":"","borderTopColor":"","borderRightWidth":"","borderRightStyle":"","borderRightColor":"","borderBottomWidth":"","borderBottomStyle":"","borderBottomColor":"","borderLeftWidth":"","borderLeftStyle":"","borderLeftColor":"","borderRadius":"","borderTopLeftRadius":"","borderTopRightRadius":"","borderBottomLeftRadius":"","borderBottomRightRadius":""}},"id":"aB_uCbcCVrAGV5xvS02Oy","isSelectedField":false}],"canvasCssStyling":{"display":"","alignItems":"","gap":"0px","gridTemplateRows":"","gridTemplateColumns":""}}
->>>>>>> 54d7266b364785c8487db7c0d46d02bef4fdfe77
