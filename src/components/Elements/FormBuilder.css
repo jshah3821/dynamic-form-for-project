@@ -76,9 +76,9 @@ p {
   margin-bottom: 8px;
 }
 
-/* .fb_container button {
-  margin: 10px 0;
-} */
+.fb_container button {
+  /* margin: 10px 0; */
+}
 
 .fb_container .checkbox-label {
   position: relative;
