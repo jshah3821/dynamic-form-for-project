@@ -2,11 +2,25 @@ import React from "react";
 import { removeKeyInObject } from "./utils/removeKeyInObject";
 const ButtonElement = (props: any) => {
   console.log("prosp", props.style);
-  const directionStyle = {
+  // const directionStyle = {
+  //   direction: props?.style?.direction,
+  //   height: props?.style?.height,
+  // };
+
+  const spacingStyle = {
+    marginTop: props?.style?.marginTop,
+    marginLeft: props?.style?.marginLeft,
+    marginRight: props?.style?.marginRight,
+    marginBottom: props?.style?.marginBottom,
+    paddingTop: props?.style?.paddingTop,
+    paddingLeft: props?.style?.paddingLeft,
+    paddingRight: props?.style?.paddingRight,
+    paddingBottom: props?.style?.paddingBottom,
     direction: props?.style?.direction,
     height: props?.style?.height,
+    // direction: props?.style?.direction,
   };
- 
+
   const buttonStyles = {
     height: "100%",
     width: props?.style?.width,
@@ -23,9 +37,9 @@ const ButtonElement = (props: any) => {
     textTransform: props?.style?.textTransform,
     ratio: props?.style?.ratio,
     minWidth: props?.style?.minWidth,
-    minHeight:props?.style?.minHeight ,
+    minHeight: props?.style?.minHeight,
     maxWidth: props?.style?.maxWidth,
-    maxHeight:props?.style?.maxHeight ,
+    maxHeight: props?.style?.maxHeight,
     objectFit: props?.style?.objectFit,
     isBorder: props?.style?.isBorder,
     borderWidth: props?.style?.borderWidth,
@@ -34,23 +48,23 @@ const ButtonElement = (props: any) => {
     borderTopWidth: props?.style?.borderTopWidth,
     borderTopStyle: props?.style?.borderTopStyle,
     borderTopColor: props?.style?.borderTopColor,
-    borderRightWidth: props?.style?.borderRightWidth ,
+    borderRightWidth: props?.style?.borderRightWidth,
     borderRightStyle: props?.style?.borderRightStyle,
     borderRightColor: props?.style?.borderRightColor,
-    borderBottomWidth:props?.style?.borderBottomWidth ,
+    borderBottomWidth: props?.style?.borderBottomWidth,
     borderBottomStyle: props?.style?.borderBottomStyle,
     borderBottomColor: props?.style?.borderBottomColor,
     borderLeftWidth: props?.style?.borderLeftWidth,
     borderLeftStyle: props?.style?.borderLeftStyle,
-    borderLeftColor:props?.style?.borderLeftColor ,
-    borderRadius: props?.style?.borderLeftColor ,
+    borderLeftColor: props?.style?.borderLeftColor,
+    borderRadius: props?.style?.borderLeftColor,
     borderTopLeftRadius: props?.style?.borderTopLeftRadius,
     borderTopRightRadius: props?.style?.borderTopRightRadius,
-    borderBottomLeftRadius: props?.style?.borderBottomLeftRadius ,
-    borderBottomRightRadius: props?.style?.borderBottomRightRadius
-  }
+    borderBottomLeftRadius: props?.style?.borderBottomLeftRadius,
+    borderBottomRightRadius: props?.style?.borderBottomRightRadius,
+  };
   return (
-    <div style={directionStyle} className="px1">
+    <div style={spacingStyle} className="px1">
       <button
         // className={"button-Border"}
         className={`form_btn form_button_css_updated`}

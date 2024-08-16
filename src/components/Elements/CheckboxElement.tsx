@@ -103,7 +103,7 @@ const CheckboxElement = (props) => {
     width: "100%",
   };
   return (
-    <div style={(spacingStyle, flex)}>
+    <div style={removeKeyInObject(spacingStyle, flex)}>
       <label className="input_label" style={inputTextStyle}>
         {props?.name ? props?.name : "Label"}
         {props?.required && (
