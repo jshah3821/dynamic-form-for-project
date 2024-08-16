@@ -14,7 +14,8 @@ const ListElement = ({ listData, key }) => {
   //   textDecoration: listStyle?.textDecoration,
   //   textTransform: listStyle?.textTransform,
   // };
-
+  // console.log(style.textAlign, "labelstyle");
+  console.log(listStyle, "listStyle");
   const listItemTextStyle = {
     color: style?.color,
     fontSize: style?.fontSize,
@@ -54,16 +55,26 @@ const ListElement = ({ listData, key }) => {
     borderTopRightRadius: style?.borderTopRightRadius,
     borderBottomLeftRadius: style?.borderBottomLeftRadius,
     borderBottomRightRadius: style?.borderBottomRightRadius,
+    marginTop: listStyle?.marginTop,
+    marginLeft: listStyle?.marginLeft,
+    marginRight: listStyle?.marginRight,
+    marginBottom: listStyle?.marginBottom,
+    paddingTop: listStyle?.paddingTop,
+    paddingLeft: listStyle?.paddingLeft,
+    paddingRight: listStyle?.paddingRight,
+    paddingBottom: listStyle?.paddingBottom,
   };
 
   return (
     <div className="le_container" key={key} style={listItemContainer}>
-      <p style={listItemTextStyle}>{label}</p>
+      <p style={listItemTextStyle} className="le_list_container">
+        {label}
+      </p>
       <ul className="list-conatiner" style={listStyle}>
         {listItemDetails?.length > 0
           ? listItemDetails?.map((item, i) => {
-            return <li key={i}> {item?.name}</li>;
-          })
+              return <li key={i}> {item?.name}</li>;
+            })
           : null}
       </ul>
     </div>

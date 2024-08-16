@@ -800,6 +800,17 @@ export const FormBuilder = ({ id, jsonData, formName, canvasStyle }: Props) => {
         theme="light"
         style={{ fontSize: "12px" }}
       />
+      <p
+          style={{
+            marginBottom: "10px",
+            textAlign: "center",
+            fontSize: "20px",
+            fontWeight: "bolder",
+            textTransform: "capitalize",
+          }}
+        >
+          {formName}
+        </p>
       <div
         className="formBuilder_main_container"
         style={{
@@ -811,17 +822,7 @@ export const FormBuilder = ({ id, jsonData, formName, canvasStyle }: Props) => {
           flexDirection: canvasStyle?.flexDirection,
         }}
       >
-        <p
-          style={{
-            marginBottom: "10px",
-            textAlign: "center",
-            fontSize: "20px",
-            fontWeight: "bolder",
-            textTransform: "capitalize",
-          }}
-        >
-          {formName}
-        </p>
+        
         {data?.map((obj, index) => {
           switch (obj?.type) {
             case "element":
