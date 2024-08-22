@@ -1488,7 +1488,11 @@ textarea {
 }
 
 .pageBuilder_main {
+  display: flex;
+  flex-direction: column;
+  gap: 5%;
   height: 100%;
+  margin-bottom: 20px;
   /* margin-bottom: "60px"; */
   overflow-x: hidden;
   overflow-y: scroll;

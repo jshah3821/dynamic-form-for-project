@@ -11,6 +11,8 @@ const FooterElement = ({ footerDetails, socialDetails, style }) => {
     }
   }
 
+  console.log("style", style);
+
   const footersItemTextStyle = {
     color: style?.color,
     fontSize: style?.fontSize,
@@ -22,7 +24,10 @@ const FooterElement = ({ footerDetails, socialDetails, style }) => {
     textTransform: style?.textTransform,
   };
   return (
-    <footer className="fe_container" style={style}>
+    <footer
+      className="fe_container"
+      style={{ ...style, width: style?.width ? style?.width : "unset" }}
+    >
       <div>
         {socialDetails && (
           <ul className="fe_social_container">

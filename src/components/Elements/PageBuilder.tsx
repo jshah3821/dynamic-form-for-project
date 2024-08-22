@@ -285,7 +285,7 @@ const PageBuilder = ({ id, jsonData, canvasStyle }: Props) => {
         style={{
           display: canvasStyle?.display,
           alignItems: canvasStyle?.alignItems,
-          gap: canvasStyle?.gap,
+          // gap: canvasStyle?.gap,
           gridTemplateRows: canvasStyle?.gridTemplateRows,
           gridTemplateColumns: canvasStyle?.gridTemplateColumns,
           flexDirection: canvasStyle?.flexDirection,

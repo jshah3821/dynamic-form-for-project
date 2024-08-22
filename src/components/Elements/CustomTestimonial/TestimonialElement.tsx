@@ -149,23 +149,163 @@ const TestimonialElement = ({
     borderTopWidth: testimonial?.testimonialCardStyles?.borderTopWidth,
     borderWidth: testimonial?.testimonialCardStyles?.borderWidth,
   };
+
+  const Tm_Container_Style = {
+    height: "100%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: " rgb(239, 239, 239)",
+  };
+
+  const tm_height = {
+    display: "flex",
+    flexDirection: "column",
+    width: "100%",
+    height: "80%",
+  };
+
+  const tm_subcontainer = {
+    padding: "1rem 0.5rem 0.5rem 0.5rem",
+    display: "flex",
+    alignItems: "center",
+    gap: "10px",
+    height: "100%",
+    margin: "0px auto",
+    width: "100%",
+    justifyContent: "center",
+  };
+
+  let defaultWidth = "14.5rem";
+
+  console.log(
+    "testimonial?.testimonialCardStyles?.borderRadius",
+    testimonial?.testimonialCardStyles?.borderRadius
+  );
+
+  const tm_card_container = {
+    fontSize: "14px",
+    color: "#666",
+    margin: "20px",
+    marginBottom: "0px",
+    boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+    overflow: "hidden",
+    backgroundColor: "var(--white-color)",
+    width: testimonial?.testimonialCardStyles?.width || defaultWidth,
+    height: testimonial?.testimonialCardStyles?.height || "100%",
+    maxWidth: testimonial?.testimonialCardStyles?.maxWidth,
+    minWidth: testimonial?.testimonialCardStyles?.minWidth,
+    maxHeight: testimonial?.testimonialCardStyles?.maxHeight,
+    minHeight: testimonial?.testimonialCardStyles?.minHeight,
+    border: testimonial?.testimonialCardStyles?.border,
+    borderTopLeftRadius:
+      testimonial?.testimonialCardStyles?.borderTopLeftRadius,
+    borderTopRightRadius:
+      testimonial?.testimonialCardStyles?.borderTopRightRadius,
+    borderBottomLeftRadius:
+      testimonial?.testimonialCardStyles?.borderBottomLeftRadius,
+    borderBottomRightRadius:
+      testimonial?.testimonialCardStyles?.borderBottomRightRadius,
+    borderWidth: testimonial?.testimonialCardStyles?.borderWidth,
+    borderStyle: testimonial?.testimonialCardStyles?.borderStyle,
+    borderColor: testimonial?.testimonialCardStyles?.borderColor,
+    borderTopWidth: testimonial?.testimonialCardStyles?.borderTopWidth,
+    borderTopStyle: testimonial?.testimonialCardStyles?.borderTopStyle,
+    borderTopColor: testimonial?.testimonialCardStyles?.borderTopColor,
+    borderRightWidth: testimonial?.testimonialCardStyles?.borderRightWidth,
+    borderRightStyle: testimonial?.testimonialCardStyles?.borderRightStyle,
+    borderRightColor: testimonial?.testimonialCardStyles?.borderRightColor,
+    borderBottomWidth: testimonial?.testimonialCardStyles?.borderBottomWidth,
+    borderBottomStyle: testimonial?.testimonialCardStyles?.borderBottomStyle,
+    borderBottomColor: testimonial?.testimonialCardStyles?.borderBottomColor,
+    borderLeftWidth: testimonial?.testimonialCardStyles?.borderLeftWidth,
+    borderLeftStyle: testimonial?.testimonialCardStyles?.borderLeftStyle,
+    borderLeftColor: testimonial?.testimonialCardStyles?.borderLeftColor,
+    borderRadius: testimonial?.testimonialCardStyles?.borderRadius,
+  };
+
+  console.log("width", testimonial);
+
+  const spacingStyle = {
+    marginTop: testimonial?.style?.marginTop,
+    marginLeft: testimonial?.style?.marginLeft,
+    marginRight: testimonial?.style?.marginRight,
+    marginBottom: testimonial?.style?.marginBottom,
+    paddingTop: testimonial?.style?.paddingTop,
+    paddingLeft: testimonial?.style?.paddingLeft,
+    paddingRight: testimonial?.style?.paddingRight,
+    paddingBottom: testimonial?.style?.paddingBottom,
+  };
+
+  let borderStyle = {
+    border: testimonial?.style?.border,
+    borderRadius: testimonial?.style?.borderRadius,
+    borderTopLeftRadius: testimonial?.style?.borderTopLeftRadius,
+    borderTopRightRadius: testimonial?.style?.borderTopRightRadius,
+    borderBottomLeftRadius: testimonial?.style?.borderBottomLeftRadius,
+    borderBottomRightRadius: testimonial?.style?.borderBottomRightRadius,
+    borderWidth: testimonial?.style?.borderWidth,
+    borderStyle: testimonial?.style?.borderStyle,
+    borderColor: testimonial?.style?.borderColor,
+    borderTopWidth: testimonial?.style?.borderTopWidth,
+    borderTopStyle: testimonial?.style?.borderTopStyle,
+    borderTopColor: testimonial?.style?.borderTopColor,
+    borderRightWidth: testimonial?.style?.borderRightWidth,
+    borderRightStyle: testimonial?.style?.borderRightStyle,
+    borderRightColor: testimonial?.style?.borderRightColor,
+    borderBottomWidth: testimonial?.style?.borderBottomWidth,
+    borderBottomStyle: testimonial?.style?.borderBottomStyle,
+    borderBottomColor: testimonial?.style?.borderBottomColor,
+    borderLeftWidth: testimonial?.style?.borderLeftWidth,
+    borderLeftStyle: testimonial?.style?.borderLeftStyle,
+    borderLeftColor: testimonial?.style?.borderLeftColor,
+  };
+
+  let heightStyle = {
+    width: testimonial?.style?.width,
+    height: testimonial?.style?.height,
+    maxWidth: testimonial?.style?.maxWidth,
+    minWidth: testimonial?.style?.minWidth,
+    maxHeight: testimonial?.style?.maxHeight,
+    minHeight: testimonial?.style?.minHeight,
+  };
+
   return (
     <div
-      className="testimonial-container"
+      // className="testimonial-container"
       ref={divRef}
-      style={testimonial?.style}
+      style={{
+        width: testimonial?.style?.width,
+        height: testimonial?.style?.height,
+        ...spacingStyle,
+      }}
     >
-      <div style={{ height: "80%" }}>
+      <div
+        style={{
+          height: "100%",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundColor:
+            testimonial?.style?.backgroundColor || "rgb(239, 239, 239)",
+          flexDirection: "column",
+          ...borderStyle,
+        }}
+      >
         <div
-          className="testimonial_subcontainer"
-          style={{ height: testimonial?.style?.height }}
+          // style={tm_height}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            width: "100%",
+            height: "80%",
+          }}
+          // className="testimonial_subcontainer"
+          // style={{ height: testimonial?.style?.height }}
         >
-          {prevNextEnable && (
-            <button className="testimonial_prev_btn" onClick={prevSlide}>
-              &#10094;
-            </button>
-          )}
-          <div className="testimonial_container" style={{ height: "100%" }}>
+          <div style={tm_subcontainer}>
+            {prevNextEnable && <button onClick={prevSlide}>&#10094;</button>}
+
             {testimonialCardDetails
               .slice(currentSlide, currentSlide + visibleCards)
               .map((item, index) => {
@@ -173,15 +313,16 @@ const TestimonialElement = ({
                   <div
                     className="testimonial_card_styles"
                     key={currentSlide + index}
-                    style={testimonial?.testimonialCardStyles}
+                    style={tm_card_container}
                   >
                     <div
-                      className={`testimonial_inner_div_card`}
+                      style={{ padding: "20px" }}
+                      // className={`testimonial_inner_div_card`}
                       // style={testimonial?.testimonialCardStyles}
-                      style={removeKeyInObject(
-                        testimonial?.testimonialCardStyles,
-                        innerDivStyle
-                      )}
+                      // style={removeKeyInObject(
+                      //   testimonial?.testimonialCardStyles,
+                      //   innerDivStyle
+                      // )}
                     >
                       <div className="testimonial-content">
                         <div className="img-wrapper">
@@ -212,12 +353,12 @@ const TestimonialElement = ({
                   </div>
                 );
               })}
+            {prevNextEnable && (
+              <button className="test-next" onClick={nextSlide}>
+                &#10095;
+              </button>
+            )}
           </div>
-          {prevNextEnable && (
-            <button className="test-next" onClick={nextSlide}>
-              &#10095;
-            </button>
-          )}
         </div>
         <div className="indicators">
           {testimonialCardDetails?.map((item, index) => (
