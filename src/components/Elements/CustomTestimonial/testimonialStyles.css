@@ -57,12 +57,9 @@ textarea {
 }
 
 .testimonial_card_styles {
-  border-radius: 10px;
-  /* height: 16.5rem; */
   height: 100%;
   width: 85%;
   margin: 20px;
-  border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   border-radius: 20px;

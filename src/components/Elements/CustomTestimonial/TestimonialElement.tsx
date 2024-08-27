@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import "./testimonialStyles.css";
 import "react-multi-carousel/lib/styles.css";
 import { testimonialDefault64 } from "../../Elements/assets/testimonialDefault64";
-import { removeKeyInObject } from "../utils/removeKeyInObject";
 
 const TestimonialElement = ({
   testimonial,
@@ -25,8 +24,8 @@ const TestimonialElement = ({
     const handleResize = () => {
       if (divRef.current) {
         setWindowSize({
-          width: divRef.current.offsetWidth,
-          height: divRef.current.offsetHeight,
+          width: divRef?.current?.offsetWidth,
+          height: divRef?.current?.offsetHeight,
         });
       }
     };
@@ -150,20 +149,20 @@ const TestimonialElement = ({
     borderWidth: testimonial?.testimonialCardStyles?.borderWidth,
   };
 
-  const Tm_Container_Style = {
-    height: "100%",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: " rgb(239, 239, 239)",
-  };
+  // const Tm_Container_Style = {
+  //   height: "100%",
+  //   display: "flex",
+  //   justifyContent: "center",
+  //   alignItems: "center",
+  //   backgroundColor: " rgb(239, 239, 239)",
+  // };
 
-  const tm_height = {
-    display: "flex",
-    flexDirection: "column",
-    width: "100%",
-    height: "80%",
-  };
+  // const tm_height = {
+  //   display: "flex",
+  //   flexDirection: "column",
+  //   width: "100%",
+  //   height: "80%",
+  // };
 
   const tm_subcontainer = {
     padding: "1rem 0.5rem 0.5rem 0.5rem",
@@ -190,7 +189,7 @@ const TestimonialElement = ({
     marginBottom: "0px",
     boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
     overflow: "hidden",
-    backgroundColor: "var(--white-color)",
+    backgroundColor: testimonial?.testimonialCardStyles?.backgroundColor,
     width: testimonial?.testimonialCardStyles?.width || defaultWidth,
     height: testimonial?.testimonialCardStyles?.height || "100%",
     maxWidth: testimonial?.testimonialCardStyles?.maxWidth,
@@ -261,14 +260,14 @@ const TestimonialElement = ({
     borderLeftColor: testimonial?.style?.borderLeftColor,
   };
 
-  let heightStyle = {
-    width: testimonial?.style?.width,
-    height: testimonial?.style?.height,
-    maxWidth: testimonial?.style?.maxWidth,
-    minWidth: testimonial?.style?.minWidth,
-    maxHeight: testimonial?.style?.maxHeight,
-    minHeight: testimonial?.style?.minHeight,
-  };
+  // let heightStyle = {
+  //   width: testimonial?.style?.width,
+  //   height: testimonial?.style?.height,
+  //   maxWidth: testimonial?.style?.maxWidth,
+  //   minWidth: testimonial?.style?.minWidth,
+  //   maxHeight: testimonial?.style?.maxHeight,
+  //   minHeight: testimonial?.style?.minHeight,
+  // };
 
   return (
     <div

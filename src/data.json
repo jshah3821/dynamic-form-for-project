@@ -13,9 +13,9 @@
         "_store": {}
       },
       "style": {
-        "backgroundColor": "#efefef",
+        "backgroundColor": "#ccadad",
         "height": "",
-        "width": "",
+        "width": "100%",
         "ratio": "",
         "minWidth": "",
         "minHeight": "",
@@ -23,38 +23,38 @@
         "maxHeight": "",
         "isBorder": "",
         "border": "",
-        "borderRadius": "0px",
-        "borderTopLeftRadius": "",
-        "borderTopRightRadius": "",
-        "borderBottomLeftRadius": "",
-        "borderBottomRightRadius": "",
-        "borderWidth": "",
-        "borderStyle": "",
-        "borderColor": "",
-        "borderTopWidth": "",
-        "borderTopStyle": "",
-        "borderTopColor": "",
-        "borderRightWidth": "",
-        "borderRightStyle": "",
-        "borderRightColor": "",
-        "borderBottomWidth": "",
-        "borderBottomStyle": "",
-        "borderBottomColor": "",
-        "borderLeftWidth": "",
-        "borderLeftStyle": "",
-        "borderLeftColor": ""
+        "borderRadius": "50px",
+        "borderTopLeftRadius": "50px",
+        "borderTopRightRadius": "50px",
+        "borderBottomLeftRadius": "50px",
+        "borderBottomRightRadius": "50px",
+        "borderWidth": "22px",
+        "borderStyle": "dotted",
+        "borderColor": "#cececf",
+        "borderTopWidth": "22px",
+        "borderTopStyle": "dotted",
+        "borderTopColor": "#cececf",
+        "borderRightWidth": "22px",
+        "borderRightStyle": "dotted",
+        "borderRightColor": "#cececf",
+        "borderBottomWidth": "22px",
+        "borderBottomStyle": "dotted",
+        "borderBottomColor": "#cececf",
+        "borderLeftWidth": "22px",
+        "borderLeftStyle": "dotted",
+        "borderLeftColor": "#cececf"
       },
       "testimonialCardStyles": {
-        "backgroundColor": "#ffffff",
+        "backgroundColor": "#d0bebe",
         "width": "",
         "height": "",
-        "borderRadius": "10px",
+        "borderRadius": "50px",
         "isBorder": "",
         "border": "",
-        "borderTopLeftRadius": "",
-        "borderTopRightRadius": "",
-        "borderBottomLeftRadius": "",
-        "borderBottomRightRadius": "",
+        "borderTopLeftRadius": "50px",
+        "borderTopRightRadius": "50px",
+        "borderBottomLeftRadius": "50px",
+        "borderBottomRightRadius": "50px",
         "borderWidth": "",
         "borderStyle": "",
         "borderColor": "",
@@ -71,8 +71,8 @@
         "borderLeftStyle": "",
         "borderLeftColor": ""
       },
-      "cardTitleStyles": { "color": "#887878", "fontSize": "16px" },
-      "cardContentStyles": { "color": "#887878", "fontSize": "11px" },
+      "cardTitleStyles": { "color": "#4ba051", "fontSize": "16px" },
+      "cardContentStyles": { "color": "#121211", "fontSize": "22px" },
       "cardImageStyles": { "width": "100px", "height": "100px" },
       "testimonialDetails": {
         "autoPlay": false,
@@ -109,206 +109,8 @@
           }
         ]
       },
-      "id": "S98VN35DqNN2gENFghd9w"
-    },
-    {
-      "selectionType": "page",
-      "type": "component",
-      "subType": "table",
-      "title": "Table",
-      "tableHeadingDetails": { "tableHeading": "Table" },
-      "headingStyle": {
-        "width": "",
-        "height": "",
-        "typography": "",
-        "fontSize": "20px",
-        "fontWeight": "400",
-        "lineHeight": "",
-        "textAlign": "center",
-        "color": "#13293d",
-        "fontStyle": "",
-        "fontFamily": "",
-        "textDecoration": "",
-        "textTransform": "",
-        "overflow": "",
-        "backgroundColor": "#eee",
-        "isBorder": "",
-        "borderWidth": "1px",
-        "borderStyle": "solid",
-        "borderColor": "#dddddd",
-        "borderTopWidth": "1px",
-        "borderTopStyle": "solid",
-        "borderTopColor": "#dddddd",
-        "borderRightWidth": "1px",
-        "borderRightStyle": "solid",
-        "borderRightColor": "#dddddd",
-        "borderBottomWidth": "1px",
-        "borderBottomStyle": "solid",
-        "borderBottomColor": "#dddddd",
-        "borderLeftWidth": "1px",
-        "borderLeftStyle": "solid",
-        "borderLeftColor": "#dddddd",
-        "borderRadius": "0px",
-        "borderTopLeftRadius": "0px",
-        "borderTopRightRadius": "0px",
-        "borderBottomLeftRadius": "0px",
-        "borderBottomRightRadius": "0px"
-      },
-      "tableStyle": {
-        "width": "",
-        "height": "",
-        "typography": "",
-        "backgroundColor": "#FAF9F6",
-        "color": "#13293d",
-        "fontSize": "14px",
-        "fontWeight": "400",
-        "lineHeight": "",
-        "textAlign": "center",
-        "fontStyle": "",
-        "fontFamily": "",
-        "textDecoration": "",
-        "textTransform": "",
-        "isBorder": "",
-        "borderWidth": "1px",
-        "borderStyle": "solid",
-        "borderColor": "#dddddd",
-        "borderTopWidth": "1px",
-        "borderTopStyle": "solid",
-        "borderTopColor": "#dddddd",
-        "borderRightWidth": "1px",
-        "borderRightStyle": "solid",
-        "borderRightColor": "#dddddd",
-        "borderBottomWidth": "1px",
-        "borderBottomStyle": "solid",
-        "borderBottomColor": "#dddddd",
-        "borderLeftWidth": "1px",
-        "borderLeftStyle": "solid",
-        "borderLeftColor": "#dddddd",
-        "borderRadius": "0px",
-        "borderTopLeftRadius": "0px",
-        "borderTopRightRadius": "0px",
-        "borderBottomLeftRadius": "0px",
-        "borderBottomRightRadius": "0px"
-      },
-      "tableDetails": {
-        "tableData": [
-          ["Row 1 Col 1", "Row 1 Col 2", "Row 1 Col 3"],
-          ["Row 2 Col 1", "Row 2 Col 2", "Row 2 Col 3"],
-          ["Row 3 Col 1", "Row 3 Col 2", "Row 3 Col 3"]
-        ]
-      },
-      "id": "cpmDB-nzMMLQX5yyJhAa8",
-      "isSelectedField": false
-    },
-    {
-      "selectionType": "page",
-      "type": "component",
-      "subType": "footer",
-      "title": "Footer",
-      "style": {
-        "backgroundColor": "#333333",
-        "color": "#ffffff",
-        "fontSize": "",
-        "fontStyle": "",
-        "fontFamily": "",
-        "fontWeight": "",
-        "textDecoration": "",
-        "textTransform": "",
-        "height": "",
-        "width": "",
-        "ratio": "",
-        "minWidth": "",
-        "minHeight": "",
-        "maxWidth": "",
-        "maxHeight": "",
-        "overflow": "",
-        "isBorder": "",
-        "borderWidth": "",
-        "borderStyle": "",
-        "borderColor": "",
-        "borderTopWidth": "",
-        "borderTopStyle": "",
-        "borderTopColor": "",
-        "borderRightWidth": "",
-        "borderRightStyle": "",
-        "borderRightColor": "",
-        "borderBottomWidth": "",
-        "borderBottomStyle": "",
-        "borderBottomColor": "",
-        "borderLeftWidth": "",
-        "borderLeftStyle": "",
-        "borderLeftColor": "",
-        "borderRadius": "",
-        "borderTopLeftRadius": "",
-        "borderTopRightRadius": "",
-        "borderBottomLeftRadius": "",
-        "borderBottomRightRadius": ""
-      },
-      "footer": {
-        "footerDetails": [
-          {
-            "title": "Quick links",
-            "links": [
-              { "linkName": "Web page", "linkURL": "/web_page" },
-              { "linkName": "Online shop", "linkURL": "/online_shop" },
-              {
-                "linkName": "SEO optimization",
-                "linkURL": "/seo_optimization"
-              },
-              { "linkName": "Counselling", "linkURL": "/counselling" }
-            ]
-          },
-          {
-            "title": "Industries",
-            "links": [
-              { "linkName": "Retail", "linkURL": "/retail" },
-              { "linkName": "Education", "linkURL": "/education" },
-              { "linkName": "Automotive", "linkURL": "/automotive" },
-              { "linkName": "Ecommerce", "linkURL": "/ecommerce" }
-            ]
-          },
-          {
-            "title": "Our services",
-            "links": [
-              {
-                "linkName": "Mobile development",
-                "linkURL": "/mobile_development"
-              },
-              { "linkName": "Web development", "linkURL": "/web_development" },
-              {
-                "linkName": "Digital marketing",
-                "linkURL": "/digital_marketing"
-              }
-            ]
-          }
-        ],
-        "socialDetails": [
-          {
-            "name": "facebook",
-            "icon": "CiFacebook",
-            "url": "https://www.facebook.com/Brainvire"
-          },
-          {
-            "name": "twitter",
-            "icon": "CiTwitter",
-            "url": "https://www.linkedin.com/company/brainvire-infotech-inc"
-          },
-          {
-            "name": "linkedin",
-            "icon": "CiLinkedin",
-            "url": "https://twitter.com"
-          }
-        ]
-      },
-      "icon": {
-        "key": null,
-        "ref": null,
-        "props": { "className": "field_icons" },
-        "_owner": null,
-        "_store": {}
-      },
-      "id": "irUcRAYp_AV_9l00aXexT",
-      "isSelectedField": false
+      "id": "M_ofJLh-mCyRHBHXFo9dA",
+      "isSelectedField": true
     }
   ],
   "canvasCssStyling": {
@@ -318,5 +120,5 @@
     "gridTemplateRows": "",
     "gridTemplateColumns": ""
   },
-  "formName": "csc"
+  "formName": "cscsc"
 }
