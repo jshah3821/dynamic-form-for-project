@@ -32,7 +32,10 @@ const TextboxElement = (props: any) => {
     maxHeight: props?.style?.maxHeight,
   };
   return (
-    <div className="inputContainer" style={inputContainerStyle}>
+    <div
+      className="inputContainer text-area-container"
+      style={inputContainerStyle}
+    >
       <label style={inputTextStyle} htmlFor={props?.id}>
         {props?.label ? props?.label : "Label"}
         {props?.required && (
@@ -54,6 +57,7 @@ const TextboxElement = (props: any) => {
             ...inputTextStyle,
             ...inputContainerStyle,
           }),
+          height: "100%",
         }}
         name={props?.name}
         onChange={props?.onChange}

@@ -801,16 +801,16 @@ export const FormBuilder = ({ id, jsonData, formName, canvasStyle }: Props) => {
         style={{ fontSize: "12px" }}
       />
       <p
-          style={{
-            marginBottom: "10px",
-            textAlign: "center",
-            fontSize: "20px",
-            fontWeight: "bolder",
-            textTransform: "capitalize",
-          }}
-        >
-          {formName}
-        </p>
+        style={{
+          marginBottom: "10px",
+          textAlign: "center",
+          fontSize: "20px",
+          fontWeight: "bolder",
+          textTransform: "capitalize",
+        }}
+      >
+        {formName}
+      </p>
       <div
         className="formBuilder_main_container"
         style={{
@@ -822,7 +822,6 @@ export const FormBuilder = ({ id, jsonData, formName, canvasStyle }: Props) => {
           flexDirection: canvasStyle?.flexDirection,
         }}
       >
-        
         {data?.map((obj, index) => {
           switch (obj?.type) {
             case "element":
@@ -976,11 +975,34 @@ export const FormBuilder = ({ id, jsonData, formName, canvasStyle }: Props) => {
               return null;
           }
         })}
+
+        {data?.some((obj) => validSubtypes.includes(obj.subType)) &&
+          !data?.some((obj) => invalidSubtypes.includes(obj.subType)) && (
+            <div className="submit_btn_container  ">
+              <button
+                className="submit_btn"
+                onClick={() => {
+                  handleSubmitFormData();
+                }}
+              >
+                Submit
+              </button>
+              <button
+                onClick={() => setFormData(initialFormData)}
+                className="clear_btn preview-button-submit-buttons"
+              >
+                Clear
+              </button>
+            </div>
+          )}
       </div>
 
       {data?.some((obj) => validSubtypes.includes(obj.subType)) &&
         !data?.some((obj) => invalidSubtypes.includes(obj.subType)) && (
-          <div className="submit_btn_container">
+          <div
+
+          // className="submit_btn_container"
+          >
             <button
               className="submit_btn"
               onClick={() => {

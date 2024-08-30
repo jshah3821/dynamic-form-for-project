@@ -1218,8 +1218,8 @@ textarea {
   margin-top: 4px;
 }
 .submit_btn_container {
-  position: absolute;
-  bottom: 0;
+  /* position: absolute; */
+  /* bottom: 0; */
   display: flex;
   height: 7%;
   gap: 2rem;
@@ -1473,14 +1473,16 @@ textarea {
   height: auto;
 }
 
-.selectBoxContainer,
+/* .selectBoxContainer, */
 .form_inputContainer,
 .fp_text,
 .px1,
 .inputContainer,
-.le_container {
+/* .le_container */ {
   width: 100%;
 }
+
+/* //selectboxelemet class in not havig proper marhin */
 
 .checkbox-container {
   display: flex;
@@ -1510,4 +1512,16 @@ textarea {
     background-color: var(--grey-color-eee);
     border-radius: 3px;
   }
+}
+
+.text-area-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.preview-button-submit-buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
