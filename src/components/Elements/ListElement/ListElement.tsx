@@ -65,6 +65,15 @@ const ListElement = ({ listData, key }) => {
     paddingBottom: listStyle?.paddingBottom,
   };
 
+  const borderListItem = {
+    borderColor: listStyle?.borderColor,
+    borderWidth: listStyle?.borderWidth,
+    borderStyle: listStyle?.borderStyle,
+    borderRadius: listStyle?.borderRadius,
+  };
+
+  console.log("listStyle", listStyle);
+
   return (
     <div className="le_container" key={key} style={listItemContainer}>
       <p style={listItemTextStyle} className="le_list_container">
@@ -73,7 +82,18 @@ const ListElement = ({ listData, key }) => {
       <ul className="list-conatiner" style={listStyle}>
         {listItemDetails?.length > 0
           ? listItemDetails?.map((item, i) => {
-              return <li key={i}> {item?.name}</li>;
+              return (
+                <li
+                  style={
+                    (removeKeyInObject(listItemTextStyle, borderListItem),
+                    { listStylePosition: "inside !important" })
+                  }
+                  key={i}
+                >
+                  {" "}
+                  {item?.name}
+                </li>
+              );
             })
           : null}
       </ul>

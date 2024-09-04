@@ -89,6 +89,29 @@ const SurveyForm = ({
     textTransform: answer_style?.textTransform,
   };
 
+  const borderStyles = {
+    border: answer_style?.border,
+    borderWidth: answer_style?.borderWidth,
+    borderStyle: answer_style?.borderStyle,
+    borderColor: answer_style?.borderColor,
+    borderTopWidth: answer_style?.borderTopWidth,
+    borderTopStyle: answer_style?.borderTopStyle,
+    borderTopColor: answer_style?.borderTopColor,
+    borderRightWidth: answer_style?.borderRightWidth,
+    borderRightStyle: answer_style?.borderRightStyle,
+    borderRightColor: answer_style?.borderRightColor,
+    borderBottomWidth: answer_style?.borderBottomWidth,
+    borderBottomStyle: answer_style?.borderBottomStyle,
+    borderBottomColor: answer_style?.borderBottomColor,
+    borderLeftWidth: answer_style?.borderLeftWidth,
+    borderLeftStyle: answer_style?.borderLeftStyle,
+    borderLeftColor: answer_style?.borderLeftColor,
+    borderTopLeftRadius: answer_style?.borderTopLeftRadius,
+    borderTopRightRadius: answer_style?.borderTopRightRadius,
+    borderBottomLeftRadius: answer_style?.borderBottomLeftRadius,
+    borderBottomRightRadius: answer_style?.borderBottomRightRadius,
+  };
+
   return (
     <div style={queContStyle} className="sf_canvas">
       {properties?.questionDetails?.question_image?.dataURL && (
@@ -106,12 +129,15 @@ const SurveyForm = ({
           {properties?.questionDetails?.question_text
             ? properties?.questionDetails?.question_text
             : subType === "survey_image" || subType === "range"
-              ? "Label"
-              : "Question"}
+            ? "Label"
+            : "Question"}
           {required && <span className="required_color">*</span>}
         </p>
       )}
-      <div className="flex flex-column mt-5" style={{ flexGrow: "1", height: "100%" }}>
+      <div
+        className="flex flex-column mt-5"
+        style={{ flexGrow: "1", height: "100%" }}
+      >
         {/* <div className="relative" style={{ height: "100%" }}> */}
         {subType === "shortanswer" && (
           <input
@@ -163,10 +189,7 @@ const SurveyForm = ({
           </div>
         )}
         {subType === "survey_radio" && (
-          <div
-            className="checkbox-container"
-            style={properties?.answer_style}
-          >
+          <div className="checkbox-container" style={properties?.answer_style}>
             {properties?.optionDetails?.map((option) => {
               return (
                 <div
@@ -195,10 +218,7 @@ const SurveyForm = ({
           </div>
         )}
         {subType === "survey_checkbox" && (
-          <div
-            className="checkbox-container"
-            style={properties?.answer_style}
-          >
+          <div className="checkbox-container" style={properties?.answer_style}>
             {properties?.optionDetails?.map((option, index) => {
               return (
                 <div
@@ -254,7 +274,11 @@ const SurveyForm = ({
             >
               <FaCloudUploadAlt />
               <span
-                style={properties?.answer_style}
+                style={removeKeyInObject(
+                  properties?.answer_style,
+                  borderStyles
+                )}
+                // style={properties?.answer_style}
                 // className="font-12 font-weight-100 ml1 text_wrap_css"
 
                 className=" font-weight-100 ml1 text_wrap_css"
@@ -277,10 +301,7 @@ const SurveyForm = ({
           </div>
         )}
         {subType === "range" ? (
-          <div
-            style={properties?.answer_style}
-            className="qa_range_container"
-          >
+          <div style={properties?.answer_style} className="qa_range_container">
             <div className="sf_range_container">
               <div className="sf_range_subcontainer">
                 <input
@@ -303,8 +324,9 @@ const SurveyForm = ({
                     color: properties?.answer_style?.color,
                   }}
                 >
-                  {`${formData[fieldId] || 0} ${properties?.validation?.unit || ""
-                    }`}
+                  {`${formData[fieldId] || 0} ${
+                    properties?.validation?.unit || ""
+                  }`}
                 </span>
               </div>
               <div className="sf_range_label">
@@ -326,13 +348,20 @@ const SurveyForm = ({
         ) : null}
         {subType === "submit_button" && (
           <div style={{ height: "100%" }}>
-            <div className="flex flex-row justify-start items-center align-center pointer fluid" style={{ height: "100%" }}>
+            <div
+              className="flex flex-row justify-start items-center align-center pointer fluid"
+              style={{ height: "100%" }}
+            >
               <button
                 className={"form_button_css"}
                 onClick={() => {
                   handleSubmitFormData(properties?.questionDetails?.call_url);
                 }}
-                style={{ ...properties?.answer_style, height: "100%" }}
+                style={{
+                  ...properties?.answer_style,
+                  height: "100%",
+                  backgroundColor: properties?.question_style?.backgroundColor,
+                }}
               >
                 {properties?.questionDetails?.button_label
                   ? properties?.questionDetails?.button_label

@@ -1270,9 +1270,14 @@ textarea {
 
 .list-conatiner {
   width: 100%;
-  list-style-position: inside !important;
+  /* list-style-position: inside !important; */
   overflow: auto;
   /* margin-bottom: 0px; */
+}
+
+li {
+  /* list-style: unset !important; */
+  list-style-position: inside;
 }
 
 .list-conatiner::-webkit-scrollbar {
