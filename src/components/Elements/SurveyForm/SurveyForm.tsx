@@ -17,8 +17,6 @@ const SurveyForm = ({
   imageFile,
   setImageFile,
 }) => {
-
-
   const fileRef = useRef<any>(null);
   const [tooltipStyle, setTooltipStyle] = useState<any>({
     display: "none",
@@ -360,6 +358,7 @@ const SurveyForm = ({
                 style={{
                   ...properties?.answer_style,
                   height: "100%",
+                  color: properties?.question_style?.color,
                   backgroundColor: properties?.question_style?.backgroundColor,
                 }}
               >
