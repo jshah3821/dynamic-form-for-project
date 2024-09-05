@@ -17,14 +17,14 @@ const SurveyForm = ({
   imageFile,
   setImageFile,
 }) => {
-  console.log("formData", formData);
+
 
   const fileRef = useRef<any>(null);
   const [tooltipStyle, setTooltipStyle] = useState<any>({
     display: "none",
     left: 0,
   });
-  console.log(queData, "queData");
+
   const handleRangeTooltip = (e) => {
     const newValue = e.target.value;
     const rangeWidth = e.target.offsetWidth;

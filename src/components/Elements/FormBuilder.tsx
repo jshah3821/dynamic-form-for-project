@@ -460,9 +460,6 @@ export const FormBuilder = ({ id, jsonData, formName, canvasStyle }: Props) => {
   const data = id ? dataArray?.[id] : jsonData;
   const [formData, setFormData] = useState({});
 
-  useEffect(() => {
-    console.log("previewType", previewType);
-  });
 
   const [errors, setErrors] = useState({});
   const [isSubmitClicked, setSubmitClicked] = useState(false);
@@ -488,9 +485,7 @@ export const FormBuilder = ({ id, jsonData, formName, canvasStyle }: Props) => {
   useEffect(() => {
     data?.length > 0
       ? data?.map((obj, i) => {
-          {
-            console.log("obj?.type", obj?.type);
-          }
+          
           switch (obj?.type) {
             case "element":
               switch (obj?.subType) {
@@ -521,9 +516,7 @@ export const FormBuilder = ({ id, jsonData, formName, canvasStyle }: Props) => {
                   return null;
               }
             case "surveyform":
-              {
-                console.log("obj", obj);
-              }
+            
               switch (obj?.subType) {
                 case "shortanswer":
                 case "longanswer":
@@ -541,7 +534,7 @@ export const FormBuilder = ({ id, jsonData, formName, canvasStyle }: Props) => {
                 case "survey_image":
                   setFormData(
                     (prev) => {
-                      console.log("prev", prev);
+                     
 
                       return {
                         ...prev,
@@ -600,7 +593,7 @@ export const FormBuilder = ({ id, jsonData, formName, canvasStyle }: Props) => {
   };
 
   const [imageFile, setImageFile] = useState("");
-  console.log(imageFile, "imageFile");
+
 
   useEffect(() => {
     localStorage.setItem("formData", imageFile);
@@ -609,14 +602,14 @@ export const FormBuilder = ({ id, jsonData, formName, canvasStyle }: Props) => {
   // const formDataHandleChange = (event, id, multipleFileUpload?) => {
   //   const { name, value } = event?.target;
 
-  //   console.log("name, value", name, value);
+
 
   //   let updatedFiles: any;
   //   if (name === "survey_image") {
   //     const fileList = event.target.files;
-  //     console.log("fileList", fileList);
 
-  //     console.log("updatedFiles", updatedFiles);
+
+
 
   //     if (multipleFileUpload) {
   //       const existingFiles = formData[id] || []; // Get existing files from formData

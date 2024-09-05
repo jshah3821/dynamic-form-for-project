@@ -9,7 +9,7 @@
 //     height: tableCellStyles?.height,
 //   };
 //   // const heightStyle = tableCellStyles?.height
-//   console.log("tableCellStyles", tableHeadStyles?.height);
+
 
 //   const percentageToNumber = (percent) => parseFloat(percent?.replace("%", ""));
 
@@ -94,7 +94,7 @@ const TableElement = ({ tableProps }) => {
   const tableHeadStyles = tableProps?.headingStyle;
   const tableCellStyles = tableProps?.tableStyle;
 
-  console.log("tableCellStyles", tableCellStyles);
+
 
   return (
     <div className="te_container">

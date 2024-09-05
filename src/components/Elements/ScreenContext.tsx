@@ -5,9 +5,7 @@ const ScreenContext = createContext("");
 export default function MyProvider({ children }) {
   const [previewType, setPreviewType] = useState("");
 
-  useEffect(() => {
-    console.log("previewType", previewType);
-  });
+
   const resposiveIconClickHandle = (responsiveType) => {
     setPreviewType(responsiveType);
   };

@@ -11,7 +11,7 @@ const FooterElement = ({ footerDetails, socialDetails, style }) => {
     }
   }
 
-  console.log("style", style);
+
 
   const footersItemTextStyle = {
     color: style?.color,

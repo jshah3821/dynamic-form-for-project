@@ -177,10 +177,7 @@ const TestimonialElement = ({
 
   let defaultWidth = "14.5rem";
 
-  console.log(
-    "testimonial?.testimonialCardStyles?.borderRadius",
-    testimonial?.testimonialCardStyles?.borderRadius
-  );
+
 
   const tm_card_container = {
     fontSize: "14px",
@@ -223,7 +220,7 @@ const TestimonialElement = ({
     borderRadius: testimonial?.testimonialCardStyles?.borderRadius,
   };
 
-  console.log("width", testimonial);
+
 
   const spacingStyle = {
     marginTop: testimonial?.style?.marginTop,

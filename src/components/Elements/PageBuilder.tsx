@@ -249,7 +249,7 @@ const PageBuilder = ({ id, jsonData, canvasStyle }: Props) => {
     setPreviewType(responsiveType);
   };
 
-  console.log("previewType", previewType);
+
 
   const data = id ? dataArray?.[id] : jsonData;
 

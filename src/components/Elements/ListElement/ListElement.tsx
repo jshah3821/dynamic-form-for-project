@@ -1,21 +1,9 @@
 import { removeKeyInObject } from "../utils/removeKeyInObject";
 import "./ListElementStyle.css";
-import React from "react";
+import React, { useEffect } from "react";
 const ListElement = ({ listData, key }) => {
   const { label, listItemDetails, style, listStyle } = listData?.properties;
 
-  // const listItemTextStyle = {
-  //   color: listStyle?.color,
-  //   fontSize: listStyle?.fontSize,
-  //   fontStyle: listStyle?.fontStyle,
-  //   fontFamily: listStyle?.fontFamily,
-  //   fontWeight: listStyle?.fontWeight,
-  //   textAlign: listStyle?.textAlign,
-  //   textDecoration: listStyle?.textDecoration,
-  //   textTransform: listStyle?.textTransform,
-  // };
-  // console.log(style.textAlign, "labelstyle");
-  console.log(listStyle, "listStyle");
   const listItemTextStyle = {
     color: style?.color,
     fontSize: style?.fontSize,
@@ -28,6 +16,7 @@ const ListElement = ({ listData, key }) => {
   };
 
   const listItemContainer = {
+    textAlign: style?.textAlign,
     fontStyle: listStyle?.fontStyle,
     backgroundColor: style?.backgroundColor,
     height: style?.height,
@@ -72,7 +61,9 @@ const ListElement = ({ listData, key }) => {
     borderRadius: listStyle?.borderRadius,
   };
 
-  console.log("listStyle", listStyle);
+  useEffect(() => {
+    console.log("liststyle", style?.textalign);
+  });
 
   return (
     <div className="le_container" key={key} style={listItemContainer}>
