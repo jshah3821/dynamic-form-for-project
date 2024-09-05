@@ -460,7 +460,6 @@ export const FormBuilder = ({ id, jsonData, formName, canvasStyle }: Props) => {
   const data = id ? dataArray?.[id] : jsonData;
   const [formData, setFormData] = useState({});
 
-
   const [errors, setErrors] = useState({});
   const [isSubmitClicked, setSubmitClicked] = useState(false);
   const [initialFormData, setInitialFormData] = useState({});
@@ -485,7 +484,6 @@ export const FormBuilder = ({ id, jsonData, formName, canvasStyle }: Props) => {
   useEffect(() => {
     data?.length > 0
       ? data?.map((obj, i) => {
-          
           switch (obj?.type) {
             case "element":
               switch (obj?.subType) {
@@ -516,7 +514,6 @@ export const FormBuilder = ({ id, jsonData, formName, canvasStyle }: Props) => {
                   return null;
               }
             case "surveyform":
-            
               switch (obj?.subType) {
                 case "shortanswer":
                 case "longanswer":
@@ -534,8 +531,6 @@ export const FormBuilder = ({ id, jsonData, formName, canvasStyle }: Props) => {
                 case "survey_image":
                   setFormData(
                     (prev) => {
-                     
-
                       return {
                         ...prev,
                         [obj?.id]: [],
@@ -594,7 +589,6 @@ export const FormBuilder = ({ id, jsonData, formName, canvasStyle }: Props) => {
 
   const [imageFile, setImageFile] = useState("");
 
-
   useEffect(() => {
     localStorage.setItem("formData", imageFile);
   }, [imageFile]);
@@ -602,14 +596,9 @@ export const FormBuilder = ({ id, jsonData, formName, canvasStyle }: Props) => {
   // const formDataHandleChange = (event, id, multipleFileUpload?) => {
   //   const { name, value } = event?.target;
 
-
-
   //   let updatedFiles: any;
   //   if (name === "survey_image") {
   //     const fileList = event.target.files;
-
-
-
 
   //     if (multipleFileUpload) {
   //       const existingFiles = formData[id] || []; // Get existing files from formData
@@ -990,7 +979,7 @@ export const FormBuilder = ({ id, jsonData, formName, canvasStyle }: Props) => {
           )}
       </div>
 
-      {data?.some((obj) => validSubtypes.includes(obj.subType)) &&
+      {/* {data?.some((obj) => validSubtypes.includes(obj.subType)) &&
         !data?.some((obj) => invalidSubtypes.includes(obj.subType)) && (
           <div
 
@@ -1011,7 +1000,7 @@ export const FormBuilder = ({ id, jsonData, formName, canvasStyle }: Props) => {
               Clear
             </button>
           </div>
-        )}
+        )} */}
     </div>
   ) : (
     <p style={{ textAlign: "center" }}>No preview form data available</p>
