@@ -1479,11 +1479,11 @@ li {
 }
 
 /* .selectBoxContainer, */
+/* .le_container */
 .form_inputContainer,
 .fp_text,
 .px1,
-.inputContainer,
-/* .le_container */ {
+.inputContainer {
   width: 100%;
 }
 

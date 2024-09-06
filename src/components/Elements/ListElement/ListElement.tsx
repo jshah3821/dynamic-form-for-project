@@ -16,7 +16,6 @@ const ListElement = ({ listData, key }) => {
   };
 
   const listItemContainer = {
-    // textAlign: listStyle?.textAlign,
     fontStyle: listStyle?.fontStyle,
     backgroundColor: style?.backgroundColor,
     height: style?.height,
@@ -52,7 +51,6 @@ const ListElement = ({ listData, key }) => {
     paddingLeft: listStyle?.paddingLeft,
     paddingRight: listStyle?.paddingRight,
     paddingBottom: listStyle?.paddingBottom,
-    // textAlign: "unset",
   };
 
   const borderListItem = {
