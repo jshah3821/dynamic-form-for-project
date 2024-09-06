@@ -358,6 +358,7 @@ const SurveyForm = ({
                 style={{
                   ...properties?.answer_style,
                   height: "100%",
+                  fontSize: properties.question_style.fontSize,
                   color: properties?.question_style?.color,
                   backgroundColor: properties?.question_style?.backgroundColor,
                 }}

@@ -16,7 +16,7 @@ const ListElement = ({ listData, key }) => {
   };
 
   const listItemContainer = {
-    textAlign: style?.textAlign,
+    // textAlign: listStyle?.textAlign,
     fontStyle: listStyle?.fontStyle,
     backgroundColor: style?.backgroundColor,
     height: style?.height,
@@ -52,6 +52,7 @@ const ListElement = ({ listData, key }) => {
     paddingLeft: listStyle?.paddingLeft,
     paddingRight: listStyle?.paddingRight,
     paddingBottom: listStyle?.paddingBottom,
+    // textAlign: "unset",
   };
 
   const borderListItem = {
@@ -62,7 +63,7 @@ const ListElement = ({ listData, key }) => {
   };
 
   useEffect(() => {
-    console.log("liststyle", style?.textalign);
+    console.log("listStyle", listStyle);
   });
 
   return (
