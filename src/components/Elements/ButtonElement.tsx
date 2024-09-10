@@ -11,16 +11,18 @@ const ButtonElement = (props: any) => {
     marginTop: props?.style?.marginTop,
     marginLeft: props?.style?.marginLeft,
     marginRight: props?.style?.marginRight,
-    marginBottom: props?.style?.marginBottom,
+    marginBottom: props?.style?.marginBottom || "20px",
     paddingTop: props?.style?.paddingTop,
     paddingLeft: props?.style?.paddingLeft,
     paddingRight: props?.style?.paddingRight,
     paddingBottom: props?.style?.paddingBottom,
     direction: props?.style?.direction,
     height: props?.style?.height,
+
     // direction: props?.style?.direction,
   };
 
+  console.log("spacingStyle", spacingStyle);
   const buttonStyles = {
     height: "100%",
     width: props?.style?.width,

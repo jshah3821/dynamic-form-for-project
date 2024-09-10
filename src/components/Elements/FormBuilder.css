@@ -1244,6 +1244,10 @@ textarea {
     outline: none;
     /* padding: 10px; */
     border-radius: 5px;
+    align-items: center;
+    display: flex;
+    text-align: center;
+    justify-content: center;
   }
 }
 .form_btn {

@@ -957,33 +957,37 @@ export const FormBuilder = ({ id, jsonData, formName, canvasStyle }: Props) => {
               return null;
           }
         })}
-        {/* 
-        {data?.some((obj) => validSubtypes.includes(obj.subType)) &&
-          !data?.some((obj) => invalidSubtypes.includes(obj.subType)) && (
-            <div className="submit_btn_container  ">
-              <button
-                className="submit_btn"
-                onClick={() => {
-                  handleSubmitFormData();
-                }}
-              >
-                Submit
-              </button>
-              <button
-                onClick={() => setFormData(initialFormData)}
-                className="clear_btn preview-button-submit-buttons"
-              >
-                Clear
-              </button>
-            </div>
-          )} */}
+
+        {
+          // data?.some((obj) => validSubtypes.includes(obj.subType)) &&
+          //   !data?.some((obj) => invalidSubtypes.includes(obj.subType)) &&
+
+          <div className="submit_btn_container  ">
+            <button
+              className="submit_btn"
+              onClick={() => {
+                handleSubmitFormData();
+              }}
+            >
+              Submit
+            </button>
+            <button
+              onClick={() => setFormData(initialFormData)}
+              className="clear_btn preview-button-submit-buttons"
+            >
+              Clear
+            </button>
+          </div>
+        }
       </div>
 
-      {data?.some((obj) => validSubtypes.includes(obj.subType)) &&
-        !data?.some((obj) => invalidSubtypes.includes(obj.subType)) && (
+      {/* {
+      data?.some((obj) => validSubtypes.includes(obj.subType)) &&
+        !data?.some((obj) => invalidSubtypes.includes(obj.subType)) && 
+        (
           <div
-
-          // className="submit_btn_container"
+            style={{ border: "1px solid black" }}
+            // className="submit_btn_container"
           >
             <button
               className="submit_btn"
@@ -1000,7 +1004,7 @@ export const FormBuilder = ({ id, jsonData, formName, canvasStyle }: Props) => {
               Clear
             </button>
           </div>
-        )}
+        )} */}
     </div>
   ) : (
     <p style={{ textAlign: "center" }}>No preview form data available</p>
