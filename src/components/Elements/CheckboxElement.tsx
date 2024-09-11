@@ -83,6 +83,13 @@ const CheckboxElement = (props) => {
     paddingLeft: props?.style?.paddingLeft,
     paddingRight: props?.style?.paddingRight,
     paddingBottom: props?.style?.paddingBottom,
+    height: props?.style?.height,
+    width: props?.style?.width,
+    // border: "1px solid black",
+    maxWidth: props?.style?.maxWidth,
+    minWidth: props?.style?.minWidth,
+    maxHeight: props?.style?.maxHeight,
+    minHeight: props?.style?.minHeight,
     // direction: props?.style?.direction,
   };
 
@@ -102,8 +109,11 @@ const CheckboxElement = (props) => {
   let flex = {
     width: "100%",
   };
+
+  console.log("spacingStyle", spacingStyle);
+
   return (
-    <div style={removeKeyInObject(spacingStyle, flex)}>
+    <div style={spacingStyle}>
       <label className="input_label" style={inputTextStyle}>
         {props?.name ? props?.name : "Label"}
         {props?.required && (
