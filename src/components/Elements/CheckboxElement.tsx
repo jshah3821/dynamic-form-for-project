@@ -85,7 +85,7 @@ const CheckboxElement = (props) => {
     paddingBottom: props?.style?.paddingBottom,
     height: props?.style?.height,
     width: props?.style?.width,
-    // border: "1px solid black",
+    border: "1px solid black",
     maxWidth: props?.style?.maxWidth,
     minWidth: props?.style?.minWidth,
     maxHeight: props?.style?.maxHeight,

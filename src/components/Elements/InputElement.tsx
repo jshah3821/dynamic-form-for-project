@@ -40,7 +40,7 @@ const InputElement = (props) => {
     paddingRight: props?.style?.paddingRight,
     paddingBottom: props?.style?.paddingBottom,
     direction: props?.style?.direction,
-    width: props?.style?.width,
+    width: props?.style?.width === "100%" ? "unset" : props?.style?.width,
     height: props?.style?.height,
     minWidth: props?.style?.minWidth,
     minHeight: props?.style?.minHeight,
@@ -48,7 +48,7 @@ const InputElement = (props) => {
     maxHeight: props?.style?.maxHeight,
   };
   return (
-    <div className="form_inputContainer " style={spacingStyle}>
+    <div className="form_inputContainer" style={spacingStyle}>
       <label style={inputTextStyle} htmlFor={props?.id}>
         {props?.label ? props?.label : "Label"}
         {props?.required && (
@@ -70,7 +70,6 @@ const InputElement = (props) => {
             ...inputTextStyle,
             ...inputContainerStyle,
           }),
-          flex: "1",
         }}
         onChange={props?.onChange}
         value={props?.value}

@@ -1220,6 +1220,7 @@ textarea {
 .submit_btn_container {
   /* position: absolute; */
   /* bottom: 0; */
+  margin-top: 20px;
   display: flex;
   height: 7%;
   gap: 2rem;
@@ -1484,7 +1485,7 @@ li {
 
 /* .selectBoxContainer, */
 /* .le_container */
-.form_inputContainer,
+/* .form_inputContainer, */
 .fp_text,
 .px1,
 .inputContainer {
